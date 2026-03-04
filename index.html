@@ -203,7 +203,7 @@ button:active{transform:scale(.96)}
   border:1px solid var(--bd);
   border-left:4px solid var(--gold);
   border-radius:8px;
-  overflow:clip;    /* clipa para border-radius sem criar scroll container */
+  overflow:hidden;
   position:relative;
 }
 .code-header{
@@ -216,17 +216,6 @@ button:active{transform:scale(.96)}
 .code-dot:nth-child(2){background:#c8a96e}
 .code-dot:nth-child(3){background:#4caf7d}
 .code-lang{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--gold);letter-spacing:3px;opacity:.7}
-/* wrapper que faz o scroll horizontal — não o pre, para evitar colapso em flex */
-.code-scroll{
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;
-  scrollbar-color:var(--bd) transparent;
-}
-.code-scroll::-webkit-scrollbar{height:5px}
-.code-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.04)}
-.code-scroll::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
-.code-scroll:hover::-webkit-scrollbar-thumb{background:var(--gold)}
 pre.code-pre{
   display:block;
   margin:0;padding:18px 18px;
@@ -235,7 +224,7 @@ pre.code-pre{
   line-height:2;
   color:#c8e6c9;
   white-space:pre;
-  overflow:visible;
+  overflow-x:auto;
   background:transparent;
 }
 pre.code-pre .kw{color:#bb86fc}
@@ -515,11 +504,7 @@ input:focus{border-color:var(--gold)}input::placeholder{color:var(--t3)}input.er
     margin-right:auto;
     width:100%;
   }
-  .ls-body{
-    min-height:0;       /* fix crítico: permite flex item com overflow-y:auto funcionar */
-    align-self:stretch; /* ocupa toda largura — padding lateral cuida da estética */
-  }
-  .ls-ftr{
+  .ls-body,.ls-ftr{
     max-width:660px;
     margin-left:auto;
     margin-right:auto;
@@ -1573,7 +1558,7 @@ function renderStep() {
     </div>`;
   }
 
-  // Code block — .code-scroll faz o scroll horizontal (não o pre, evita colapso em flex)
+  // Code block
   if (step.code) {
     html += `<div class="code-wrap">
       <div class="code-header">
@@ -1584,7 +1569,7 @@ function renderStep() {
         </div>
         <div class="code-lang">C#</div>
       </div>
-      <div class="code-scroll"><pre class="code-pre">${step.code}</pre></div>
+      <pre class="code-pre">${step.code}</pre>
     </div>`;
   }
 
