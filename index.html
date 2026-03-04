@@ -203,7 +203,7 @@ button:active{transform:scale(.96)}
   border:1px solid var(--bd);
   border-left:4px solid var(--gold);
   border-radius:8px;
-  overflow:hidden;
+  overflow:clip;    /* clipa para border-radius sem criar scroll container */
   position:relative;
 }
 .code-header{
@@ -515,7 +515,11 @@ input:focus{border-color:var(--gold)}input::placeholder{color:var(--t3)}input.er
     margin-right:auto;
     width:100%;
   }
-  .ls-body,.ls-ftr{
+  .ls-body{
+    min-height:0;       /* fix crítico: permite flex item com overflow-y:auto funcionar */
+    align-self:stretch; /* ocupa toda largura — padding lateral cuida da estética */
+  }
+  .ls-ftr{
     max-width:660px;
     margin-left:auto;
     margin-right:auto;
