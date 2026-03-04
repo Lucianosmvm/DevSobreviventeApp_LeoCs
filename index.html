@@ -216,6 +216,17 @@ button:active{transform:scale(.96)}
 .code-dot:nth-child(2){background:#c8a96e}
 .code-dot:nth-child(3){background:#4caf7d}
 .code-lang{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--gold);letter-spacing:3px;opacity:.7}
+/* wrapper que faz o scroll horizontal — não o pre, para evitar colapso em flex */
+.code-scroll{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:var(--bd) transparent;
+}
+.code-scroll::-webkit-scrollbar{height:5px}
+.code-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.04)}
+.code-scroll::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
+.code-scroll:hover::-webkit-scrollbar-thumb{background:var(--gold)}
 pre.code-pre{
   display:block;
   margin:0;padding:18px 18px;
@@ -224,17 +235,9 @@ pre.code-pre{
   line-height:2;
   color:#c8e6c9;
   white-space:pre;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
+  overflow:visible;
   background:transparent;
-  /* scrollbar visível e discreta no bloco de código */
-  scrollbar-width:thin;
-  scrollbar-color:var(--bd) transparent;
 }
-pre.code-pre::-webkit-scrollbar{height:5px}
-pre.code-pre::-webkit-scrollbar-track{background:rgba(255,255,255,.04)}
-pre.code-pre::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
-pre.code-pre:hover::-webkit-scrollbar-thumb{background:var(--gold)}
 pre.code-pre .kw{color:#bb86fc}
 pre.code-pre .tp{color:#82b1ff}
 pre.code-pre .st{color:#f48fb1}
@@ -1566,7 +1569,7 @@ function renderStep() {
     </div>`;
   }
 
-  // Code block — uses <pre> inside .code-wrap
+  // Code block — .code-scroll faz o scroll horizontal (não o pre, evita colapso em flex)
   if (step.code) {
     html += `<div class="code-wrap">
       <div class="code-header">
@@ -1577,7 +1580,7 @@ function renderStep() {
         </div>
         <div class="code-lang">C#</div>
       </div>
-      <pre class="code-pre">${step.code}</pre>
+      <div class="code-scroll"><pre class="code-pre">${step.code}</pre></div>
     </div>`;
   }
 
