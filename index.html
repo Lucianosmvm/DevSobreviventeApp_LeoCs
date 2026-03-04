@@ -224,8 +224,10 @@ pre.code-pre{
   line-height:2;
   color:#c8e6c9;
   white-space:pre;
-  overflow-x:auto;
+  overflow:auto;
   background:transparent;
+  min-height:110px;
+  max-height:40vh;
 }
 pre.code-pre .kw{color:#bb86fc}
 pre.code-pre .tp{color:#82b1ff}
@@ -593,7 +595,7 @@ input:focus{border-color:var(--gold)}input::placeholder{color:var(--t3)}input.er
   /* ── TAMANHOS DE FONTE MAIORES NA LIÇÃO (PC) ── */
   .bubble{font-size:1rem;padding:14px 18px}
   .char-av{width:56px;height:56px;font-size:1.9rem}
-  pre.code-pre{font-size:1.1rem;line-height:1.9;padding:20px 22px}
+  pre.code-pre{font-size:1.1rem;line-height:1.9;padding:20px 22px;min-height:160px;max-height:55vh}
   .ls-q{font-size:1.6rem}
   .ls-hint{font-size:.88rem}
   .step-tag{font-size:.62rem;padding:4px 12px}
