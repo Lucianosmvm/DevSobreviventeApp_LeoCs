@@ -1082,8 +1082,12 @@ function _fbErrMsg(code) {
     'auth/too-many-requests':'Muitas tentativas. Tente mais tarde.',
     'auth/popup-closed-by-user':'Login cancelado.',
     'auth/network-request-failed':'Sem conexão com a internet.',
+    'auth/unauthorized-domain':'Domínio não autorizado. Adicione-o no Firebase Console → Authentication → Authorized domains.',
+    'auth/operation-not-allowed':'Login com Google não está ativado no Firebase Console.',
+    'auth/popup-blocked':'Popup bloqueado pelo navegador. Permita popups para este site.',
+    'auth/cancelled-popup-request':'Login cancelado.',
   };
-  return m[code] || 'Erro inesperado. Tente novamente.';
+  return m[code] || `Erro inesperado (${code}). Tente novamente.`;
 }
 
 function _clearAuthErrs() {
