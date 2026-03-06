@@ -206,6 +206,9 @@ button:active{transform:scale(.96)}
   border-radius:8px;
   overflow:hidden;
   position:relative;
+  min-height:80px;
+  display:flex;
+  flex-direction:column;
 }
 .code-header{
   display:flex;align-items:center;justify-content:space-between;
@@ -225,10 +228,12 @@ pre.code-pre{
   line-height:2;
   color:#c8e6c9;
   white-space:pre;
-  overflow:auto;
+  overflow-x:auto;
+  overflow-y:auto;
   background:transparent;
   min-height:110px;
   max-height:40vh;
+  flex:1;
 }
 pre.code-pre .kw{color:#bb86fc}
 pre.code-pre .tp{color:#82b1ff}
