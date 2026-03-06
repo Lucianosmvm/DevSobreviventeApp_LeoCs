@@ -61,6 +61,13 @@ function renderH(id) {
   const el = document.getElementById(id);
   if (!el) return;
   el.innerHTML = '';
+  if (S.premium) {
+    const h = document.createElement('span');
+    h.className = 'hrt hrt-inf';
+    h.textContent = '∞';
+    el.appendChild(h);
+    return;
+  }
   for (let i = 0; i < MAX_H; i++) {
     const h = document.createElement('span');
     h.className = 'hrt' + (i >= S.hearts ? ' off' : '');

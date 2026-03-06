@@ -50,6 +50,7 @@ button:active{transform:scale(.96)}
 .hearts{display:flex;gap:3px}
 .hrt{font-size:.95rem;transition:all .3s}
 .hrt.off{filter:grayscale(1);opacity:.3}
+.hrt-inf{font-size:1.4rem;color:#c8a96e;font-family:'Bebas Neue',cursive;font-weight:700}
 
 /* ── XP FLASH ── */
 .xpflash{

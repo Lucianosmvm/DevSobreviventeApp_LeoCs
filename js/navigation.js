@@ -75,7 +75,7 @@ function refreshHome() {
   function tick() {
     regenH();
     renderH('hm-hearts');
-    tel.textContent = S.hearts >= MAX_H ? '' : `+❤️ em ${fmtTime(nextHeartMs())}`;
+    tel.textContent = S.premium ? '' : S.hearts >= MAX_H ? '' : `+❤️ em ${fmtTime(nextHeartMs())}`;
   }
   tick();
   htInterval = setInterval(tick, 1000);
