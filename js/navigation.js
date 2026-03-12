@@ -107,7 +107,7 @@ function refreshMap() {
     const card  = document.createElement('div');
     card.className = cl;
     card.innerHTML = `
-      <div class="mic">${m.icon}</div>
+      <div class="mic">${/\.\w+$/.test(m.icon) ? `<img src="${m.icon}" alt="${m.title}">` : m.icon}</div>
       <div class="minfo">
         <h3>${m.title}</h3>
         <p>// ${m.steps.length} EXERCÍCIOS · ${m.steps.length * 10 + 50} XP</p>

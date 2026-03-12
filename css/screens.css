@@ -109,7 +109,8 @@
 .mcard.done::before,.mcard.avail::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
 .mcard.done::before{background:var(--gold)}
 .mcard.avail::before{background:var(--green)}
-.mic{width:46px;height:46px;border-radius:8px;background:var(--s2);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.mic{width:46px;height:46px;border-radius:8px;background:var(--s2);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden}
+.mic img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}
 .mcard.done .mic{background:#c8a96e10;border-color:#c8a96e33}
 .minfo{flex:1;min-width:0}
 .minfo h3{font-size:.88rem;font-weight:700;margin-bottom:2px}
