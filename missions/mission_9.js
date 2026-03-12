@@ -5,7 +5,7 @@
 // Tipo: CHEFE (18 questões) | 6 MC → 5 Fill → 7 Code
 // ══════════════════════════════════════════════════════
 
-const MISSAO_09 = {
+const MISSION_09 = {
   id: 9,
   title: "MISSÃO 10 — PATRULHA",
   icon: '🎮',
