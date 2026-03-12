@@ -7,12 +7,15 @@
 
 const MISSION_01 = {
   id: 1,
-  act: 1,
-  titulo: "MISSÃO 02 — PRIMEIROS PASSOS",
-  subtitulo: "A Vila",
-  descricao: "A missão está em andamento. Para sobreviver à vila, você precisa pensar com lógica — cada decisão tem consequências.",
-  xp: 110,
-  boss: false,
+  title: "MISSÃO 02 — PRIMEIROS PASSOS",
+  icon: '🎮',
+  free: true,
+  desc: "A missão está em andamento. Para sobreviver à vila, você precisa pensar com lógica — cada decisão tem consequências.",
+  objs: [
+    "Entender a importância da lógica de programação",
+    "Aprender a decompor problemas em passos menores",
+    "Conhecer as estruturas básicas de um algoritmo"
+  ],
   steps: [
 
     // Q1 — MC

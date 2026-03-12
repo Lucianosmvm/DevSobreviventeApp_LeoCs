@@ -7,12 +7,15 @@
 
 const MISSION_05 = {
   id: 5,
-  act: 1,
-  titulo: "MISSÃO 06 — TIPOS DE MUNIÇÃO",
-  subtitulo: "A Vila",
-  descricao: "Cada arma usa um tipo diferente de munição. Na programação, cada problema exige o tipo certo de dado. Usar o tipo errado pode ser fatal.",
-  xp: 130,
-  boss: false,
+  title: "MISSÃO 06 — TIPOS DE MUNIÇÃO",
+  icon: '🎮',
+  free: true,
+  desc: "Cada arma usa um tipo diferente de munição. Na programação, cada problema exige o tipo certo de dado. Usar o tipo errado pode ser fatal.",
+  objs: [
+    "Entender os tipos numéricos int, long, float, double, decimal",
+    "Saber quando usar cada tipo para evitar erros e imprecisões",
+    "Aprender a converter entre tipos e lidar com limites e overflows"
+  ],
   steps: [
 
     // Q1 — MC

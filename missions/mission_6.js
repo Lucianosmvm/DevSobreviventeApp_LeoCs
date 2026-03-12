@@ -6,10 +6,15 @@
 
 const MISSION_06 = {
   id: 6, act: 1,
-  titulo: "MISSÃO 07 — IDENTIFICAÇÃO",
-  subtitulo: "A Vila",
-  descricao: "Para identificar ameaças, você precisa comparar, calcular e combinar condições. Operadores são as ferramentas matemáticas e lógicas da programação.",
-  xp: 130, boss: false,
+  title: "MISSÃO 07 — IDENTIFICAÇÃO",
+   icon: '🎮',
+  free: true,
+  desc: "Para identificar ameaças, você precisa comparar, calcular e combinar condições. Operadores são as ferramentas matemáticas e lógicas da programação.",
+  objs: [
+    "Compreender os operadores aritméticos, relacionais e lógicos",
+    "Saber como e quando usar cada operador",
+    "Praticar a combinação de condições em expressões complexas"
+  ],
   steps: [
 
     // Q1 — MC

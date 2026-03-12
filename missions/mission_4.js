@@ -7,12 +7,15 @@
 
 const MISSION_04 = {
   id: 4,
-  act: 1,
-  titulo: "MISSÃO 05 — O INVENTÁRIO",
-  subtitulo: "A Vila • Missão Chefe ⚔️",
-  descricao: "O inventário é o coração da sua sobrevivência. Para gerenciar armas, munição e itens, você precisa dominar variáveis e tipos de dados — os blocos fundamentais de qualquer programa.",
-  xp: 250,
-  boss: true,
+  title: "MISSÃO 05 — O INVENTÁRIO",
+  icon: '🎮',
+  free: true,
+  desc: "O inventário é o coração da sua sobrevivência. Para gerenciar armas, munição e itens, você precisa dominar variáveis e tipos de dados — os blocos fundamentais de qualquer programa.",
+  objs: [
+    "Entender o que são variáveis e tipos de dados",
+    "Aprender os tipos básicos em C#: int, double, bool, string, char",
+    "Praticar declaração, atribuição e operações com variáveis"
+  ],
   steps: [
 
     // Q1 — MC

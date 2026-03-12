@@ -7,12 +7,15 @@
 
 const MISSION_02 = {
   id: 2,
-  act: 1,
-  titulo: "MISSÃO 03 — RECONHECIMENTO",
-  subtitulo: "A Vila",
-  descricao: "O terreno ficou mais complexo. Aldeões em todos os lados, armadilhas escondidas. Hora de apurar o raciocínio e criar estratégias mais elaboradas.",
-  xp: 120,
-  boss: false,
+  title: "MISSÃO 03 — RECONHECIMENTO",
+  icon: '🎮',
+  free: true,
+  desc: "O terreno ficou mais complexo. Aldeões em todos os lados, armadilhas escondidas. Hora de apurar o raciocínio e criar estratégias mais elaboradas.",
+  objs: [
+    "Aprender os conceitos de lógica e algoritmos avançados",
+    "Praticar o pensamento computacional com problemas mais complexos",
+    "Desenvolver habilidades para resolver desafios reais de programação"
+  ],
   steps: [
 
     // Q1 — MC

@@ -7,12 +7,15 @@
 
 const MISSION_03 = {
   id: 3,
-  act: 1,
-  titulo: "MISSÃO 04 — SINAL DE RÁDIO",
-  subtitulo: "A Vila",
-  descricao: "Você capturou um rádio inimigo. Para se comunicar com o HQ e receber ordens, precisa dominar os canais de entrada e saída de informação.",
-  xp: 120,
-  boss: false,
+  title: "MISSÃO 04 — SINAL DE RÁDIO",
+  icon: '🎮',
+  free: true,
+  desc: "Você capturou um rádio inimigo. Para se comunicar com o HQ e receber ordens, precisa dominar os canais de entrada e saída de informação.",
+  objs: [
+    "Entender como exibir mensagens no console",
+    "Aprender a ler entradas do usuário",
+    "Usar formatação e estilo para destacar informações"
+  ],
   steps: [
 
     // Q1 — MC
