@@ -23,7 +23,6 @@ const MISSION_01 = {
       type:'mc',
       bubble:'<strong>Lógica de programação</strong> é a habilidade de decompor problemas em passos pequenos e ordenados que o computador pode seguir.',
       q:'Por que a lógica é a habilidade mais importante de um programador?',
-      hint:'A linguagem muda, a lógica fica',
       opts:[
         {t:'Porque permite memorizar todos os comandos', ok:false},
         {t:'Porque digitar rápido economiza tempo', ok:false},
@@ -38,7 +37,6 @@ const MISSION_01 = {
       type:'mc',
       bubble:'Antes de escrever código, devemos <strong>entender o problema</strong> completamente. Programar sem entender o problema é a receita do fracasso.',
       q:'Qual deve ser a primeira etapa ao receber um problema para programar?',
-      hint:'O que você faz antes de qualquer coisa?',
       opts:[
         {t:'Entender o problema completamente', ok:true},
         {t:'Abrir o editor e começar a digitar', ok:false},
@@ -53,7 +51,6 @@ const MISSION_01 = {
       type:'mc',
       bubble:'<strong>Decomposição</strong> é quebrar um problema grande em partes menores e mais fáceis de resolver. Divide e conquista.',
       q:'Leon precisa resgatar Ashley do castelo. Como aplicar decomposição?',
-      hint:'Quebre a missão em partes menores',
       opts:[
         {t:'Resolver tudo de uma vez', ok:false},
         {t:'Esperar ajuda chegar', ok:false},
@@ -68,7 +65,6 @@ const MISSION_01 = {
       type:'mc',
       bubble:'<strong>Pseudocódigo</strong> é uma forma de planejar o algoritmo em linguagem próxima do humano, sem se preocupar com sintaxe.',
       q:'Qual é a principal vantagem de escrever pseudocódigo antes de codificar?',
-      hint:'Planejar antes de construir',
       opts:[
         {t:'O computador consegue executar pseudocódigo', ok:false},
         {t:'É obrigatório em todas as linguagens', ok:false},
@@ -83,7 +79,6 @@ const MISSION_01 = {
       type:'mc',
       bubble:'As instruções executam em <strong>sequência</strong> — de cima para baixo, uma por vez. Mudar a ordem muda o resultado.',
       q:'Se você trocar a ordem das instruções de um algoritmo, o que pode acontecer?',
-      hint:'Ordem importa em receita de bolo também',
       opts:[
         {t:'O resultado pode ser completamente diferente ou errado', ok:true},
         {t:'Nada — a ordem não importa', ok:false},
@@ -98,7 +93,6 @@ const MISSION_01 = {
       type:'mc',
       bubble:'Um <strong>fluxograma</strong> representa visualmente um algoritmo com símbolos: oval (início/fim), retângulo (processo), losango (decisão).',
       q:'No fluxograma, qual símbolo representa uma decisão (sim/não)?',
-      hint:'Tem quatro lados iguais mas está inclinado',
       opts:[
         {t:'Retângulo', ok:false},
         {t:'Losango', ok:true},
@@ -114,7 +108,6 @@ const MISSION_01 = {
       bubble:'No pseudocódigo, usamos <code>SE</code> para tomar decisões e <code>ENTÃO</code> para indicar o que fazer se a condição for verdadeira.',
       code:`<span class="cm">// Pseudocódigo:</span>\n<span class="kw">SE</span> inimigo_visível <span class="kw">_______</span>\n    atacar()\n<span class="kw">FIM SE</span>`,
       q:'Qual palavra usamos no pseudocódigo após a condição?',
-      hint:'Indica o que fazer se a condição for verdadeira',
       ans:'ENTÃO',
       exp:'"SE condição ENTÃO ação" é a estrutura básica de decisão em pseudocódigo. Em C# vira: if (condição) { ação }',
     },
@@ -125,7 +118,6 @@ const MISSION_01 = {
       bubble:'A <strong>indentação</strong> (recuo do código) organiza visualmente os blocos. Em C# não é obrigatória, mas é essencial para legibilidade.',
       code:`<span class="kw">if</span> (vivo)\n{\n    <span class="kw">_______</span> Console.<span class="mt">WriteLine</span>(<span class="st">"Continuar missão"</span>);\n}`,
       q:'Qual caractere ou tecla usamos para indentar código?',
-      hint:'Tecla no canto esquerdo do teclado',
       ans:'    ',
       exp:'Indentação usa espaços ou Tab. Código indentado corretamente mostra a hierarquia dos blocos visualmente.',
     },
@@ -136,7 +128,6 @@ const MISSION_01 = {
       bubble:'<strong>Comentários</strong> explicam o código para humanos. Em C#, comentário de linha começa com <code>//</code>.',
       code:`<span class="kw">int</span> vidas = <span class="nm">3</span>; <span class="cm">_______ Número de tentativas do jogador</span>`,
       q:'Qual símbolo inicia um comentário de linha em C#?',
-      hint:'Duas barras',
       ans:'//',
       exp:'"// comentário" comenta o resto da linha. "/* comentário */" comenta múltiplas linhas. O compilador ignora comentários.',
     },
@@ -147,7 +138,6 @@ const MISSION_01 = {
       bubble:'Analise a ordem de execução deste algoritmo simples.',
       code:`Console.<span class="mt">WriteLine</span>(<span class="st">"1. Carregar arma"</span>);\nConsole.<span class="mt">WriteLine</span>(<span class="st">"2. Encontrar inimigo"</span>);\nConsole.<span class="mt">WriteLine</span>(<span class="st">"3. Atirar"</span>);`,
       q:'Em qual ordem as mensagens aparecem?',
-      hint:'Execução sequencial — de cima para baixo',
       opts:[
         {t:'3, 2, 1', ok:false},
         {t:'Todas ao mesmo tempo', ok:false},
@@ -163,7 +153,6 @@ const MISSION_01 = {
       bubble:'Identifique o erro lógico neste algoritmo de troca de valores.',
       code:`<span class="kw">int</span> a = <span class="nm">10</span>, b = <span class="nm">20</span>;\na = b; <span class="cm">// a agora vale 20</span>\nb = a; <span class="cm">// b agora vale... ?</span>\nConsole.<span class="mt">WriteLine</span>(<span class="st">$"a={a} b={b}"</span>);`,
       q:'Qual é o problema nesta troca de valores?',
-      hint:'O valor original de "a" foi perdido',
       opts:[
         {t:'Não há problema — troca corretamente', ok:false},
         {t:'A sintaxe está errada', ok:false},
