@@ -5,12 +5,18 @@
 // Tipo: CHEFE (18 questões) | 6 MC → 5 Fill → 7 Code
 // ══════════════════════════════════════════════════════
 
-const missao10 = {
-  id: 10, act: 1,
-  titulo: "MISSÃO 10 — PATRULHA",
-  subtitulo: "A Vila • Missão Chefe ⚔️",
-  descricao: "Os inimigos patrulham em loop. Para derrotá-los, você precisa dominar a repetição — o loop while é sua ferramenta para executar ações enquanto uma condição for verdadeira.",
-  xp: 260, boss: true,
+const MISSAO_09 = {
+  id: 9,
+  title: "MISSÃO 10 — PATRULHA",
+  icon: '🎮',
+  free: true,
+  desc: "Os inimigos patrulham em loop. Para derrotá-los, você precisa dominar a repetição — o loop while é sua ferramenta para executar ações enquanto uma condição for verdadeira.",
+  objs: [
+    "Entender a estrutura while para repetição controlada por condição",
+    "Usar do-while para garantir execução mínima",
+    "Controlar o fluxo do loop com break e continue",
+    "Implementar acumuladores para somar ou contar durante o loop",
+  ],
   steps: [
 
     // Q1 — MC
