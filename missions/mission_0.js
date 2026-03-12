@@ -20,10 +20,10 @@ const MISSION_0 = {
       q: 'O que é lógica?',
       hint: 'Pense em resolver problemas com raciocínio',
       opts: [
-        { t: 'Pensar de forma organizada para resolver problemas', ok: true },
         { t: 'Um tipo de vírus', ok: false },
         { t: 'Um tipo de computador', ok: false },
         { t: 'Um personagem do jogo', ok: false },
+        { t: 'Pensar de forma organizada para resolver problemas', ok: true },
       ],
       exp: 'Lógica é a capacidade de pensar de forma estruturada para encontrar soluções.',
     },
@@ -33,8 +33,8 @@ const MISSION_0 = {
       q: 'Na programação, como chamamos uma sequência de passos para resolver um problema?',
       hint: 'É como um plano de missão',
       opts: [
-        { t: 'Algoritmo', ok: true },
         { t: 'Computador', ok: false },
+        { t: 'Algoritmo', ok: true },
         { t: 'Monitor', ok: false },
         { t: 'Internet', ok: false },
       ],
@@ -59,9 +59,9 @@ const MISSION_0 = {
       q: 'Quando Leon encontra uma porta trancada, qual seria a decisão lógica?',
       hint: 'Depende se ele tem a chave',
       opts: [
-        { t: 'Se tiver chave → abrir porta', ok: true },
         { t: 'Ignorar a porta', ok: false },
         { t: 'Desligar o jogo', ok: false },
+        { t: 'Se tiver chave → abrir porta', ok: true },
         { t: 'Quebrar o computador', ok: false },
       ],
       exp: 'Decisões são baseadas em condições: se algo acontecer, execute determinada ação.',
@@ -73,8 +73,8 @@ const MISSION_0 = {
       q: 'O que esse código exibirá?',
       hint: 'Veja o texto dentro das aspas',
       opts: [
-        { t: 'Zumbi detectado!', ok: true },
         { t: 'Console', ok: false },
+        { t: 'Zumbi detectado!', ok: true },
         { t: 'WriteLine', ok: false },
         { t: 'Nada', ok: false },
       ],
@@ -101,8 +101,8 @@ const MISSION_0 = {
       q: 'Qual método está sendo usado para exibir texto?',
       hint: 'É o método mais usado para imprimir no console',
       opts: [
-        { t: 'WriteLine', ok: true },
         { t: 'Print', ok: false },
+        { t: 'WriteLine', ok: true },
         { t: 'Display', ok: false },
         { t: 'Show', ok: false },
       ],

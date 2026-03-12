@@ -25,6 +25,6 @@
 
 const MISSIONS = [
   MISSION_0,
-  // MISSION_1,
+  MISSION_1,
   // MISSION_2,
 ];
