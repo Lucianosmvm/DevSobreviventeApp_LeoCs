@@ -67,6 +67,9 @@ function refreshHome() {
     if (_pl) { _pl.textContent = S.premium ? '👑 PREMIUM' : 'FREE'; _pl.className = 'hm-uplan ' + (S.premium ? 'gold' : 'dim'); }
   }
 
+  const _mb = document.getElementById('hm-btn-mission');
+  if (_mb) _mb.innerHTML = S.done.length > 0 ? '▶ &nbsp;CONTINUAR MISSÃO' : '▶ &nbsp;INICIAR MISSÃO';
+
   const _pb = document.getElementById('hm-premium-banner');
   if (_pb) _pb.style.display = S.premium ? 'none' : 'flex';
 
