@@ -1,139 +1,162 @@
-// =====================================================
-// LEON.CS - missions/mission_0.js
-// Missao: Lógica de Programação e Algoritmos
-// =====================================================
+// ══════════════════════════════════════════════════════
+// ACT I — A VILA
+// MISSÃO 01 — INFILTRAÇÃO
+// Tema: O que é programação / algoritmos
+// Tipo: Normal (10 questões) | Progressão: 7 MC → 2 Fill → 1 Code
+// ══════════════════════════════════════════════════════
 
 const MISSION_0 = {
   id: 0,
-  title: 'Lógica de Programação e Algoritmos',
-  icon: '🎮',
-  free: true,
-  desc: 'Em Resident Evil, sobreviver não depende só de armas. Leon precisa pensar antes de agir: decidir para onde ir, qual porta abrir, qual item usar.',
-  objs: [
-    'Entender o que é lógica de programação e algoritmos',
-    'Aprender a pensar como um programador',
-  ],
+  act: 1,
+  titulo: "MISSÃO 01 — INFILTRAÇÃO",
+  subtitulo: "A Vila",
+  descricao: "Você acabou de pousar em território inimigo. Antes de qualquer ação, precisa entender o terreno — os fundamentos que vão guiar toda a operação.",
+  xp: 100,
+  boss: false,
   steps: [
+
+    // Q1 — MC
     {
-      type: 'mc',
-      bubble: 'Agente, em programação usamos <strong>lógica</strong> para tomar decisões corretas, assim como em Resident Evil você precisa escolher o caminho certo para sobreviver.',
-      q: 'O que é lógica?',
-      hint: 'Pense em resolver problemas com raciocínio',
-      opts: [
-        { t: 'Um tipo de vírus', ok: false },
-        { t: 'Um tipo de computador', ok: false },
-        { t: 'Um personagem do jogo', ok: false },
-        { t: 'Pensar de forma organizada para resolver problemas', ok: true },
+      type:'mc',
+      bubble:'Bem-vindo, agente. Antes de pegar uma arma, você precisa entender o básico. <strong>Programação</strong> é dar instruções precisas ao computador para resolver problemas.',
+      q:'O que é programação?',
+      hint:'O computador só faz o que você mandar',
+      opts:[
+        {t:'Consertar computadores fisicamente', ok:false},
+        {t:'Dar instruções ao computador para resolver problemas', ok:true},
+        {t:'Criar hardware e processadores', ok:false},
+        {t:'Usar aplicativos já prontos', ok:false},
       ],
-      exp: 'Lógica é a capacidade de pensar de forma estruturada para encontrar soluções.',
+      exp:'Programação é o ato de escrever instruções (código) que o computador executa para resolver um problema.',
     },
+
+    // Q2 — MC
     {
-      type: 'mc',
-      bubble: 'Imagine que Leon precisa escapar de um corredor cheio de zumbis. Ele precisa seguir alguns passos organizados.',
-      q: 'Na programação, como chamamos uma sequência de passos para resolver um problema?',
-      hint: 'É como um plano de missão',
-      opts: [
-        { t: 'Computador', ok: false },
-        { t: 'Algoritmo', ok: true },
-        { t: 'Monitor', ok: false },
-        { t: 'Internet', ok: false },
+      type:'mc',
+      bubble:'Uma <strong>linguagem de programação</strong> é o idioma que usamos para nos comunicar com o computador. C# é uma delas.',
+      q:'Para que serve uma linguagem de programação?',
+      hint:'É um idioma, mas para máquinas',
+      opts:[
+        {t:'Para comunicar instruções ao computador de forma estruturada', ok:true},
+        {t:'Para traduzir textos entre humanos', ok:false},
+        {t:'Para acelerar a internet', ok:false},
+        {t:'Para proteger arquivos com senha', ok:false},
       ],
-      exp: 'Algoritmo é uma sequência de passos organizada para resolver um problema.',
+      exp:'Linguagens de programação permitem que humanos escrevam instruções num formato que pode ser traduzido para a linguagem da máquina.',
     },
+
+    // Q3 — MC
     {
-      type: 'mc',
-      bubble: 'Um algoritmo é como um plano de sobrevivência em Resident Evil.',
-      q: 'Qual dessas opções representa um algoritmo?',
-      hint: 'Pense em passos organizados',
-      opts: [
-        { t: 'Pegar chave → abrir porta → fugir do zumbi', ok: true },
-        { t: 'Atirar aleatoriamente', ok: false },
-        { t: 'Ficar parado', ok: false },
-        { t: 'Desligar o computador', ok: false },
+      type:'mc',
+      bubble:'<strong>C#</strong> (lê-se "C Sharp") é uma linguagem criada pela Microsoft, moderna, poderosa e usada em jogos, apps, sistemas web e muito mais.',
+      q:'Quem criou a linguagem C#?',
+      hint:'A empresa do Windows',
+      opts:[
+        {t:'Google', ok:false},
+        {t:'Apple', ok:false},
+        {t:'Meta', ok:false},
+        {t:'Microsoft', ok:true},
       ],
-      exp: 'Um algoritmo sempre possui passos organizados para resolver uma situação.',
+      exp:'C# foi criada pela Microsoft em 2000, liderada por Anders Hejlsberg. É amplamente usada com o ecossistema .NET.',
     },
+
+    // Q4 — MC
     {
-      type: 'mc',
-      bubble: 'Na programação usamos decisões para escolher ações diferentes.',
-      q: 'Quando Leon encontra uma porta trancada, qual seria a decisão lógica?',
-      hint: 'Depende se ele tem a chave',
-      opts: [
-        { t: 'Ignorar a porta', ok: false },
-        { t: 'Desligar o jogo', ok: false },
-        { t: 'Se tiver chave → abrir porta', ok: true },
-        { t: 'Quebrar o computador', ok: false },
+      type:'mc',
+      bubble:'Um <strong>algoritmo</strong> é uma sequência finita de passos para resolver um problema. Como um plano de missão — cada etapa importa.',
+      q:'Qual das opções melhor descreve um algoritmo?',
+      hint:'Pense num passo a passo',
+      opts:[
+        {t:'Um tipo de computador', ok:false},
+        {t:'Uma sequência de passos para resolver um problema', ok:true},
+        {t:'Um erro de programação', ok:false},
+        {t:'Um arquivo executável', ok:false},
       ],
-      exp: 'Decisões são baseadas em condições: se algo acontecer, execute determinada ação.',
+      exp:'Algoritmo: sequência finita, ordenada e sem ambiguidade de instruções que resolve um problema. Base de toda programação.',
     },
+
+    // Q5 — MC
     {
-      type: 'code',
-      bubble: 'Veja este pequeno exemplo em C# inspirado em Resident Evil.',
-      code: `Console.<span class="mt">WriteLine</span>(<span class="st">"Zumbi detectado!"</span>);`,
-      q: 'O que esse código exibirá?',
-      hint: 'Veja o texto dentro das aspas',
-      opts: [
-        { t: 'Console', ok: false },
-        { t: 'Zumbi detectado!', ok: true },
-        { t: 'WriteLine', ok: false },
-        { t: 'Nada', ok: false },
+      type:'mc',
+      bubble:'Todo algoritmo precisa ter três características: ser <strong>finito</strong> (termina), <strong>definido</strong> (sem ambiguidade) e <strong>eficaz</strong> (produz resultado).',
+      q:'O que acontece se um algoritmo não for finito?',
+      hint:'Algo que não termina nunca...',
+      opts:[
+        {t:'Funciona mais rápido', ok:false},
+        {t:'O computador reinicia automaticamente', ok:false},
+        {t:'O programa entra em loop infinito e nunca entrega resultado', ok:true},
+        {t:'O código compila com aviso', ok:false},
       ],
-      exp: 'Console.WriteLine() imprime exatamente o texto que está entre aspas.',
+      exp:'Um algoritmo não finito nunca termina — trava o programa. Todo algoritmo deve ter uma condição de parada clara.',
     },
+
+    // Q6 — MC
     {
-      type: 'code',
-      bubble: 'Veja outro código simples:',
-      code: `Console.<span class="mt">WriteLine</span>(<span class="st">"Leon encontrou uma chave"</span>);`,
-      q: 'O que aparecerá na tela?',
-      hint: 'Leia o texto dentro das aspas',
-      opts: [
-        { t: 'Leon encontrou uma chave', ok: true },
-        { t: 'Leon', ok: false },
-        { t: 'Chave', ok: false },
-        { t: 'Erro', ok: false },
+      type:'mc',
+      bubble:'O fluxo básico de qualquer programa é: <strong>Entrada → Processamento → Saída</strong>. Dados entram, são transformados, e um resultado sai.',
+      q:'Numa calculadora que soma dois números, qual é o "processamento"?',
+      hint:'O que ela faz com os números?',
+      opts:[
+        {t:'A operação de soma em si', ok:true},
+        {t:'Os números digitados', ok:false},
+        {t:'O resultado exibido na tela', ok:false},
+        {t:'A bateria que alimenta a calculadora', ok:false},
       ],
-      exp: 'O método WriteLine imprime o texto exatamente como está entre aspas.',
+      exp:'Entrada = números digitados. Processamento = a soma. Saída = resultado na tela. Esse fluxo existe em todo programa.',
     },
+
+    // Q7 — MC
     {
-      type: 'code',
-      bubble: 'Observe o código abaixo:',
-      code: `Console.<span class="mt">WriteLine</span>(<span class="st">"Missão iniciada"</span>);`,
-      q: 'Qual método está sendo usado para exibir texto?',
-      hint: 'É o método mais usado para imprimir no console',
-      opts: [
-        { t: 'Print', ok: false },
-        { t: 'WriteLine', ok: true },
-        { t: 'Display', ok: false },
-        { t: 'Show', ok: false },
+      type:'mc',
+      bubble:'Um <strong>compilador</strong> traduz seu código C# para linguagem de máquina. O compilador do C# se chama Roslyn.',
+      q:'O que faz um compilador?',
+      hint:'Traduz para a máquina entender',
+      opts:[
+        {t:'Executa o programa diretamente', ok:false},
+        {t:'Corrige erros automaticamente', ok:false},
+        {t:'Conecta o código à internet', ok:false},
+        {t:'Traduz o código escrito em linguagem de máquina executável', ok:true},
       ],
-      exp: 'WriteLine é o método usado em C# para imprimir texto no console.',
+      exp:'O compilador lê seu código fonte e traduz para binário que o processador executa. Erros de sintaxe são detectados aqui.',
     },
+
+    // Q8 — Fill
     {
-      type: 'fill',
-      bubble: 'Complete o código para mostrar a mensagem "Zumbi eliminado".',
-      code: `Console.<span class="kw">_______</span>(<span class="st">"Zumbi eliminado"</span>);`,
-      q: 'Qual método exibe texto no console?',
-      hint: 'Ele também pula uma linha',
-      ans: 'WriteLine',
-      exp: 'Console.WriteLine() imprime texto e pula para a próxima linha.',
+      type:'fill',
+      bubble:'Em C#, todo programa começa sua execução pelo método <code>Main</code>. É o ponto de entrada do sistema.',
+      code:`<span class="kw">static void</span> <span class="mt">_______</span>(<span class="kw">string</span>[] args)\n{\n    <span class="cm">// programa começa aqui</span>\n}`,
+      q:'Qual é o nome do método de entrada de todo programa C#?',
+      hint:'Ponto principal de entrada',
+      ans:'Main',
+      exp:'"Main" é o ponto de entrada de todo programa C#. É onde a execução começa. O nome é obrigatório e case-sensitive.',
     },
+
+    // Q9 — Fill
     {
-      type: 'fill',
-      bubble: 'Complete o código abaixo:',
-      code: `Console.<span class="kw">_______</span>(<span class="st">"Missão concluída"</span>);`,
-      q: 'Qual método deve completar o código?',
-      hint: 'Exibe texto no console',
-      ans: 'WriteLine',
-      exp: 'WriteLine é o método padrão para exibir mensagens no console.',
+      type:'fill',
+      bubble:'O <strong>namespace</strong> organiza o código em grupos lógicos, como pastas para arquivos. Evita conflitos de nomes.',
+      code:`<span class="kw">_______</span> MissaoInfiltracao\n{\n    <span class="cm">// código organizado aqui</span>\n}`,
+      q:'Qual palavra-chave define um namespace em C#?',
+      hint:'É como uma pasta para o código',
+      ans:'namespace',
+      exp:'"namespace" agrupa classes relacionadas. Como pastas no Windows. Evita conflito de nomes iguais em projetos grandes.',
     },
+
+    // Q10 — Code
     {
-      type: 'fill',
-      bubble: 'Complete o código para mostrar a frase "Leon encontrou munição".',
-      code: `Console.<span class="kw">_______</span>(<span class="st">"Leon encontrou munição"</span>);`,
-      q: 'Qual método imprime texto na tela?',
-      hint: 'É usado junto com Console',
-      ans: 'WriteLine',
-      exp: 'Console.WriteLine() é o método responsável por mostrar texto no console.',
+      type:'code',
+      bubble:'Bem-vindo ao seu primeiro código C#. O agente Leon envia uma mensagem de confirmação da missão.',
+      code:`<span class="kw">using</span> System;\n\n<span class="kw">namespace</span> Infiltracao\n{\n    <span class="kw">class</span> Programa\n    {\n        <span class="kw">static void</span> <span class="mt">Main</span>(<span class="kw">string</span>[] args)\n        {\n            Console.<span class="mt">WriteLine</span>(<span class="st">"Missão iniciada, parceiro."</span>);\n        }\n    }\n}`,
+      q:'O que este programa exibe ao executar?',
+      hint:'Leia o texto dentro das aspas',
+      opts:[
+        {t:'Infiltracao', ok:false},
+        {t:'Missão iniciada, parceiro.', ok:true},
+        {t:'Main', ok:false},
+        {t:'System', ok:false},
+      ],
+      exp:'Console.WriteLine() imprime o texto entre aspas e pula uma linha. "Missão iniciada, parceiro." será exibido.',
     },
-  ],
+
+  ]
 };
