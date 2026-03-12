@@ -7,12 +7,15 @@
 
 const MISSION_0 = {
   id: 0,
-  act: 1,
-  titulo: "MISSÃO 01 — INFILTRAÇÃO",
-  subtitulo: "A Vila",
-  descricao: "Você acabou de pousar em território inimigo. Antes de qualquer ação, precisa entender o terreno — os fundamentos que vão guiar toda a operação.",
-  xp: 100,
-  boss: false,
+  title: "MISSÃO 01 — INFILTRAÇÃO",
+  icon: '🎮',
+  free: true,
+  desc: "Você acabou de pousar em território inimigo. Antes de qualquer ação, precisa entender o terreno — os fundamentos que vão guiar toda a operação.",
+  objs: [
+    "Entender o que é programação e algoritmos",
+    "Conhecer a linguagem C# e seu papel",
+    "Aprender os conceitos básicos para começar a codar"
+  ],
   steps: [
 
     // Q1 — MC
