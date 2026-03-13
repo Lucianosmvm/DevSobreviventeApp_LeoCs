@@ -102,6 +102,7 @@
   background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);
   padding:14px;display:flex;align-items:center;gap:12px;
   cursor:pointer;position:relative;overflow:hidden;
+  flex-shrink:0;
   transition:border-color .2s,transform .15s;
 }
 .mcard:not(.lck):hover{border-color:var(--gold);transform:translateX(2px)}
