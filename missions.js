@@ -38,5 +38,4 @@ const MISSIONS = [
   MISSION_11,
   MISSION_12,
   MISSION_13,
-  MISSION_14,
 ];
