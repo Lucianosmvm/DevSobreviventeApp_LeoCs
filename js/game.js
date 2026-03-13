@@ -36,6 +36,7 @@ function renderStep() {
   const pct  = (SEL.step / m.steps.length) * 100;
 
   document.getElementById('ls-prog').style.width = pct + '%';
+  document.getElementById('ls-prog-cnt').textContent = SEL.step + '/' + m.steps.length;
   renderH('ls-hearts');
 
   SEL.answered = false;
@@ -78,7 +79,6 @@ function renderStep() {
   }
 
   html += `<div class="ls-q">${step.q}</div>`;
-  html += `<div class="ls-hint">💡 ${step.hint}</div>`;
 
   if (step.type === 'fill') {
     html += `<input class="fill-inp" id="fill-inp" placeholder="Digite aqui..." autocomplete="off" autocorrect="off" spellcheck="false">`;
