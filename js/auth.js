@@ -165,7 +165,7 @@ function refreshProfile() {
   pill.className   = 'pr-pill ' + (S.premium ? 'premium' : 'free');
   document.getElementById('pr-xp').textContent      = S.xp + ' XP';
   document.getElementById('pr-lv').textContent      = getLv() + ' — ' + getLvName();
-  document.getElementById('pr-streak').textContent  = S.streak + ' dias 🔥';
+  document.getElementById('pr-streak').textContent  = S.streak + ' dias 🎯';
   document.getElementById('pr-ms').textContent      = S.done.length + ' / ' + MISSIONS.length;
   document.getElementById('pr-correct').textContent = S.correct || 0;
   document.getElementById('pr-since').textContent   = S.createdAt || '—';

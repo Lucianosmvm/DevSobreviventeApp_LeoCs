@@ -89,13 +89,20 @@ function loseH() {
   renderH('hm-hearts');
 }
 
-// ── Streak ──
+// ── Ofensiva (streak) ──
 
+// Chamado no login: só verifica se perdeu a ofensiva, não incrementa
+function checkStreakLoss() {
+  if (!S.lastPlayed || S.lastPlayed === new Date().toDateString()) return;
+  const diff = Math.floor((new Date() - new Date(S.lastPlayed)) / 86400000);
+  if (diff > 1) { S.streak = 0; _saveLocal(); }
+}
+
+// Chamado ao concluir missão: incrementa ou reseta a ofensiva
 function checkStreak() {
   const today = new Date().toDateString();
-  if (!S.lastPlayed) { S.lastPlayed = today; S.streak = 1; return; }
-  if (S.lastPlayed === today) return;
-  const diff = Math.floor((new Date() - new Date(S.lastPlayed)) / 86400000);
+  if (S.lastPlayed === today) return; // já contou hoje
+  const diff = S.lastPlayed ? Math.floor((new Date() - new Date(S.lastPlayed)) / 86400000) : 1;
   S.streak = diff === 1 ? S.streak + 1 : 1;
   S.lastPlayed = today;
   saveS();

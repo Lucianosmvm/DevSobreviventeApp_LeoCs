@@ -37,7 +37,7 @@ async function loadFirebase() {
         showLoading('SINCRONIZANDO...');
         await _loadCloud(user.uid);
         hideLoading();
-        regenH(); checkStreak(); _saveLocal();
+        regenH(); checkStreakLoss(); _saveLocal();
         go('hm');
       } else {
         window._currentUser = null;
@@ -50,7 +50,7 @@ async function loadFirebase() {
     console.warn('Firebase não configurado. Rodando em modo demo:', e.message);
     hideLoading();
     window._currentUser = { uid: 'demo', displayName: 'Leon Demo', email: 'demo@leoncs.app', photoURL: null };
-    regenH(); checkStreak(); _saveLocal();
+    regenH(); checkStreakLoss(); _saveLocal();
     go('hm');
   }
 }

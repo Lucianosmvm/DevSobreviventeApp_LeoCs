@@ -26,7 +26,6 @@ function openMission(i) {
 function startLesson() {
   SEL.step = 0; SEL.correct = 0; SEL.wrong = 0; SEL.xpGained = 0;
   SEL.answered = false; SEL.chosen = null;
-  checkStreak();
   go('ls');
   renderStep();
 }
@@ -174,6 +173,7 @@ function nextStep() {
   SEL.step++;
   const m = MISSIONS[SEL.mission];
   if (SEL.step >= m.steps.length) {
+    checkStreak();
     if (!S.done.includes(m.id)) {
       S.done.push(m.id);
       S.xp += 50; SEL.xpGained += 50;
