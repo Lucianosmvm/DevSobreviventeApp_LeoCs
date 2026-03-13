@@ -61,6 +61,38 @@ button:active{transform:scale(.96)}
 }
 @keyframes xpp{0%{opacity:0;transform:translate(-50%,-40%)}30%{opacity:1;transform:translate(-50%,-60%)}100%{opacity:0;transform:translate(-50%,-90%)}}
 
+/* ── COMBO BANNER ── */
+.combo-banner{
+  position:fixed;top:22%;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,#1a1408ee,#2c1e06ee);
+  border:2px solid var(--gold);border-radius:12px;
+  padding:14px 32px;display:flex;align-items:center;gap:12px;
+  pointer-events:none;z-index:9999;white-space:nowrap;
+  box-shadow:0 0 32px #c8a96e55;
+  animation:combo-anim 1.9s cubic-bezier(.175,.885,.32,1.275) forwards;
+}
+.combo-ico{font-size:2.2rem}
+.combo-txt{font-family:'Bebas Neue',cursive;font-size:1.9rem;color:var(--gold);letter-spacing:3px}
+@keyframes combo-anim{
+  0%  {opacity:0;transform:translateX(-50%) scale(.4)}
+  18% {opacity:1;transform:translateX(-50%) scale(1.12)}
+  30% {transform:translateX(-50%) scale(1)}
+  70% {opacity:1;transform:translateX(-50%) scale(1)}
+  100%{opacity:0;transform:translateX(-50%) scale(.85)}
+}
+
+/* ── CONFETTI ── */
+.confetti-piece{
+  position:fixed;top:-12px;border-radius:2px;
+  pointer-events:none;z-index:9999;
+  animation:confetti-fall linear forwards;
+}
+@keyframes confetti-fall{
+  0%  {transform:translateY(0) rotate(0deg);opacity:1}
+  80% {opacity:1}
+  100%{transform:translateY(105vh) rotate(720deg);opacity:0}
+}
+
 /* ── INPUTS & FORMS ── */
 input{width:100%;background:var(--s2);border:1.5px solid var(--bd);border-radius:var(--r);padding:14px 16px;color:var(--text);font-family:'Barlow',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s;}
 input:focus{border-color:var(--gold)}

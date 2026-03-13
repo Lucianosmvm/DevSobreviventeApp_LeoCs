@@ -25,7 +25,7 @@ function openMission(i) {
 
 function startLesson() {
   SEL.step = 0; SEL.correct = 0; SEL.wrong = 0; SEL.xpGained = 0;
-  SEL.answered = false; SEL.chosen = null;
+  SEL.answered = false; SEL.chosen = null; SEL.combo = 0;
   go('ls');
   renderStep();
 }
@@ -137,8 +137,11 @@ function checkAns() {
     S.correct = (S.correct || 0) + 1;
     saveS();
     xpFlash('+10 XP');
+    SEL.combo++;
+    if (SEL.combo > 0 && SEL.combo % 5 === 0) comboFlash();
   } else {
     SEL.wrong++;
+    SEL.combo = 0;
     loseH();
   }
 
@@ -164,6 +167,34 @@ function xpFlash(txt) {
   el.textContent = txt;
   document.body.appendChild(el);
   setTimeout(() => el.remove(), 900);
+}
+
+function comboFlash() {
+  const el = document.createElement('div');
+  el.className = 'combo-banner';
+  el.innerHTML = '<span class="combo-ico">⚡</span><span class="combo-txt">SEQUÊNCIA LETAL ×' + SEL.combo + '</span>';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2000);
+}
+
+function launchConfetti() {
+  const colors = ['#c8a96e','#e0c080','#4caf7d','#e05555','#ffffff','#f0a030'];
+  for (let i = 0; i < 48; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    const size = 6 + Math.random() * 8;
+    el.style.cssText = [
+      'left:'      + (Math.random() * 100) + 'vw',
+      'background:'+ colors[Math.floor(Math.random() * colors.length)],
+      'width:'     + size + 'px',
+      'height:'    + size + 'px',
+      'animation-delay:'   + (Math.random() * 0.6) + 's',
+      'animation-duration:'+ (1.4 + Math.random() * 1.2) + 's',
+      'transform:rotate('  + (Math.random() * 360) + 'deg)',
+    ].join(';');
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2800);
+  }
 }
 
 // ── Próximo passo / fim ──
@@ -208,6 +239,7 @@ function showResult(win) {
     btn.onclick = () => go('mp');
   }
   go('rs');
+  if (win && SEL.wrong === 0) setTimeout(launchConfetti, 300);
 }
 
 function retryLesson() {
