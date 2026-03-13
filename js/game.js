@@ -36,7 +36,7 @@ function renderStep() {
   const pct  = (SEL.step / m.steps.length) * 100;
 
   document.getElementById('ls-prog').style.width = pct + '%';
-  document.getElementById('ls-prog-cnt').textContent = SEL.step + '/' + m.steps.length;
+  document.getElementById('ls-prog-cnt').textContent = (SEL.step + 1) + '/' + m.steps.length;
   renderH('ls-hearts');
 
   SEL.answered = false;
