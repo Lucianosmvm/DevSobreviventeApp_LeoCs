@@ -1,5 +1,5 @@
 // ══════════════════════════════════════════════════════
-// MISSÃO 07 — DECISÃO TÁTICA
+// MISSÃO 08 — DECISÃO TÁTICA
 // Tema: Condicionais if/else
 // Tipo: Normal (11 questões) | 4 MC → 3 Fill → 4 Code
 // ══════════════════════════════════════════════════════
@@ -7,7 +7,7 @@
 const MISSION_07 = {
   id: 7,
   title: "MISSÃO 08 — DECISÃO TÁTICA",
-  icon: '🎮',
+  icon: 'assets/icons/mission_08.png',
   free: true,
   desc: "Em campo, cada segundo conta. Atacar ou recuar? Usar a erva ou guardar? As condicionais permitem que seu programa tome decisões inteligentes.",
   objs: [
