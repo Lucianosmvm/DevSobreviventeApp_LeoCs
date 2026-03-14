@@ -8,7 +8,7 @@
 const MISSION_03 = {
   id: 3,
   title: "MISSÃO 04 — SINAL DE RÁDIO",
-  icon: '🎮',
+  icon: 'assets/icons/mission_04.png',
   free: true,
   desc: "Você capturou um rádio inimigo. Para se comunicar com o HQ e receber ordens, precisa dominar os canais de entrada e saída de informação.",
   objs: [
