@@ -8,7 +8,7 @@
 const MISSION_02 = {
   id: 2,
   title: "MISSÃO 03 — RECONHECIMENTO",
-  icon: '🎮',
+  icon: 'assets/icons/mission_03.png',
   free: true,
   desc: "O terreno ficou mais complexo. Aldeões em todos os lados, armadilhas escondidas. Hora de apurar o raciocínio e criar estratégias mais elaboradas.",
   objs: [
