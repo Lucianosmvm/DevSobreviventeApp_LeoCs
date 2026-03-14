@@ -13,7 +13,12 @@ function openMission(i) {
   const m = MISSIONS[i];
   document.getElementById('it-num').textContent       = `MISSÃO ${String(i + 1).padStart(2, '0')} / ${MISSIONS.length}`;
   document.getElementById('it-hdr-title').textContent = m.title;
-  document.getElementById('it-ico').textContent       = m.icon;
+  const icoEl = document.getElementById('it-ico');
+  if (/\.\w+$/.test(m.icon)) {
+    icoEl.innerHTML = `<img src="${m.icon}" alt="${m.title}" style="width:100%;height:100%;object-fit:contain;">`;
+  } else {
+    icoEl.textContent = m.icon;
+  }
   document.getElementById('it-title').textContent     = m.title;
   document.getElementById('it-desc').textContent      = m.desc;
   document.getElementById('it-objs').innerHTML = m.objs.map(o =>
