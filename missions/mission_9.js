@@ -8,7 +8,7 @@
 const MISSION_09 = {
   id: 9,
   title: "MISSÃO 10 — PATRULHA",
-  icon: '🎮',
+  icon: 'assets/icons/mission_10.png',
   free: true,
   desc: "Os inimigos patrulham em loop. Para derrotá-los, você precisa dominar a repetição — o loop while é sua ferramenta para executar ações enquanto uma condição for verdadeira.",
   objs: [
