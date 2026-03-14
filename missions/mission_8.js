@@ -5,9 +5,9 @@
 // ══════════════════════════════════════════════════════
 
 const MISSION_08 = {
-  id: 8, act: 1,
+  id: 8,
   title: "MISSÃO 09 — ENCRUZILHADA",
-  icon: '🎮',
+  icon: 'assets/icons/mission_09.png',
   free: true,
   desc: "A missão se ramifica em múltiplos caminhos. Para cada direção, uma decisão diferente. O switch é seu mapa para navegar por múltiplas opções.",
   objs: [
