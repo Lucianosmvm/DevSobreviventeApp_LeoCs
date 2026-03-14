@@ -8,7 +8,7 @@
 const MISSION_04 = {
   id: 4,
   title: "MISSÃO 05 — O INVENTÁRIO",
-  icon: '🎮',
+  icon: 'assets/icons/mission_05.png',
   free: true,
   desc: "O inventário é o coração da sua sobrevivência. Para gerenciar armas, munição e itens, você precisa dominar variáveis e tipos de dados — os blocos fundamentais de qualquer programa.",
   objs: [
