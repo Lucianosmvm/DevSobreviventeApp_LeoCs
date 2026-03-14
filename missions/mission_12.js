@@ -6,7 +6,7 @@
 const MISSION_12 = {
   id: 12,
   title: "MISSÃO 13 — ARSENAL",
-  icon: '🎮',
+  icon: 'assets/icons/mission_13.png',
   free: false,
   desc: "O arsenal é organizado em fileiras precisas. Arrays armazenam múltiplos valores do mesmo tipo com índices numerados — a estrutura de dados mais fundamental.",
   objs: [
