@@ -15,7 +15,7 @@ function openMission(i) {
   document.getElementById('it-hdr-title').textContent = m.title;
   const icoEl = document.getElementById('it-ico');
   if (/\.\w+$/.test(m.icon)) {
-    icoEl.innerHTML = `<img src="${m.icon}" alt="${m.title}" style="width:100%;height:100%;object-fit:contain;">`;
+    icoEl.innerHTML = `<img src="${m.icon}" alt="${m.title}" style="width:3.5rem;height:3.5rem;object-fit:contain;">`;
   } else {
     icoEl.textContent = m.icon;
   }
