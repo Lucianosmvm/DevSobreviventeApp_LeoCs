@@ -35,7 +35,7 @@ function selPlan(plan) {
   document.getElementById('plan-annual').classList.toggle('sel',  plan === 'annual');
   document.getElementById('plan-monthly').classList.toggle('sel', plan === 'monthly');
   document.getElementById('btn-pay').innerHTML =
-    plan === 'annual' ? '👑 &nbsp;ASSINAR — R$9,90/mês' : '👑 &nbsp;ASSINAR — R$24,90/mês';
+    plan === 'annual' ? '👑 &nbsp;ASSINAR — R$9,90/mês' : '👑 &nbsp;ASSINAR — R$14,90/mês';
 }
 
 async function startPayment() {
