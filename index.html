@@ -140,6 +140,7 @@
     <div class="hm-btns">
       <button class="btn btn-gold" id="hm-btn-mission" onclick="go('mp')">▶ &nbsp;INICIAR MISSÃO</button>
       <button class="btn btn-ghost" onclick="go('mp')">VER TODAS AS MISSÕES</button>
+      <button class="btn btn-ghost" onclick="go('rk')">🏆 RANKING GLOBAL</button>
     </div>
   </div>
 </div>
@@ -285,6 +286,17 @@
   </div>
 </div>
 
+<!-- ══════════════ RANKING ══════════════ -->
+<div id="rk" class="scr">
+  <div class="mp-hdr">
+    <button class="btn-back" onclick="go('hm')">←</button>
+    <span style="font-family:'Bebas Neue',cursive;letter-spacing:2px;font-size:1.1rem">🏆 RANKING GLOBAL</span>
+    <div></div>
+  </div>
+  <div class="rk-sub">// TOP AGENTES · CLASSIFICAÇÃO POR XP</div>
+  <div id="rk-list" class="rk-list scrollable"></div>
+</div>
+
 <!-- ══════════════ MODAL SEM VIDAS ══════════════ -->
 <div class="modal" id="modal-nh">
   <div class="mbox">
@@ -309,6 +321,7 @@
   <div class="dn-nav">
     <button class="dn-link" id="dn-hm" onclick="go('hm')"><span class="dn-ico">🏠</span><span>INÍCIO</span></button>
     <button class="dn-link" id="dn-mp" onclick="go('mp')"><span class="dn-ico">🗺️</span><span>MISSÕES</span></button>
+    <button class="dn-link" id="dn-rk" onclick="go('rk')"><span class="dn-ico">🏆</span><span>RANKING</span></button>
     <button class="dn-link" id="dn-pr" onclick="go('pr')"><span class="dn-ico">👤</span><span>PERFIL</span></button>
     <button class="dn-link" id="dn-pw" onclick="go('pw')"><span class="dn-ico">👑</span><span>PREMIUM</span></button>
   </div>

@@ -10,11 +10,12 @@ function go(id) {
   if (id === 'hm') refreshHome();
   if (id === 'mp') refreshMap();
   if (id === 'pr') refreshProfile();
+  if (id === 'rk') refreshRank();
   // Desktop: telas de auth ficam fullscreen, as demais mostram sidebars
   const authScreens = ['sp', 'ob', 'au'];
   document.body.classList.toggle('desk-auth', authScreens.includes(id));
   // Destaca link ativo na nav desktop
-  const navMap = { hm: 'dn-hm', mp: 'dn-mp', pr: 'dn-pr', pw: 'dn-pw' };
+  const navMap = { hm: 'dn-hm', mp: 'dn-mp', pr: 'dn-pr', pw: 'dn-pw', rk: 'dn-rk' };
   document.querySelectorAll('.dn-link').forEach(l => l.classList.remove('active'));
   const activeLink = document.getElementById(navMap[id]);
   if (activeLink) activeLink.classList.add('active');
@@ -85,6 +86,32 @@ function refreshHome() {
   refreshDeskSidebar();
 }
 
+// ── Ranking Global ──
+
+async function refreshRank() {
+  const body = document.getElementById('rk-list');
+  if (!body) return;
+  body.innerHTML = '<div class="rk-loading">// CARREGANDO RANKING...</div>';
+  const entries = await loadRanking();
+  if (!entries.length) {
+    body.innerHTML = '<div class="rk-empty">Nenhum agente no ranking ainda.<br>Complete uma missão para aparecer aqui!</div>';
+    return;
+  }
+  const myUid = window._currentUser?.uid;
+  body.innerHTML = entries.map((e, i) => {
+    const isMe  = e.uid === myUid;
+    const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
+    return `<div class="rk-row${isMe ? ' rk-me' : ''}">
+      <div class="rk-pos">${medal}</div>
+      <div class="rk-info">
+        <div class="rk-name">${e.name}${isMe ? '<span class="rk-you">VOCÊ</span>' : ''}</div>
+        <div class="rk-meta">${e.done} missões · ${e.streak} dias 🎯</div>
+      </div>
+      <div class="rk-xp">${e.xp} XP</div>
+    </div>`;
+  }).join('');
+}
+
 // ── Map / Missões ──
 
 function refreshMap() {
@@ -97,9 +124,11 @@ function refreshMap() {
 
   const list = document.getElementById('mlist');
   list.innerHTML = '';
+  const doneLst = Array.isArray(S.done) ? S.done : [];
   MISSIONS.forEach((m, i) => {
-    const done       = S.done.includes(m.id);
-    const seqLocked  = i > 0 && !S.done.includes(MISSIONS[i - 1].id);
+    if (!m) return;
+    const done       = doneLst.includes(m.id);
+    const seqLocked  = i > 0 && MISSIONS[i - 1] && !doneLst.includes(MISSIONS[i - 1].id);
     const premLocked = !m.free && !S.premium;
     const cl    = 'mcard' + (done ? ' done' : seqLocked ? ' lck' : premLocked ? ' plck' : ' avail');
     const st    = done ? 'done' : seqLocked ? 'lck' : premLocked ? 'plck' : 'avail';
@@ -114,7 +143,7 @@ function refreshMap() {
         <div class="mxpbar"><div class="mxpbar-f" style="width:${done ? 100 : 0}%"></div></div>
       </div>
       <div class="mst ${st}">${stTxt}</div>`;
-    if (!seqLocked) card.onclick = () => openMission(i);
+    if (!seqLocked || done) card.onclick = () => openMission(i);
     list.appendChild(card);
   });
 }

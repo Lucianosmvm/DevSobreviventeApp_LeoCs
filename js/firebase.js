@@ -15,7 +15,8 @@ async function loadFirebase() {
             signInWithPopup, GoogleAuthProvider, signOut,
             updateProfile, sendPasswordResetEmail, deleteUser }
           = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js");
-    const { getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc, serverTimestamp }
+    const { getFirestore, doc, setDoc, getDoc, updateDoc, deleteDoc, serverTimestamp,
+            collection, query, orderBy, limit, getDocs }
           = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
 
     const app = initializeApp(FIREBASE_CONFIG);
@@ -26,7 +27,8 @@ async function loadFirebase() {
       createUserWithEmailAndPassword, signInWithEmailAndPassword,
       signInWithPopup, GoogleAuthProvider, signOut,
       updateProfile, sendPasswordResetEmail, deleteUser,
-      doc, setDoc, getDoc, updateDoc, deleteDoc, serverTimestamp
+      doc, setDoc, getDoc, updateDoc, deleteDoc, serverTimestamp,
+      collection, query, orderBy, limit, getDocs
     };
 
     // AUTH STATE OBSERVER — persiste login entre reloads
@@ -92,10 +94,30 @@ async function _loadCloud(uid) {
 
 function syncCloud() {
   if (!_fbDb || !window._currentUser || !window._fb) return;
-  window._fb.updateDoc(window._fb.doc(_fbDb, 'users', window._currentUser.uid), {
+  const uid  = window._currentUser.uid;
+  const name = window._currentUser.displayName || 'Agente';
+  window._fb.updateDoc(window._fb.doc(_fbDb, 'users', uid), {
     xp: S.xp, hearts: S.hearts, streak: S.streak,
     lastPlayed: S.lastPlayed, done: S.done,
     correct: S.correct || 0, premium: S.premium,
     lastLogin: window._fb.serverTimestamp(),
-  }).catch(() => {}); // silently fails offline
+  }).catch(() => {});
+  // Atualiza entrada pública no ranking (só dados não-sensíveis)
+  window._fb.setDoc(window._fb.doc(_fbDb, 'ranking', uid), {
+    name, xp: S.xp, streak: S.streak, done: S.done.length,
+    updatedAt: window._fb.serverTimestamp(),
+  }).catch(() => {});
+}
+
+async function loadRanking() {
+  if (!_fbDb || !window._fb) return [];
+  try {
+    const q    = window._fb.query(
+      window._fb.collection(_fbDb, 'ranking'),
+      window._fb.orderBy('xp', 'desc'),
+      window._fb.limit(50)
+    );
+    const snap = await window._fb.getDocs(q);
+    return snap.docs.map(d => ({ uid: d.id, ...d.data() }));
+  } catch(e) { console.warn('Ranking indisponível:', e.message); return []; }
 }
