@@ -5,9 +5,9 @@
 // Tipo: CHEFE FINAL (20 questões) | Progressão: 6 MC → 6 Fill → 8 Code
 // ══════════════════════════════════════════════════════
 
-const missao50 = {
+const MISSION_50 = {
   id: 50, act: 2,
-  titulo: "MISSÃO 50 — A RENDIÇÃO DO CASTELO",
+  titulo: "MISSÃO 51 — A RENDIÇÃO DO CASTELO",
   subtitulo: "O Castelo • ⚔️ CHEFE FINAL DO ACT II",
   descricao: "O castelo está prestes a cair. Esta é a prova suprema — cada conceito do Act II será testado. Coleções, OOP, LINQ, async, eventos, IO, JSON, DateTime, Regex. Tudo ou nada.",
   xp: 600, boss: true,
