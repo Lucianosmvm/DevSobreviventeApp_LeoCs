@@ -144,7 +144,7 @@ const MISSION_59 = {
     {
       type: 'fill',
       bubble: 'Revisão: obtendo nome de tipo via Reflection.',
-      code: `<span class="kw">string</span> nome = <span class="kw">typeof</span>(List&lt;<span class="kw">int</span>&gt;).<span class="mt">_______</span>;\nConsole.<span class="mt">WriteLine</span>(nome); <span class="cm">// "List`1"</span>`,
+      code: `<span class="kw">string</span> nome = <span class="kw">typeof</span>(List&lt;<span class="kw">int</span>&gt;).<span class="mt">_______</span>;\nConsole.<span class="mt">WriteLine</span>(nome); <span class="cm">// "List\`1"</span>`,
       q: 'Qual propriedade retorna o nome do tipo?',
       hint: 'Nome em inglês',
       ans: 'Name',
