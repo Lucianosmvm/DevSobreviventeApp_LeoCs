@@ -6,7 +6,7 @@
 // ── Intro da missão ──
 
 function openMission(i) {
-  if (i > 0 && !S.done.includes(MISSIONS[i - 1].id)) {
+  if (i > 0 && !S.done.includes(MISSIONS[i].id)) {
     showToast('Complete a missão anterior primeiro! 🔒', 'bad');
     return;
   }
