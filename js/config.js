@@ -15,7 +15,7 @@ const FIREBASE_CONFIG = {
 
 // Stripe — Payment Links
 const PAYMENT_LINK_MONTHLY = 'https://buy.stripe.com/test_cNifZh2yB99z8nke6v5AQ02';
-const PAYMENT_LINK_ANNUAL  = 'https://buy.stripe.com/test_28E28r4GJgC10US3rR5AQ01';
+const PAYMENT_LINK_ANNUAL  = 'https://buy.stripe.com/28E28r4GJgC10US3rR5AQ01';
 
 // Constantes do jogo
 const KEY      = 'leoncs_v3';
