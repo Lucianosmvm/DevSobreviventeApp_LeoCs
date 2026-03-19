@@ -99,8 +99,8 @@ function refreshMap() {
   list.innerHTML = '';
   MISSIONS.forEach((m, i) => {
     const done       = S.done.includes(m.id);
+    const seqLocked  = i > 0 && !S.done.includes(MISSIONS[i - 1].id);
     const premLocked = !m.free && !S.premium;
-    const seqLocked  = premLocked && i > 0 && !S.done.includes(MISSIONS[i - 1].id);
     const cl    = 'mcard' + (done ? ' done' : seqLocked ? ' lck' : premLocked ? ' plck' : ' avail');
     const st    = done ? 'done' : seqLocked ? 'lck' : premLocked ? 'plck' : 'avail';
     const stTxt = done ? '✓'   : seqLocked ? '🔒'  : premLocked ? '👑'   : '▶';

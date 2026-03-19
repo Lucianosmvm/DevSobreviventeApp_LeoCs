@@ -6,6 +6,10 @@
 // ── Intro da missão ──
 
 function openMission(i) {
+  if (i > 0 && !S.done.includes(MISSIONS[i - 1].id)) {
+    showToast('Complete a missão anterior primeiro! 🔒', 'bad');
+    return;
+  }
   const _m = MISSIONS[i];
   if (!_m.free && !S.premium) { go('pw'); return; }
   if (S.hearts <= 0 && !S.premium) { showNoH(); return; }
