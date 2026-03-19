@@ -6,7 +6,7 @@
 // ── Intro da missão ──
 
 function openMission(i) {
-  if (i > 0 && !S.done.includes(MISSIONS[i].id)) {
+  if (i > 0 && !S.done.includes(MISSIONS[i-1].id)) {
     showToast('Complete a missão anterior primeiro! 🔒', 'bad');
     return;
   }
@@ -15,7 +15,7 @@ function openMission(i) {
   if (S.hearts <= 0 && !S.premium) { showNoH(); return; }
   SEL.mission = i;
   const m = MISSIONS[i];
-  document.getElementById('it-num').textContent       = `MISSÃO ${String(i + 1).padStart(2, '0')} / ${MISSIONS.length}`;
+  document.getElementById('it-num').textContent       = `MISSÃO ${String(i).padStart(2, '0')} / ${MISSIONS.length}`;
   document.getElementById('it-hdr-title').textContent = m.title;
   const icoEl = document.getElementById('it-ico');
   if (/\.\w+$/.test(m.icon)) {
