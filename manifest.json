@@ -2,6 +2,7 @@
   "name": "Leon.CS — Aprenda C#",
   "short_name": "Leon.CS",
   "description": "Aprenda C# do zero com a metodologia de Resident Evil 4. Missões, XP, streaks e conteúdo Premium.",
+  "id": "/",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -23,7 +24,29 @@
       "purpose": "any maskable"
     }
   ],
-  "screenshots": [],
+  "screenshots": [
+    {
+      "src": "screenshots/1-onboarding.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tela de boas-vindas"
+    },
+    {
+      "src": "screenshots/2-mapa.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mapa de missões"
+    },
+    {
+      "src": "screenshots/3-licao.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tela de lição"
+    }
+  ],
   "shortcuts": [
     {
       "name": "Mapa de Missões",
