@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de Ícones — Leon.CS</title>
+<style>
+  body { background: #1a1a1f; color: #eee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; gap: 24px; }
+  h1 { color: #c9a84c; margin: 0; }
+  .canvases { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
+  .card { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  canvas { border: 2px solid #c9a84c44; border-radius: 16px; }
+  label { font-size: 13px; color: #888; }
+  .btn { background: #c9a84c; color: #0b0b0d; border: none; padding: 12px 32px; font-size: 16px; font-weight: 700; border-radius: 8px; cursor: pointer; letter-spacing: 1px; }
+  .btn:hover { background: #e0bc60; }
+  p { color: #666; font-size: 13px; text-align: center; max-width: 400px; margin: 0; }
+</style>
+</head>
+<body>
+
+<h1>⚙ GERADOR DE ÍCONES — LEON.CS</h1>
+<p>Clique em "Baixar Ícones" para salvar os dois arquivos PNG na pasta correta.</p>
+
+<div class="canvases">
+  <div class="card">
+    <canvas id="c192" width="192" height="192"></canvas>
+    <label>icon-192.png</label>
+  </div>
+  <div class="card">
+    <canvas id="c512" width="512" height="512"></canvas>
+    <label>icon-512.png</label>
+  </div>
+</div>
+
+<button class="btn" onclick="baixar()">⬇ BAIXAR ÍCONES</button>
+<p>Após baixar, mova os arquivos para a pasta <code>icons/</code> dentro do projeto.</p>
+
+<script>
+function desenharIcone(canvas) {
+  const s = canvas.width;
+  const ctx = canvas.getContext('2d');
+
+  // Fundo preto
+  ctx.fillStyle = '#0b0b0d';
+  ctx.fillRect(0, 0, s, s);
+
+  // Borda dourada arredondada (simulação de maskable safe zone)
+  const borda = s * 0.04;
+  ctx.strokeStyle = '#c9a84c';
+  ctx.lineWidth = borda;
+  const r = s * 0.18;
+  ctx.beginPath();
+  ctx.roundRect(borda / 2, borda / 2, s - borda, s - borda, r);
+  ctx.stroke();
+
+  // Linha decorativa superior
+  const lx = s * 0.15;
+  const ly = s * 0.22;
+  ctx.strokeStyle = '#c9a84c55';
+  ctx.lineWidth = s * 0.012;
+  ctx.beginPath();
+  ctx.moveTo(lx, ly);
+  ctx.lineTo(s - lx, ly);
+  ctx.stroke();
+
+  // Linha decorativa inferior
+  const ly2 = s * 0.78;
+  ctx.beginPath();
+  ctx.moveTo(lx, ly2);
+  ctx.lineTo(s - lx, ly2);
+  ctx.stroke();
+
+  // Texto "LEON"
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = `bold ${s * 0.28}px 'Arial Black', Arial, sans-serif`;
+  ctx.fillText('LEON', s / 2, s * 0.42);
+
+  // Ponto dourado entre LEON e CS
+  ctx.fillStyle = '#c9a84c';
+  ctx.font = `bold ${s * 0.28}px 'Arial Black', Arial, sans-serif`;
+  ctx.fillText('.CS', s / 2, s * 0.65);
+
+  // Detalhe: pequeno texto "// C#"
+  ctx.fillStyle = '#c9a84c88';
+  ctx.font = `${s * 0.07}px monospace`;
+  ctx.fillText('// C#', s / 2, s * 0.855);
+}
+
+// Renderiza ao carregar
+window.onload = () => {
+  desenharIcone(document.getElementById('c192'));
+  desenharIcone(document.getElementById('c512'));
+};
+
+function baixar() {
+  ['c192', 'c512'].forEach(id => {
+    const canvas = document.getElementById(id);
+    const size = id === 'c192' ? '192' : '512';
+    const link = document.createElement('a');
+    link.download = `icon-${size}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+}
+</script>
+</body>
+</html>
