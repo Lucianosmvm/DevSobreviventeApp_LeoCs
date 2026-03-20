@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.lucianosmvm.twa",
+        "sha256_cert_fingerprints": ["E4:3F:53:EE:58:7E:48:D6:23:96:A7:AE:A6:C6:A7:D1:4D:37:52:39:92:3E:D8:34:E7:B7:28:F2:A8:52:EA:27"]
+      }
+    }]
