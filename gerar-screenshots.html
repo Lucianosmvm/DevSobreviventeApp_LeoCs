@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de Screenshots — Leon.CS</title>
+<style>
+  body { background: #1a1a1f; color: #eee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; gap: 32px; }
+  h1 { color: #c8a96e; margin: 0; }
+  p { color: #666; font-size: 13px; text-align: center; max-width: 500px; margin: 0; }
+  .screens { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+  .card { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  canvas { border: 2px solid #c8a96e44; border-radius: 8px; width: 195px; height: 422px; }
+  label { font-size: 12px; color: #888; }
+  .btn { background: #c8a96e; color: #0b0b0d; border: none; padding: 12px 36px; font-size: 16px; font-weight: 700; border-radius: 8px; cursor: pointer; letter-spacing: 1px; }
+  .btn:hover { background: #e8c98e; }
+</style>
+</head>
+<body>
+
+<h1>📸 GERADOR DE SCREENSHOTS — LEON.CS</h1>
+<p>Clique em "Baixar Screenshots" para salvar os 3 PNGs. Mova para a pasta <code>screenshots/</code> dentro do projeto.</p>
+
+<div class="screens">
+  <div class="card">
+    <canvas id="s1" width="390" height="844"></canvas>
+    <label>1-onboarding.png</label>
+  </div>
+  <div class="card">
+    <canvas id="s2" width="390" height="844"></canvas>
+    <label>2-mapa.png</label>
+  </div>
+  <div class="card">
+    <canvas id="s3" width="390" height="844"></canvas>
+    <label>3-licao.png</label>
+  </div>
+</div>
+
+<button class="btn" onclick="baixar()">⬇ BAIXAR SCREENSHOTS</button>
+<p>Após baixar, adicione as entradas no <code>manifest.json</code> — o botão abaixo copia o JSON pronto.</p>
+<button class="btn" style="background:#2a2a35;color:#c8a96e;border:1px solid #c8a96e44" onclick="copiarJson()">📋 COPIAR JSON DO MANIFEST</button>
+<pre id="json-out" style="background:#111;padding:16px;border-radius:8px;font-size:11px;color:#4caf7d;max-width:560px;display:none"></pre>
+
+<script>
+const BG     = '#0b0b0d';
+const S1     = '#111116';
+const S2     = '#18181f';
+const BD     = '#2a2a35';
+const GOLD   = '#c8a96e';
+const GOLD2  = '#e8c98e';
+const RED    = '#e05555';
+const GREEN  = '#4caf7d';
+const TEXT   = '#e8e8f0';
+const T2     = '#9090a8';
+const T3     = '#5a5a72';
+const W      = 390;
+const H      = 844;
+
+function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, r);
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1; ctx.stroke(); }
+}
+
+function txt(ctx, text, x, y, size, color, align = 'center', font = 'Barlow') {
+  ctx.fillStyle = color;
+  ctx.font = `${size}px '${font}', sans-serif`;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, x, y);
+}
+
+function boldTxt(ctx, text, x, y, size, color, align = 'center') {
+  ctx.fillStyle = color;
+  ctx.font = `700 ${size}px 'Barlow', sans-serif`;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, x, y);
+}
+
+function bebas(ctx, text, x, y, size, color, align = 'center') {
+  ctx.fillStyle = color;
+  ctx.font = `${size}px 'Bebas Neue', 'Arial Black', Arial, sans-serif`;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, x, y);
+}
+
+function mono(ctx, text, x, y, size, color, align = 'center') {
+  ctx.fillStyle = color;
+  ctx.font = `${size}px 'Share Tech Mono', monospace`;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, x, y);
+}
+
+// scanlines overlay
+function scanlines(ctx) {
+  for (let y = 0; y < H; y += 4) {
+    ctx.fillStyle = 'rgba(0,0,0,0.04)';
+    ctx.fillRect(0, y + 3, W, 1);
+  }
+}
+
+// ── TELA 1: ONBOARDING ──
+function drawOnboarding(canvas) {
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+
+  // badge topo
+  roundRect(ctx, W/2 - 110, 56, 220, 28, 14, '#1a1408', GOLD + '44');
+  mono(ctx, '// APRENDA · SOBREVIVA · DOMINE', W/2, 70, 10, GOLD);
+
+  // hero emoji
+  ctx.font = '72px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🎮', W/2, 168);
+
+  // título
+  bebas(ctx, 'LEON', W/2 - 28, 260, 72, TEXT);
+  bebas(ctx, '.', W/2 + 26, 258, 72, GOLD);
+  bebas(ctx, 'CS', W/2 + 62, 260, 72, TEXT);
+
+  // desc
+  ctx.fillStyle = T2;
+  ctx.font = '14px Barlow, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  const desc = 'Aprenda C# do zero com a metodologia';
+  const desc2 = 'de Resident Evil 4.';
+  ctx.fillText(desc, W/2, 308);
+  ctx.fillText(desc2, W/2, 328);
+
+  // features
+  const feats = [
+    { ico: '🎯', title: 'Missões temáticas', sub: 'Aprenda como Leon enfrenta inimigos' },
+    { ico: '☁️', title: 'Progresso na nuvem', sub: 'Continue de onde parou em qualquer device' },
+    { ico: '👑', title: 'Premium sem limites', sub: 'Vidas infinitas e todas as missões' },
+  ];
+  feats.forEach((f, i) => {
+    const y = 390 + i * 72;
+    roundRect(ctx, 20, y, W - 40, 58, 10, S1, BD);
+    ctx.font = '22px serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(f.ico, 44, y + 29);
+    boldTxt(ctx, f.title, 84, y + 18, 13, TEXT, 'left');
+    txt(ctx, f.sub, 84, y + 38, 11, T2, 'left');
+  });
+
+  // botões
+  roundRect(ctx, 20, 620, W - 40, 52, 10, GOLD);
+  bebas(ctx, 'CRIAR CONTA GRÁTIS', W/2, 646, 20, BG);
+
+  roundRect(ctx, 20, 688, W - 40, 52, 10, null, BD);
+  bebas(ctx, 'JÁ TENHO CONTA — ENTRAR', W/2, 714, 18, T2);
+
+  // linha decorativa
+  ctx.strokeStyle = BD;
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(20, 676); ctx.lineTo(W - 20, 676); ctx.stroke();
+
+  // indicador de status bar
+  roundRect(ctx, 0, 0, W, 44, 0, '#00000066');
+  mono(ctx, '09:41', 50, 22, 12, TEXT);
+  mono(ctx, '●●●', W - 60, 22, 10, TEXT);
+
+  scanlines(ctx);
+}
+
+// ── TELA 2: MAPA DE MISSÕES ──
+function drawMapa(canvas) {
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+
+  // header
+  roundRect(ctx, 0, 0, W, 72, 0, S1);
+  ctx.strokeStyle = BD; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, 72); ctx.lineTo(W, 72); ctx.stroke();
+
+  bebas(ctx, 'MAPA DE MISSÕES', W/2, 36, 22, TEXT);
+
+  // XP bar
+  roundRect(ctx, 20, 80, W - 40, 48, 8, S2, BD);
+  mono(ctx, '// AGENTE · 450 XP', 36, 100, 11, GOLD, 'left');
+  // barra xp
+  roundRect(ctx, 36, 110, W - 72, 8, 4, S1);
+  roundRect(ctx, 36, 110, (W - 72) * 0.45, 8, 4, GOLD);
+
+  // label ACT
+  mono(ctx, '// ACT I — A VILA', 20, 148, 11, GOLD, 'left');
+
+  // missões
+  const missoes = [
+    { n: '01', title: 'INFILTRAÇÃO',     ico: '🕵️', done: true,  free: true,  xp: 100 },
+    { n: '02', title: 'PRIMEIROS PASSOS',ico: '👣', done: true,  free: true,  xp: 100 },
+    { n: '03', title: 'RECONHECIMENTO',  ico: '🔭', done: false, free: true,  xp: 100 },
+    { n: '04', title: 'SINAL DE RÁDIO',  ico: '📻', done: false, free: true,  xp: 100 },
+    { n: '05', title: 'O INVENTÁRIO',    ico: '🎒', done: false, free: true,  xp: 200, boss: true },
+    { n: '06', title: 'TIPOS DE MUNIÇÃO',ico: '🔫', done: false, free: false, xp: 100 },
+    { n: '07', title: 'IDENTIFICAÇÃO',   ico: '🪪', done: false, free: false, xp: 100 },
+  ];
+
+  missoes.forEach((m, i) => {
+    const y = 168 + i * 82;
+    const locked = !m.free;
+    const bg = m.done ? '#0d1a10' : locked ? '#0f0f14' : S2;
+    const border = m.done ? GREEN + '55' : locked ? BD : BD;
+    roundRect(ctx, 20, y, W - 40, 68, 10, bg, border);
+
+    // ícone
+    if (locked) {
+      ctx.font = '22px serif';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.globalAlpha = 0.3;
+      ctx.fillText(m.ico, 44, y + 34);
+      ctx.globalAlpha = 1;
+    } else {
+      ctx.font = '22px serif';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(m.ico, 44, y + 34);
+    }
+
+    // número + título
+    const titleColor = locked ? T3 : m.done ? GREEN : TEXT;
+    mono(ctx, `M${m.n}`, 80, y + 20, 10, locked ? T3 : GOLD, 'left');
+    boldTxt(ctx, m.title, 80, y + 40, 13, titleColor, 'left');
+
+    // badge boss
+    if (m.boss) {
+      roundRect(ctx, W - 100, y + 10, 70, 20, 10, '#2a1a00', GOLD + '55');
+      mono(ctx, '⚔ CHEFE', W - 65, y + 20, 9, GOLD);
+    }
+
+    // XP ou cadeado
+    if (locked) {
+      ctx.font = '16px serif';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🔒', W - 36, y + 34);
+    } else if (m.done) {
+      ctx.font = '16px serif';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('✅', W - 36, y + 34);
+    } else {
+      mono(ctx, `+${m.xp} XP`, W - 36, y + 34, 11, T2, 'right');
+    }
+  });
+
+  // nav bar
+  roundRect(ctx, 0, H - 64, W, 64, 0, S1);
+  ctx.strokeStyle = BD; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, H - 64); ctx.lineTo(W, H - 64); ctx.stroke();
+  const navItems = [
+    { ico: '🏠', label: 'INÍCIO', x: W * 0.17 },
+    { ico: '🗺️', label: 'MISSÕES', x: W * 0.5, active: true },
+    { ico: '👤', label: 'PERFIL', x: W * 0.83 },
+  ];
+  navItems.forEach(n => {
+    ctx.font = '20px serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(n.ico, n.x, H - 42);
+    mono(ctx, n.label, n.x, H - 20, 9, n.active ? GOLD : T3);
+    if (n.active) {
+      ctx.strokeStyle = GOLD;
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(n.x - 20, H - 64); ctx.lineTo(n.x + 20, H - 64); ctx.stroke();
+    }
+  });
+
+  scanlines(ctx);
+}
+
+// ── TELA 3: LIÇÃO ──
+function drawLicao(canvas) {
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+
+  // header
+  roundRect(ctx, 0, 0, W, 60, 0, S1);
+  ctx.strokeStyle = BD; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, 60); ctx.lineTo(W, 60); ctx.stroke();
+  mono(ctx, 'M01 · INFILTRAÇÃO', W/2, 30, 12, TEXT);
+
+  // corações + xp
+  const hearts = ['❤️','❤️','❤️','🖤','🖤'];
+  hearts.forEach((h, i) => {
+    ctx.font = '16px serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.globalAlpha = i < 3 ? 1 : 0.25;
+    ctx.fillText(h, 20 + i * 24, 46);
+  });
+  ctx.globalAlpha = 1;
+
+  // progress bar
+  roundRect(ctx, 20, 68, W - 40, 6, 3, S2);
+  roundRect(ctx, 20, 68, (W - 40) * 0.3, 6, 3, GOLD);
+  mono(ctx, '3/10', W - 20, 72, 10, T2, 'right');
+
+  // bubble do personagem
+  roundRect(ctx, 20, 88, W - 40, 110, 12, S2, BD);
+  // avatar
+  roundRect(ctx, 32, 100, 40, 40, 8, '#1a1408', GOLD + '44');
+  ctx.font = '22px serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('🕵️', 52, 120);
+  mono(ctx, 'LEON', 52, 148, 9, GOLD);
+
+  // texto da bubble
+  ctx.fillStyle = TEXT;
+  ctx.font = '13px Barlow, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const lines = [
+    'Uma linguagem de programação é o',
+    'idioma que usamos para nos comunicar',
+    'com o computador. C# é uma delas.',
+  ];
+  lines.forEach((l, i) => ctx.fillText(l, 84, 100 + i * 20));
+
+  // pergunta
+  roundRect(ctx, 20, 212, W - 40, 50, 10, S2, BD);
+  boldTxt(ctx, 'Para que serve uma linguagem', W/2, 230, 14, TEXT);
+  boldTxt(ctx, 'de programação?', W/2, 250, 14, TEXT);
+
+  // dica
+  roundRect(ctx, 20, 272, W - 40, 30, 8, '#0d0d14', BD);
+  mono(ctx, '💡 Leon fala o idioma do campo', W/2, 287, 10, T2);
+
+  // opções
+  const opts = [
+    { t: 'Para comunicar instruções ao computador', ok: true  },
+    { t: 'Para traduzir textos entre humanos',       ok: false },
+    { t: 'Para acelerar a internet',                 ok: false },
+    { t: 'Para proteger arquivos com senha',         ok: false },
+  ];
+  opts.forEach((o, i) => {
+    const y = 316 + i * 68;
+    const bg  = o.ok ? '#0d2015' : S2;
+    const bdr = o.ok ? GREEN + '88' : BD;
+    roundRect(ctx, 20, y, W - 40, 54, 10, bg, bdr);
+    // letra
+    const letra = ['A','B','C','D'][i];
+    roundRect(ctx, 32, y + 14, 26, 26, 6, o.ok ? GREEN + '33' : S1, o.ok ? GREEN : BD);
+    boldTxt(ctx, letra, 45, y + 27, 13, o.ok ? GREEN : T2);
+    // texto
+    ctx.fillStyle = o.ok ? GREEN : TEXT;
+    ctx.font = '12px Barlow, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(o.t, 68, y + 27);
+    // check
+    if (o.ok) {
+      ctx.font = '14px serif';
+      ctx.textAlign = 'right';
+      ctx.fillText('✓', W - 32, y + 27);
+    }
+  });
+
+  // botão próximo
+  roundRect(ctx, 20, H - 80, W - 40, 52, 10, GOLD);
+  bebas(ctx, 'PRÓXIMA →', W/2, H - 54, 22, BG);
+
+  scanlines(ctx);
+}
+
+window.onload = () => {
+  drawOnboarding(document.getElementById('s1'));
+  drawMapa(document.getElementById('s2'));
+  drawLicao(document.getElementById('s3'));
+};
+
+function baixar() {
+  const arquivos = [
+    { id: 's1', name: '1-onboarding.png' },
+    { id: 's2', name: '2-mapa.png' },
+    { id: 's3', name: '3-licao.png' },
+  ];
+  arquivos.forEach(a => {
+    const canvas = document.getElementById(a.id);
+    const link = document.createElement('a');
+    link.download = a.name;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+}
+
+function copiarJson() {
+  const json = `"screenshots": [
+  {
+    "src": "screenshots/1-onboarding.png",
+    "sizes": "390x844",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Tela de boas-vindas"
+  },
+  {
+    "src": "screenshots/2-mapa.png",
+    "sizes": "390x844",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Mapa de missões"
+  },
+  {
+    "src": "screenshots/3-licao.png",
+    "sizes": "390x844",
+    "type": "image/png",
+    "form_factor": "narrow",
+    "label": "Tela de lição"
+  }
+]`;
+  navigator.clipboard.writeText(json).then(() => {
+    const el = document.getElementById('json-out');
+    el.textContent = json;
+    el.style.display = 'block';
+  });
+}
+</script>
+</body>
+</html>
