@@ -83,6 +83,7 @@ async function loginGoogle() {
   try {
     const cred = await window._fb.signInWithPopup(_fbAuth, new window._fb.GoogleAuthProvider());
     await _ensureUserDoc(cred.user);
+    unlockAchievement('google_login');
     // onAuthStateChanged dispara → go('hm')
   } catch(e) {
     showToast(_fbErrMsg(e.code), 'err');

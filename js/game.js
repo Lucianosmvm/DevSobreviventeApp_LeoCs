@@ -220,6 +220,8 @@ function nextStep() {
       S.xp += 50; SEL.xpGained += 50;
     }
     saveS();
+    checkAchievements();
+    if (SEL.wrong === 0) unlockAchievement('perfect_run');
     showResult(true);
   } else {
     renderStep();

@@ -219,6 +219,19 @@
   </div>
 </div>
 
+<!-- ══════════════ ACHIEVEMENTS ══════════════ -->
+<div id="ac" class="scr">
+  <div class="au-hdr">
+    <button class="btn-back2" onclick="go('pr')">←</button>
+    <span style="font-family:'Bebas Neue',cursive;letter-spacing:2px;font-size:1.1rem">🏅 CONQUISTAS</span>
+  </div>
+  <div class="ac-topbar">
+    <div class="ac-topbar-lbl">// PROGRESSO DO AGENTE</div>
+    <div class="ac-topbar-count"><span id="ac-count">0 / 12</span> desbloqueadas</div>
+  </div>
+  <div class="ac-list scrollable" id="ac-list"></div>
+</div>
+
 <!-- ══════════════ PAYWALL ══════════════ -->
 <div id="pw" class="scr">
   <div class="pw-hdr">
@@ -281,6 +294,7 @@
     <div class="pr-item"><span class="k">Respostas corretas</span><span class="v green" id="pr-correct">0</span></div>
     <div class="pr-item"><span class="k">Membro desde</span><span class="v" id="pr-since">—</span></div>
     <div class="pr-btns">
+      <button class="btn btn-ghost" onclick="go('ac')">🏅 VER CONQUISTAS</button>
       <button class="btn btn-premium" id="pr-upgrade-btn" onclick="go('pw')">👑 FAZER UPGRADE PARA PREMIUM</button>
       <button class="btn btn-ghost" onclick="doLogout()">🚪 Sair da conta</button>
       <button class="btn-danger" onclick="doDeleteAccount()">⚠️ Excluir conta</button>
@@ -463,6 +477,7 @@
 <script src="missions.js"></script>
 <script src="js/config.js"></script>
 <script src="js/state.js"></script>
+<script src="js/achievements.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/firebase.js"></script>
 <script src="js/auth.js"></script>

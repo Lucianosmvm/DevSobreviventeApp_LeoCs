@@ -11,6 +11,7 @@ function go(id) {
   if (id === 'mp') refreshMap();
   if (id === 'pr') refreshProfile();
   if (id === 'rk') refreshRank();
+  if (id === 'ac') renderAchievements();
   // Desktop: telas de auth ficam fullscreen, as demais mostram sidebars
   const authScreens = ['sp', 'ob', 'au'];
   document.body.classList.toggle('desk-auth', authScreens.includes(id));

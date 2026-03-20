@@ -139,6 +139,38 @@ input.err{border-color:var(--red)}
 /* ── SCROLLABLE HELPER ── */
 .scrollable{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 
+/* ── ACHIEVEMENT BANNER ── */
+.ach-banner{
+  position:fixed;top:-80px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,#12100aee,#1e1a08ee);
+  border:2px solid var(--gold);border-radius:12px;
+  padding:12px 20px;display:flex;align-items:center;gap:14px;
+  pointer-events:none;z-index:9999;white-space:nowrap;
+  box-shadow:0 0 28px #c8a96e44;
+  transition:top .4s cubic-bezier(.175,.885,.32,1.275), opacity .4s;
+  opacity:0;
+}
+.ach-banner.show{top:24px;opacity:1}
+.ach-banner-ico{font-size:2rem}
+.ach-banner-label{font-family:'Share Tech Mono',monospace;font-size:.55rem;color:var(--gold);letter-spacing:3px;opacity:.8}
+.ach-banner-name{font-family:'Bebas Neue',cursive;font-size:1.4rem;color:var(--gold);letter-spacing:2px}
+
+/* ── ACHIEVEMENTS SCREEN ── */
+.ac-topbar{padding:14px 20px 8px;border-bottom:1px solid var(--bd)}
+.ac-topbar-lbl{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--t3);letter-spacing:3px;margin-bottom:4px}
+.ac-topbar-count{font-family:'Bebas Neue',cursive;font-size:1.4rem;color:var(--gold)}
+.ac-section-title{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--t3);letter-spacing:3px;padding:16px 20px 8px}
+.ac-list{padding:0 16px 32px}
+.ac-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);margin-bottom:8px}
+.ac-item.unlocked{border-color:rgba(200,169,110,.35);background:rgba(200,169,110,.06)}
+.ac-item.locked{opacity:.5}
+.ac-ico{font-size:1.8rem;flex-shrink:0;width:2.4rem;text-align:center}
+.ac-info{flex:1;min-width:0}
+.ac-name{font-weight:700;font-size:.9rem;color:var(--text)}
+.ac-name-lock{color:var(--t2)}
+.ac-desc{font-size:.72rem;color:var(--t2);margin-top:2px;font-family:'Share Tech Mono',monospace}
+.ac-check{font-size:1.1rem;color:var(--green);font-weight:700;flex-shrink:0}
+
 /* ── RANKING ── */
 .rk-sub{padding:8px 20px 4px;color:var(--t3);font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:2px}
 .rk-list{padding:0 16px 24px;display:flex;flex-direction:column;gap:8px}

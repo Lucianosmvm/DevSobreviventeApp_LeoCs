@@ -65,6 +65,7 @@ async function activatePremium() {
   S.hearts  = MAX_H;
   syncCloud();
   _saveLocal();
+  checkAchievements();
   showToast('👑 Bem-vindo ao Premium!', 'ok');
   go('hm');
 }
