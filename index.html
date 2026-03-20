@@ -118,6 +118,11 @@
       <div class="txt"><h4>UPGRADE PARA PREMIUM</h4><p>Vidas infinitas, todas as missões, sem anúncios</p></div>
       <div class="arr">›</div>
     </div>
+    <div class="install-banner" id="install-banner" onclick="promptInstall()" style="display:none">
+      <div class="ico">📲</div>
+      <div class="txt"><h4>INSTALAR O APP</h4><p>Adicione à tela inicial para acesso rápido</p></div>
+      <div class="arr">›</div>
+    </div>
     <div style="padding:0 20px">
       <div class="badge" id="hm-badge">// RECRUTA · NÍVEL 1</div>
     </div>
@@ -311,6 +316,22 @@
   </div>
   <div class="rk-sub">// TOP AGENTES · CLASSIFICAÇÃO POR XP</div>
   <div id="rk-list" class="rk-list scrollable"></div>
+</div>
+
+<!-- ══════════════ MODAL INSTALAR iOS ══════════════ -->
+<div class="modal" id="modal-ios-install">
+  <div class="mbox">
+    <h2>📲 INSTALAR APP</h2>
+    <p style="margin-bottom:16px;color:var(--t2);font-size:.9rem">Para instalar no iPhone/iPad:</p>
+    <div style="text-align:left;display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:1.3rem">1️⃣</span><span>Toque em <strong>Compartilhar</strong> ⬆️ no Safari</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:1.3rem">2️⃣</span><span>Role e toque em <strong>"Adicionar à Tela de Início"</strong></span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:1.3rem">3️⃣</span><span>Toque em <strong>Adicionar</strong></span></div>
+    </div>
+    <div class="mbox-btns">
+      <button class="btn btn-gold" onclick="closeIosInstall()">ENTENDIDO</button>
+    </div>
+  </div>
 </div>
 
 <!-- ══════════════ MODAL SEM VIDAS ══════════════ -->
