@@ -23,7 +23,7 @@ const MISSION_81 = {
       type: 'mc',
       bubble: '<strong>Minimal API</strong> (ASP.NET Core 6+) usa <code>app.MapGet</code>, <code>MapPost</code> etc. para definir endpoints sem controllers — menos boilerplate, mais direto.',
       q: 'Qual a principal vantagem da Minimal API sobre Controllers tradicionais?',
-      hint: 'Leon carrega apenas o essencial na mochila — sem equipamento supérfluo para uma missão direta',
+      hint: 'Simplicidade e performance',
       opts: [
         { t: 'Minimal API suporta mais verbos HTTP', ok: false },
         { t: 'Menos código boilerplate — define endpoint como lambda; melhor para microserviços simples', ok: true },
@@ -38,7 +38,7 @@ const MISSION_81 = {
       type: 'mc',
       bubble: '<strong>Middleware</strong> é um componente do pipeline de request/response. Cada middleware pode processar a request, chamar o próximo middleware (next) e processar a response.',
       q: 'Qual é a ordem correta para middlewares em ASP.NET Core?',
-      hint: 'Leon verifica a porta antes de checar a janela — a ordem dos middlewares muda tudo',
+      hint: 'Ordem de registro importa',
       opts: [
         { t: 'A ordem não importa — ASP.NET organiza automaticamente', ok: false },
         { t: 'A ordem de app.Use() define a ordem de execução — primeiro registrado = primeiro executado', ok: true },
@@ -53,7 +53,7 @@ const MISSION_81 = {
       type: 'mc',
       bubble: 'Em Minimal API, parâmetros de endpoints podem ser: route params (<code>{id}</code>), query string (<code>?page=1</code>), body (JSON), ou injeção de dependência.',
       q: 'Como o ASP.NET Core sabe que um parâmetro de endpoint vem do body JSON?',
-      hint: 'Ashley é complexa — quando ela aparece no plano, Leon sabe de onde ela vem',
+      hint: '[FromBody] ou inferência de tipo complexo',
       opts: [
         { t: 'Sempre vem do body automaticamente', ok: false },
         { t: 'Tipos complexos (classe/record) são inferidos do body; primitivos do route/query string', ok: true },
@@ -68,7 +68,7 @@ const MISSION_81 = {
       type: 'mc',
       bubble: '<code>Results.Ok()</code>, <code>Results.NotFound()</code>, <code>Results.Created()</code> — retornos padronizados em Minimal API que configuram status code e body automaticamente.',
       q: 'Qual método Results usar para retornar 201 Created com o objeto criado?',
-      hint: 'Leon não apenas neutraliza o alvo — também registra onde ele estava quando foi criado',
+      hint: 'Created com location',
       opts: [
         { t: 'Results.Ok(objeto)', ok: false },
         { t: 'Results.Created("/url", objeto)', ok: true },
@@ -87,7 +87,7 @@ const MISSION_81 = {
 app.<span class="mt">_______</span>(<span class="st">"/missoes"</span>, () => <span class="kw">new</span>[] { <span class="st">"M1"</span>, <span class="st">"M2"</span> });
 app.<span class="mt">Run</span>();`,
       q: 'Qual método registra um endpoint HTTP GET?',
-      hint: 'Leon mapeia a rota de busca antes de começar a patrulha',
+      hint: 'Map + Get',
       ans: 'MapGet',
       exp: 'app.MapGet(pattern, handler): GET endpoint. app.MapPost, MapPut, MapDelete — outros verbos. Handler pode ser lambda, método local ou método de classe.',
     },
@@ -100,7 +100,7 @@ app.<span class="mt">Run</span>();`,
     id > <span class="nm">0</span> ? Results.<span class="mt">Ok</span>(<span class="st">$"Missao {id}"</span>)
               : Results.<span class="mt">_______</span>());`,
       q: 'Qual método Results retorna 404 Not Found?',
-      hint: 'Ashley não está aqui — a sala está vazia, missão não encontrada',
+      hint: 'Not Found',
       ans: 'NotFound',
       exp: 'Results.NotFound(): 404 sem body. Results.NotFound(objeto): 404 com body. "id" é automaticamente vinculado do route {id}.',
     },
@@ -113,7 +113,7 @@ app.<span class="mt">Run</span>();`,
 <span class="cm">// Injetado automaticamente em endpoints:
 // app.MapGet("/", (IMissaoService svc) => svc.Listar())</span>`,
       q: 'Qual método registra serviço com ciclo de vida Scoped?',
-      hint: 'Um suprimento por missão — como Leon recebe munição nova a cada combate',
+      hint: 'Add Scoped',
       ans: 'AddScoped',
       exp: 'AddScoped: nova instância por request HTTP. AddSingleton: única instância. AddTransient: nova instância a cada injeção. Scoped é padrão para serviços de negócio.',
     },
@@ -128,7 +128,7 @@ app.<span class="mt">Run</span>();`,
 
 Console.<span class="mt">WriteLine</span>(<span class="mt">HandleGet</span>(<span class="nm">42</span>, <span class="st">"Leon"</span>));`,
       q: 'O que será exibido?',
-      hint: 'O relatório de Leon: id e nome do agente no formato correto',
+      hint: 'Interpolação simples',
       opts: [
         { t: 'id=42 nome=Leon', ok: true },
         { t: '42 Leon', ok: false },
@@ -151,7 +151,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">HandleGet</span>(<spa
 <span class="kw">var</span> r = <span class="mt">GetMissao</span>(<span class="nm">50</span>);
 Console.<span class="mt">WriteLine</span>(r.<span class="mt">GetType</span>().<span class="mt">Name</span>);`,
       q: 'O que será exibido (nome da classe de resultado)?',
-      hint: 'Leon sabe que o rádio funciona, mas o modelo exato depende do kit de campo disponível',
+      hint: 'Results.Ok() retorna tipo interno com nome específico',
       opts: [
         { t: 'OkResult', ok: false },
         { t: 'Ok', ok: false },
@@ -174,7 +174,7 @@ Console.<span class="mt">WriteLine</span>(r.<span class="mt">GetType</span>().<s
 <span class="mt">MW1</span>(() => <span class="mt">MW2</span>(handler));
 Console.<span class="mt">WriteLine</span>(<span class="kw">string</span>.<span class="mt">Join</span>(<span class="st">","</span>, log));`,
       q: 'O que será exibido?',
-      hint: 'Leon entra no castelo, passa pelos guardas, chega ao alvo e refaz o caminho de volta',
+      hint: 'Middleware executa como pilha — entrada e saída',
       opts: [
         { t: 'MW1-in,MW2-in,handler,MW2-out,MW1-out', ok: true },
         { t: 'MW1-in,MW1-out,MW2-in,MW2-out,handler', ok: false },

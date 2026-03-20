@@ -23,7 +23,7 @@ const MISSION_87 = {
       type: 'mc',
       bubble: 'Revisão: EF Core migrations e banco de dados.',
       q: 'Qual comando aplica todas as migrations pendentes ao banco de dados?',
-      hint: 'Leon aciona o sistema para atualizar o banco de dados do castelo',
+      hint: 'dotnet ef database...',
       opts: [
         { t: 'dotnet ef migrations apply', ok: false },
         { t: 'dotnet ef database update', ok: true },
@@ -38,7 +38,7 @@ const MISSION_87 = {
       type: 'mc',
       bubble: 'Revisão: Minimal API vs MVC Controllers.',
       q: 'Qual cenário favorece Controllers sobre Minimal API?',
-      hint: 'Uma operação de resgate complexa na Ilha exige o equipamento mais completo, não o mais leve',
+      hint: 'Complexidade e features avançadas',
       opts: [
         { t: 'APIs com menos de 5 endpoints', ok: false },
         { t: 'APIs grandes com Model Binding complexo, action filters, e convenções de roteamento avançadas', ok: true },
@@ -53,7 +53,7 @@ const MISSION_87 = {
       type: 'mc',
       bubble: 'Revisão: complexidade de algoritmos.',
       q: 'Qual a complexidade de busca em HashSet<T>?',
-      hint: 'A TMP localiza Ganados com velocidade constante — nem O(n) nem O(log n)',
+      hint: 'Hash-based',
       opts: [
         { t: 'O(n)', ok: false },
         { t: 'O(log n)', ok: false },
@@ -68,7 +68,7 @@ const MISSION_87 = {
       type: 'mc',
       bubble: 'Revisão: Pattern matching com null.',
       q: 'O que verifica "x is not null"?',
-      hint: 'Ashley some no castelo — null é ausência de valor, "not null" confirma que ela está presente',
+      hint: 'Not null pattern',
       opts: [
         { t: 'x != null (equivalente)', ok: false },
         { t: 'x is not null: pattern matching que verifica se x não é null — recomendado sobre != null', ok: true },
@@ -83,7 +83,7 @@ const MISSION_87 = {
       type: 'mc',
       bubble: 'Revisão: SignalR e IHubContext.',
       q: 'Por que usar IHubContext<THub> em vez de injetar o Hub diretamente?',
-      hint: 'Ada não espera Leon para enviar o relatório — IHubContext age de qualquer ponto da missão',
+      hint: 'Hubs têm ciclo de vida por conexão',
       opts: [
         { t: 'IHubContext é mais performático', ok: false },
         { t: 'Hubs têm ciclo de vida por conexão — IHubContext permite enviar mensagens de qualquer serviço, não apenas do Hub ativo', ok: true },
@@ -98,7 +98,7 @@ const MISSION_87 = {
       type: 'mc',
       bubble: 'Revisão: File I/O e streams.',
       q: 'Para copiar um arquivo grande de forma eficiente, qual abordagem usar?',
-      hint: 'Leon não carrega toda a Ilha no caminhão — transporta em blocos para não sobrecarregar',
+      hint: 'Stream sem carregar tudo na memória',
       opts: [
         { t: 'File.ReadAllBytes + File.WriteAllBytes', ok: false },
         { t: 'FileStream.CopyToAsync — copia em blocos sem carregar tudo na memória', ok: true },
@@ -113,7 +113,7 @@ const MISSION_87 = {
       type: 'mc',
       bubble: 'Revisão: PriorityQueue e algoritmos de grafo.',
       q: 'PriorityQueue<T, P> é ideal para implementar qual algoritmo clássico?',
-      hint: 'Leon precisa do caminho mais curto até Ashley — a fila de prioridade visita sempre o mais próximo primeiro',
+      hint: 'Menor caminho em grafo',
       opts: [
         { t: 'Bubble Sort', ok: false },
         { t: 'Dijkstra — algoritmo de menor caminho que usa fila de prioridade para visitar vértices', ok: true },
@@ -134,7 +134,7 @@ const MISSION_87 = {
     <span class="kw">await</span> ctx.<span class="mt">_______</span>();
 }`,
       q: 'Qual método persiste a atualização?',
-      hint: 'Salazar, Leon e o mecanismo de save do EF Core usam o mesmo método para toda persistência',
+      hint: 'Save Changes Async',
       ans: 'SaveChangesAsync',
       exp: 'ctx.SaveChangesAsync(): gera UPDATE SQL para entidade rastreada com mudança. EF detecta automaticamente a mudança no change tracker.',
     },
@@ -146,7 +146,7 @@ const MISSION_87 = {
       code: `<span class="kw">var</span> builder = WebApplication.<span class="mt">CreateBuilder</span>(args);
 <span class="kw">string</span> connStr = builder._______[<span class="st">"ConnectionStrings:Default"</span>];`,
       q: 'Qual propriedade do builder acessa a configuração do appsettings.json?',
-      hint: 'Leon acessa o mapa de configurações do quartel — a propriedade que contém o appsettings',
+      hint: 'Configuration',
       ans: 'Configuration',
       exp: 'builder.Configuration: IConfiguration — acessa appsettings.json, variáveis de ambiente, command line. ["key"]: valor por chave. GetSection("nome"): subseção.',
     },
@@ -160,7 +160,7 @@ const MISSION_87 = {
 <span class="kw">if</span> (m <span class="kw">is</span> (<span class="kw">_______</span> nome, > <span class="nm">50</span>))
     Console.<span class="mt">WriteLine</span>(nome);`,
       q: 'Qual padrão captura qualquer string no primeiro campo?',
-      hint: 'Qualquer nome de agente serve — Leon usa var para capturar sem especificar o tipo',
+      hint: 'Var com binding',
       ans: 'var',
       exp: '(var nome, > 50): positional pattern. Primeiro campo: var nome = captura qualquer string. Segundo: > 50. m.XP=100 > 50 → match. Imprime "Alpha".',
     },
@@ -175,7 +175,7 @@ const MISSION_87 = {
     <span class="kw">return true</span>;
 }`,
       q: 'Qual valor retornar quando encontra elemento fora de ordem?',
-      hint: 'Leon encontrou um Ganado fora do padrão — o relatório deve sinalizar que a lista não está ordenada',
+      hint: 'Falso',
       ans: 'false',
       exp: 'Ordenada: itera comparando elemento atual com anterior. Se menor → não ordenado → false. Chega ao fim → true. Complexidade O(n).',
     },
@@ -189,7 +189,7 @@ const MISSION_87 = {
         ? Results.<span class="mt">_______</span>(<span class="st">"XP deve ser positivo"</span>)
         : Results.<span class="mt">Ok</span>(dto));`,
       q: 'Qual método Results retorna 400 Bad Request com mensagem?',
-      hint: 'O quartel rejeita ordens com XP inválido — como Krauser tentando passar por agente',
+      hint: 'Bad Request',
       ans: 'BadRequest',
       exp: 'Results.BadRequest(objeto): 400 com body. Results.ValidationProblem(errors): 400 com ProblemDetails padrão. Results.BadRequest(): 400 sem body.',
     },
@@ -206,7 +206,7 @@ const MISSION_87 = {
 Console.<span class="mt">WriteLine</span>(page2[<span class="nm">0</span>].Id);
 Console.<span class="mt">WriteLine</span>(page2.<span class="mt">Count</span>);`,
       q: 'O que será exibido?',
-      hint: 'Leon pula os primeiros 5 corredores e inspeciona os próximos 3 — qual é o ID do primeiro?',
+      hint: 'Skip 5, Take 3 = itens 6,7,8',
       opts: [
         { t: '6 e 3', ok: true },
         { t: '5 e 3', ok: false },
@@ -231,7 +231,7 @@ Console.<span class="mt">WriteLine</span>(page2.<span class="mt">Count</span>);`
 Console.<span class="mt">WriteLine</span>(<span class="mt">Dificuldade</span>(<span class="kw">new</span> Inimigo(<span class="st">"Chefe"</span>, <span class="nm">600</span>, <span class="kw">true</span>)));
 Console.<span class="mt">WriteLine</span>(<span class="mt">Dificuldade</span>(<span class="kw">new</span> Inimigo(<span class="st">"Ganado"</span>, <span class="nm">50</span>, <span class="kw">false</span>)));`,
       q: 'O que será exibido?',
-      hint: 'Saddler com HP>500 e armado é o mais difícil — um Ganado desarmado vai para o nível mais baixo',
+      hint: 'Primeiro: Chefe HP>500 Armado; Segundo: Ganado não armado',
       opts: [
         { t: '10 e 2', ok: true },
         { t: '7 e 5', ok: false },
@@ -258,7 +258,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">Dificuldade</span>(<s
 }
 Console.<span class="mt">WriteLine</span>(<span class="mt">BSearch</span>(<span class="kw">new</span>[] { <span class="nm">2</span>, <span class="nm">4</span>, <span class="nm">6</span>, <span class="nm">8</span>, <span class="nm">10</span> }, <span class="nm">6</span>));`,
       q: 'O que será exibido?',
-      hint: 'Leon usa binary search para encontrar o alvo 6 — qual posição ele ocupa na fila ordenada?',
+      hint: 'Índice de 6 no array {2,4,6,8,10}',
       opts: [
         { t: '1', ok: false },
         { t: '2', ok: true },
@@ -280,7 +280,7 @@ Console.<span class="mt">Write</span>(fila.<span class="mt">Dequeue</span>() + <
 Console.<span class="mt">Write</span>(fila.<span class="mt">Dequeue</span>() + <span class="st">" "</span>);
 Console.<span class="mt">WriteLine</span>(fila.<span class="mt">Count</span>);`,
       q: 'O que será exibido?',
-      hint: 'O primeiro Ganado a entrar na sala é o primeiro a ser eliminado — a fila de Leon',
+      hint: 'FIFO — primeiro a entrar, primeiro a sair',
       opts: [
         { t: 'M3 M2 1', ok: false },
         { t: 'M1 M2 1', ok: true },
@@ -303,7 +303,7 @@ Console.<span class="mt">WriteLine</span>(fila.<span class="mt">Count</span>);`,
         acc => acc.Item2);
 Console.<span class="mt">WriteLine</span>(maxConsecutivo);`,
       q: 'O que será exibido? (soma máxima de consecutivos > 20)',
-      hint: 'Leon acumula dano consecutivo maior que 20 — dois ataques seguidos de 25 e 30 formam o maior bloco',
+      hint: '25+30=55, depois 50 isolado',
       opts: [
         { t: '50', ok: false },
         { t: '55', ok: true },
@@ -327,7 +327,7 @@ Console.<span class="mt">WriteLine</span>(maxConsecutivo);`,
     .<span class="mt">First</span>();
 Console.<span class="mt">WriteLine</span>(jsons);`,
       q: 'O que será exibido?',
-      hint: 'Leon filtra os arquivos da Umbrella e pega o nome sem a extensão — só o codinome da pesquisa',
+      hint: 'Filtra .json, retorna nome sem extensão',
       opts: [
         { t: 'dir/file.json', ok: false },
         { t: 'file', ok: true },
@@ -351,7 +351,7 @@ Console.<span class="mt">WriteLine</span>(jsons);`,
 Console.<span class="mt">WriteLine</span>(<span class="mt">Resultado</span>(<span class="nm">5</span>, -<span class="nm">3</span>));
 Console.<span class="mt">WriteLine</span>(<span class="mt">Resultado</span>(<span class="nm">2</span>, <span class="nm">8</span>));`,
       q: 'O que será exibido?',
-      hint: 'Leon está ao norte e à esquerda em (5,-3) — (2,8) tem ambos positivos como a saída segura',
+      hint: '(5,-3) e (2,8)',
       opts: [
         { t: 'misto e ambos positivos', ok: true },
         { t: 'ambos positivos e misto', ok: false },
@@ -373,7 +373,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">Resultado</span>(<spa
 }
 Console.<span class="mt">WriteLine</span>(<span class="mt">Fib</span>(<span class="nm">10</span>));`,
       q: 'O que será exibido?',
-      hint: 'Leon conta as sequências de Fibonacci como um Regenerador que cresce a cada passo',
+      hint: 'Décimo número de Fibonacci',
       opts: [
         { t: '34', ok: false },
         { t: '55', ok: true },

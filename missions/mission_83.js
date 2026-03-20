@@ -23,7 +23,7 @@ const MISSION_83 = {
       type: 'mc',
       bubble: 'Revisão: DbContext lifetime em ASP.NET Core DI.',
       q: 'Qual o ciclo de vida correto para registrar DbContext no DI do ASP.NET Core?',
-      hint: 'Leon recebe um kit de suprimentos por missão — não compartilha o mesmo kit com outros agentes',
+      hint: 'Uma instância por request HTTP',
       opts: [
         { t: 'Singleton — reutilizar para todas as requests', ok: false },
         { t: 'Scoped — uma instância por request HTTP', ok: true },
@@ -38,7 +38,7 @@ const MISSION_83 = {
       type: 'mc',
       bubble: 'Revisão: switch expression e exhaustiveness.',
       q: 'O que acontece se um switch expression não tem arm para o valor e não tem arm "_" (discard)?',
-      hint: 'Um Regenerador sem bala de Rifle — o sistema falha em runtime quando não há saída definida',
+      hint: 'Exceção em runtime',
       opts: [
         { t: 'Retorna default(T) automaticamente', ok: false },
         { t: 'MatchFailureException em runtime — compilador avisa com warning', ok: true },
@@ -53,7 +53,7 @@ const MISSION_83 = {
       type: 'mc',
       bubble: 'Revisão: Minimal API e model binding.',
       q: 'Como receber um objeto JSON no body de um endpoint POST na Minimal API?',
-      hint: 'Ashley é uma personagem complexa — o sistema sabe que ela vem do corpo principal da operação',
+      hint: 'Tipo complexo → body automático',
       opts: [
         { t: 'Usar [FromForm] no parâmetro', ok: false },
         { t: 'Declarar o tipo como parâmetro — tipos complexos são inferidos do body automaticamente', ok: true },
@@ -68,7 +68,7 @@ const MISSION_83 = {
       type: 'mc',
       bubble: 'Revisão: IQueryable vs IEnumerable em EF Core.',
       q: 'Qual a diferença entre IQueryable<T> e IEnumerable<T> no contexto do EF Core?',
-      hint: 'A Plaga que Leon estuda no microscópio é diferente de carregar toda a Vila para analisar',
+      hint: 'SQL vs in-memory',
       opts: [
         { t: 'São equivalentes para EF Core', ok: false },
         { t: 'IQueryable: query executada no banco (SQL); IEnumerable: dados já carregados, filtra na memória', ok: true },
@@ -83,7 +83,7 @@ const MISSION_83 = {
       type: 'mc',
       bubble: 'Revisão: Pattern matching com or e and.',
       q: 'O que verifica "x is > 0 and < 100"?',
-      hint: 'Leon só entra na zona segura quando está ACIMA do limite mínimo E ABAIXO do teto máximo',
+      hint: 'And combina dois patterns',
       opts: [
         { t: 'x entre 0 e 100 (exclusive)', ok: true },
         { t: 'x maior que 0 ou menor que 100', ok: false },
@@ -98,7 +98,7 @@ const MISSION_83 = {
       type: 'mc',
       bubble: 'Revisão: migrations e schema evolution.',
       q: 'Qual a vantagem de usar migrations EF Core vs scripts SQL manuais?',
-      hint: 'Ada mantém um diário de cada rota — pode avançar ou voltar sem perder o controle',
+      hint: 'Histórico e reversibilidade',
       opts: [
         { t: 'Migrations geram SQL mais rápido', ok: false },
         { t: 'Migrations têm histórico versionado com Up() e Down() — permite avançar e reverter schema de forma controlada', ok: true },
@@ -118,7 +118,7 @@ const MISSION_83 = {
     <span class="kw">public</span> ICollection&lt;Missao&gt; <span class="mt">_______</span> { <span class="kw">get</span>; <span class="kw">set</span>; }
 }`,
       q: 'Qual nome convencional para a propriedade de navegação da coleção de Missões?',
-      hint: 'Os agentes de Leon não trabalham sozinhos — o nome da coleção segue a convenção do tipo',
+      hint: 'Plural de Missao',
       ans: 'Missoes',
       exp: 'ICollection<Missao> Missoes: EF Core detecta pelo nome "Missoes" (plural de Missao) e cria FK MissaoId na tabela Missoes automaticamente.',
     },
@@ -134,7 +134,7 @@ const MISSION_83 = {
     Console.<span class="mt">WriteLine</span>(<span class="st">"Depois"</span>);
 });`,
       q: 'Como chamar o próximo middleware no pipeline?',
-      hint: 'Leon precisa chamar o próximo da equipe antes de retornar ao posto',
+      hint: 'O delegate next',
       ans: 'next',
       exp: 'await next(): chama o próximo middleware. Se não chamar next(), a request é "short-circuited" — não prossegue. "Antes" e "Depois" delimitam execução ao redor do pipeline.',
     },
@@ -146,7 +146,7 @@ const MISSION_83 = {
       code: `<span class="kw">bool</span> <span class="mt">ÉFimDeSemana</span>(DayOfWeek dia) =>
     dia <span class="kw">is</span> DayOfWeek.Saturday <span class="kw">_______</span> DayOfWeek.Sunday;`,
       q: 'Qual operador combina dois patterns com "ou"?',
-      hint: 'Sábado ou domingo — assim como Ganado ou Plaga, um dos dois já satisfaz a condição',
+      hint: 'Or em inglês no pattern matching',
       ans: 'or',
       exp: '"is A or B": match se valor é A OU B. "is A and B": match se valor satisfaz A E B. Lowercase or/and são operadores de pattern — diferentes do || e &&.',
     },
@@ -160,7 +160,7 @@ const MISSION_83 = {
     .<span class="mt">_______</span>(m => m.Recompensas)
     .<span class="mt">ToListAsync</span>();`,
       q: 'Qual método continua o Include para entidade aninhada?',
-      hint: 'Depois de incluir as missões de Leon, ainda falta incluir as recompensas de cada missão',
+      hint: 'Then Include',
       ans: 'ThenInclude',
       exp: '.ThenInclude(): eager loading de subentidade. Agente → Missoes → Recompensas. Sem ThenInclude, Missoes.Recompensas seria null.',
     },
@@ -172,7 +172,7 @@ const MISSION_83 = {
       code: `app.<span class="mt">MapGet</span>(<span class="st">"/admin"</span>, () => <span class="st">"Segredo"</span>)
    .<span class="mt">_______</span>();`,
       q: 'Qual método em Minimal API requer autenticação no endpoint?',
-      hint: 'A sala de Saddler só é acessível a quem tem autorização — sem credencial, sem entrada',
+      hint: 'Require Authorization',
       ans: 'RequireAuthorization',
       exp: '.RequireAuthorization(): endpoint requer usuário autenticado. .RequireAuthorization("policy"): requer policy específica. app.UseAuthentication() e UseAuthorization() no pipeline primeiro.',
     },
@@ -193,7 +193,7 @@ const MISSION_83 = {
     .<span class="mt">ToList</span>();
 Console.<span class="mt">WriteLine</span>(dtos[<span class="nm">1</span>].Nome);`,
       q: 'O que será exibido?',
-      hint: 'O segundo arquivo de missão é o que Leon está buscando — índice conta a partir do zero',
+      hint: 'dtos[1] = segundo elemento',
       opts: [
         { t: 'Alpha', ok: false },
         { t: 'Beta', ok: true },
@@ -218,7 +218,7 @@ Console.<span class="mt">WriteLine</span>(dtos[<span class="nm">1</span>].Nome);
 };
 Console.<span class="mt">WriteLine</span>(<span class="mt">Area</span>(<span class="kw">new</span> Quadrado(<span class="nm">4</span>)).<span class="mt">ToString</span>(<span class="st">"F0"</span>));`,
       q: 'O que será exibido?',
-      hint: 'O Quadrado de Salazar tem lado 4 — quanto é a área da sala dele?',
+      hint: '4² = 16',
       opts: [
         { t: '12', ok: false },
         { t: '16', ok: true },
@@ -243,7 +243,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">Area</span>(<span cla
 };
 Console.<span class="mt">WriteLine</span>(<span class="mt">Quadrante</span>(<span class="kw">new</span> Ponto(-<span class="nm">3</span>, <span class="nm">5</span>)));`,
       q: 'O que será exibido?',
-      hint: 'Leon está à esquerda da Vila e acima do nível do mar — em qual quadrante do mapa?',
+      hint: 'X=-3, Y=5 — qual quadrante?',
       opts: [
         { t: 'Q1', ok: false },
         { t: 'Q2', ok: true },
@@ -269,7 +269,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">Quadrante</span>(<spa
 <span class="kw">var</span> p = sp.<span class="mt">GetRequiredService</span>&lt;Pistola&gt;();
 Console.<span class="mt">WriteLine</span>(p.Nome);`,
       q: 'O que será exibido?',
-      hint: 'Leon pede a Pistola pelo nome — não pede uma arma genérica',
+      hint: 'Resolve Pistola diretamente',
       opts: [
         { t: 'Shotgun', ok: false },
         { t: 'Pistola', ok: true },
@@ -292,7 +292,7 @@ Console.<span class="mt">WriteLine</span>(p.Nome);`,
 }
 Console.<span class="mt">WriteLine</span>(a);`,
       q: 'O que será exibido?',
-      hint: 'Leon não pode ter duas Ashleys — Single exige que o alvo seja único',
+      hint: 'Single lança exceção quando há mais de um match',
       opts: [
         { t: 'True e 2', ok: true },
         { t: 'False e 2', ok: false },
@@ -319,7 +319,7 @@ Func&lt;<span class="kw">string</span>, <span class="kw">string</span>&gt; handl
 Console.<span class="mt">WriteLine</span>(requests.<span class="mt">Count</span>);
 Console.<span class="mt">WriteLine</span>(result);`,
       q: 'O que será exibido?',
-      hint: 'O vigia da Ilha registra cada movimento de Leon e passa o aviso adiante',
+      hint: 'Middleware registra request e passa para handler',
       opts: [
         { t: '0 e OK:GET /missao', ok: false },
         { t: '1 e OK:GET /missao', ok: true },
@@ -342,7 +342,7 @@ Console.<span class="mt">WriteLine</span>(result);`,
 <span class="kw">var</span> r2 = items.<span class="mt">OrderBy</span>(i => i.Nome).<span class="mt">Last</span>().<span class="mt">Nome</span>;
 Console.<span class="mt">WriteLine</span>(<span class="st">$"{r1} {r2}"</span>);`,
       q: 'O que será exibido?',
-      hint: 'Quantas armas Leon tem no inventário, e qual vem por último em ordem alfabética?',
+      hint: 'Count de Id>0, Last após ordenação por Nome',
       opts: [
         { t: '2 B', ok: true },
         { t: '2 A', ok: false },

@@ -21,9 +21,9 @@ const MISSION_85 = {
     // Q1 — MC
     {
       type: 'mc',
-      bubble: 'A classe <code>File</code> oferece múltiplas formas de leitura de texto: <code>ReadAllText</code>, <code>ReadAllLines</code>, <code>ReadLines</code> e integração com <code>StreamReader</code> — cada uma com comportamento diferente em relação a memória e I/O.',
+      bubble: '<code>File.ReadAllText</code> lê o arquivo inteiro na memória como string. Para arquivos grandes, prefira <code>File.ReadLines</code> (lazy) ou <code>StreamReader</code>.',
       q: 'Qual a diferença entre File.ReadAllText e File.ReadLines?',
-      hint: 'Leon não carrega toda a base de dados da Umbrella de uma vez — lê arquivo por arquivo',
+      hint: 'Memória vs lazy/streaming',
       opts: [
         { t: 'ReadAllText é mais rápido sempre', ok: false },
         { t: 'ReadAllText carrega tudo na memória; ReadLines é lazy — processa linha por linha sem carregar tudo', ok: true },
@@ -36,9 +36,9 @@ const MISSION_85 = {
     // Q2 — MC
     {
       type: 'mc',
-      bubble: 'A classe <code>Path</code> fornece métodos estáticos para manipulação de caminhos: <code>Combine</code>, <code>GetFileName</code>, <code>GetExtension</code>, <code>GetDirectoryName</code> e outros. Concatenar strings manualmente para montar caminhos pode gerar bugs sutis.',
+      bubble: '<code>Path.Combine</code> é a forma correta de combinar caminhos em .NET — usa o separador correto para cada OS (<code>\\</code> no Windows, <code>/</code> no Unix).',
       q: 'Por que usar Path.Combine em vez de string concatenation para caminhos?',
-      hint: 'O mapa da Ilha usa barras diferentes no Windows e no Linux — Path.Combine sabe qual usar',
+      hint: 'Portabilidade e separadores',
       opts: [
         { t: 'Apenas por convenção', ok: false },
         { t: 'Path.Combine usa o separador correto para cada SO — portável entre Windows e Linux/Mac', ok: true },
@@ -51,9 +51,9 @@ const MISSION_85 = {
     // Q3 — MC
     {
       type: 'mc',
-      bubble: '<code>StreamWriter</code> implementa <code>IDisposable</code>. O padrão <code>using</code> garante que <code>Dispose()</code> seja chamado ao sair do bloco — inclusive quando ocorre exceção.',
+      bubble: '<code>using var writer = new StreamWriter(path)</code> — sempre usar using para garantir que streams sejam fechados/flushed mesmo em caso de exceção.',
       q: 'O que acontece se StreamWriter não for fechado (sem using/Dispose)?',
-      hint: 'O colete de Leon não funciona se ele não travar o fecho — o buffer precisa ser descarregado',
+      hint: 'Buffer não é escrito no disco',
       opts: [
         { t: 'O arquivo é deletado automaticamente', ok: false },
         { t: 'Dados no buffer podem não ser escritos no disco — arquivo pode ficar incompleto ou vazio', ok: true },
@@ -68,7 +68,7 @@ const MISSION_85 = {
       type: 'mc',
       bubble: '<code>FileMode.OpenOrCreate</code>, <code>FileMode.Append</code>, <code>FileMode.Truncate</code> — modos de abertura de arquivo com FileStream.',
       q: 'Qual FileMode usar para adicionar texto ao final de um arquivo existente sem apagar?',
-      hint: 'Leon adiciona notas ao final do diário sem apagar as entradas anteriores da missão',
+      hint: 'Append em inglês',
       opts: [
         { t: 'FileMode.Create', ok: false },
         { t: 'FileMode.Append', ok: true },
@@ -86,7 +86,7 @@ const MISSION_85 = {
     <span class="st">"log.txt"</span>,
     <span class="st">"Missão iniciada\\n"</span>);`,
       q: 'Qual método File escreve texto assincronamente (cria ou sobrescreve)?',
-      hint: 'Leon registra o log da missão de forma assíncrona — sem bloquear o próximo passo',
+      hint: 'Write All Text Async',
       ans: 'WriteAllTextAsync',
       exp: 'File.WriteAllTextAsync(path, text): cria ou sobrescreve com o texto. File.AppendAllTextAsync: adiciona ao final. File.ReadAllTextAsync: leitura assíncrona.',
     },
@@ -99,7 +99,7 @@ const MISSION_85 = {
 <span class="kw">string</span> ext = Path.<span class="mt">_______</span>(arquivo);
 Console.<span class="mt">WriteLine</span>(ext); <span class="cm">// .json</span>`,
       q: 'Qual método Path retorna a extensão do arquivo (com ponto)?',
-      hint: 'Leon verifica o tipo do arquivo de pesquisa da Umbrella pelo que vem depois do ponto',
+      hint: 'Get Extension',
       ans: 'GetExtension',
       exp: 'Path.GetExtension("arquivo.json") = ".json" (com ponto). Path.GetFileNameWithoutExtension: "arquivo". Path.GetFileName: "arquivo.json".',
     },
@@ -113,7 +113,7 @@ Console.<span class="mt">WriteLine</span>(ext); <span class="cm">// .json</span>
 <span class="kw">while</span> ((linha = <span class="kw">await</span> reader.<span class="mt">_______</span>()) != <span class="kw">null</span>)
     Console.<span class="mt">WriteLine</span>(linha);`,
       q: 'Qual método lê uma linha do StreamReader de forma assíncrona?',
-      hint: 'Leon lê cada relatório linha por linha, sem pressa — assíncrono como Ada em campo',
+      hint: 'Read Line Async',
       ans: 'ReadLineAsync',
       exp: 'reader.ReadLineAsync(): retorna Task<string?>, null quando EOF. reader.ReadToEndAsync(): lê tudo de uma vez. reader.ReadLine(): síncrono.',
     },
@@ -128,7 +128,7 @@ Console.<span class="mt">WriteLine</span>(ext); <span class="cm">// .json</span>
 Console.<span class="mt">WriteLine</span>(Path.<span class="mt">GetFileName</span>(full));
 Console.<span class="mt">WriteLine</span>(Path.<span class="mt">GetExtension</span>(full));`,
       q: 'O que será exibido?',
-      hint: 'Leon precisa saber o nome do arquivo Plaga e qual é sua extensão para processá-lo',
+      hint: 'Nome do arquivo e extensão',
       opts: [
         { t: 'plaga.dat e .dat', ok: true },
         { t: 'C:\\Umbrella\\Labs e plaga', ok: false },
@@ -148,7 +148,7 @@ Console.<span class="mt">WriteLine</span>(Path.<span class="mt">GetExtension</sp
 <span class="kw">else</span>
     Console.<span class="mt">WriteLine</span>(<span class="st">"Não encontrado"</span>);`,
       q: 'O que será exibido (arquivo não existe no sistema)?',
-      hint: 'Leon verifica se Ashley está na sala antes de entrar — sem exceção, apenas um boolean',
+      hint: 'File.Exists retorna false para arquivo inexistente',
       opts: [
         { t: 'Encontrado', ok: false },
         { t: 'Não encontrado', ok: true },
@@ -168,7 +168,7 @@ Console.<span class="mt">WriteLine</span>(Path.<span class="mt">GetExtension</sp
     .<span class="mt">Count</span>();
 Console.<span class="mt">WriteLine</span>(jsons);`,
       q: 'O que será exibido?',
-      hint: 'Quantos arquivos de dados da Umbrella têm o formato que Leon procura?',
+      hint: 'Quantos arquivos .json?',
       opts: [
         { t: '1', ok: false },
         { t: '2', ok: true },

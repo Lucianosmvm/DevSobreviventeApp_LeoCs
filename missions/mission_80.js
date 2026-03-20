@@ -23,7 +23,7 @@ const MISSION_80 = {
       type: 'mc',
       bubble: '<code>DbContext</code> é a classe central do EF Core — representa uma sessão com o banco de dados. Cada <code>DbSet&lt;T&gt;</code> corresponde a uma tabela.',
       q: 'Como o EF Core sabe quais tabelas criar no banco de dados?',
-      hint: 'Assim como Leon precisa saber o que há em cada sala do castelo antes de entrar',
+      hint: 'DbSet e configuração de entidades',
       opts: [
         { t: 'Pela herança de DbContext', ok: false },
         { t: 'Pelas propriedades DbSet<T> no DbContext — cada DbSet<T> = uma tabela', ok: true },
@@ -38,7 +38,7 @@ const MISSION_80 = {
       type: 'mc',
       bubble: '<strong>Migrations</strong> EF Core rastreiam mudanças no modelo de dados e geram scripts SQL para atualizar o banco sem perder dados.',
       q: 'Qual o comando para criar uma nova migration após modificar uma entidade?',
-      hint: 'Leon registra cada mudança de rota antes de avançar pelo castelo',
+      hint: 'dotnet ef migrations',
       opts: [
         { t: 'dotnet ef database update', ok: false },
         { t: 'dotnet ef migrations add NomeDaMigration', ok: true },
@@ -53,7 +53,7 @@ const MISSION_80 = {
       type: 'mc',
       bubble: 'EF Core usa <strong>lazy loading</strong> ou <strong>eager loading</strong> para navegar entre entidades relacionadas. Sem Include(), navegações retornam null (lazy desativado por padrão).',
       q: 'Como carregar a lista de missões de um agente junto com o agente no EF Core?',
-      hint: 'Leon não vai resgatar Ashley sem antes incluí-la no plano de saída',
+      hint: 'Include() para eager loading',
       opts: [
         { t: 'context.Agentes.Where(a => a.Id == id) — EF carrega automaticamente', ok: false },
         { t: 'context.Agentes.Include(a => a.Missoes).Where(a => a.Id == id)', ok: true },
@@ -68,7 +68,7 @@ const MISSION_80 = {
       type: 'mc',
       bubble: '<code>AsNoTracking()</code> desativa o change tracker para consultas somente-leitura. Mais rápido pois EF não precisa rastrear mudanças para objetos retornados.',
       q: 'Quando usar AsNoTracking() com EF Core?',
-      hint: 'Leon apenas observa a sala do Salazar — sem tocar em nada, mais rápido e discreto',
+      hint: 'Read-only, sem Update/Delete posterior',
       opts: [
         { t: 'Sempre — AsNoTracking é mais rápido em todos os casos', ok: false },
         { t: 'Para consultas somente-leitura onde não há Update/Delete posterior dos objetos retornados', ok: true },
@@ -89,7 +89,7 @@ const MISSION_80 = {
         => o.<span class="mt">UseSqlite</span>(<span class="st">"Data Source=app.db"</span>);
 }`,
       q: 'Qual nome convencional para a propriedade DbSet de Missao?',
-      hint: 'Leon elimina os Ganados no plural — a convenção segue o mesmo raciocínio',
+      hint: 'Plural do tipo',
       ans: 'Missoes',
       exp: 'Convenção EF Core: DbSet com nome plural do tipo. "Missoes" para Missao. EF cria tabela "Missoes". Pode usar [Table("nome")] para personalizar.',
     },
@@ -103,7 +103,7 @@ const MISSION_80 = {
     .<span class="mt">Where</span>(m => m.XP > <span class="nm">100</span>)
     .<span class="mt">_______</span>();`,
       q: 'Qual método materializa a query em uma lista assíncrona no EF Core?',
-      hint: 'Ada não entrega os dados imediatamente — a versão Async espera a hora certa',
+      hint: 'To List Async',
       ans: 'ToListAsync',
       exp: '.ToListAsync(): materializa IQueryable<T> em List<T> assincronamente. EF Core gera SQL e executa. .FirstOrDefaultAsync(), .SingleAsync(), .CountAsync() — mesma convenção.',
     },
@@ -116,7 +116,7 @@ const MISSION_80 = {
 ctx.Missoes.<span class="mt">Add</span>(<span class="kw">new</span> Missao { Nome = <span class="st">"Infiltrar"</span>, XP = <span class="nm">200</span> });
 <span class="kw">await</span> ctx.<span class="mt">_______</span>();`,
       q: 'Qual método persiste as mudanças no banco de dados?',
-      hint: 'Gravar o progresso da missão — sem isso, tudo se perde como Leon sem munição',
+      hint: 'Save Changes Async',
       ans: 'SaveChangesAsync',
       exp: 'ctx.SaveChangesAsync(): gera e executa INSERT/UPDATE/DELETE para todas as mudanças rastreadas. Retorna int (número de registros afetados).',
     },
@@ -137,7 +137,7 @@ ctx.Missoes.<span class="mt">Add</span>(<span class="kw">new</span> Missao { Nom
     .<span class="mt">First</span>();
 Console.<span class="mt">WriteLine</span>(resultado);`,
       q: 'O que será exibido?',
-      hint: 'O primeiro Ganado que passar pelo filtro de XP >= 150 é o alvo de Leon',
+      hint: 'Primeiro com XP >= 150',
       opts: [
         { t: 'Alpha', ok: false },
         { t: 'Beta', ok: true },
@@ -156,7 +156,7 @@ Console.<span class="mt">WriteLine</span>(resultado);`,
 Console.<span class="mt">WriteLine</span>(leon.Nome);
 Console.<span class="mt">WriteLine</span>(leon.Missoes.<span class="mt">Count</span>);`,
       q: 'O que será exibido?',
-      hint: 'Leon e quantas missões ele carrega — cada uma conta',
+      hint: 'Nome e quantidade de missões',
       opts: [
         { t: 'Leon e 1', ok: false },
         { t: 'Leon e 2', ok: true },
@@ -178,7 +178,7 @@ Console.<span class="mt">WriteLine</span>(leon.Missoes.<span class="mt">Count</s
 <span class="kw">var</span> item = items[<span class="nm">0</span>];
 Console.<span class="mt">WriteLine</span>(item.Nome);`,
       q: 'O que será exibido?',
-      hint: 'Leon usa a Shotgun para identificar o alvo — o filtro aponta para o único que corresponde',
+      hint: 'LINQ filtra por Id == 1',
       opts: [
         { t: 'null', ok: false },
         { t: 'Shotgun', ok: true },

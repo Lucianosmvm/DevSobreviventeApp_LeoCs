@@ -23,7 +23,7 @@ const MISSION_86 = {
       type: 'mc',
       bubble: '<strong>Binary Search</strong> requer array <strong>ordenado</strong>. Complexidade O(log n) — divide o espaço de busca pela metade a cada comparação.',
       q: 'Por que Binary Search é O(log n) e não O(n)?',
-      hint: 'Leon divide o castelo ao meio, elimina onde o alvo não está — e repete o processo',
+      hint: 'Divide e conquista',
       opts: [
         { t: 'Porque verifica apenas metade dos elementos', ok: false },
         { t: 'Porque a cada passo elimina metade do espaço de busca — log₂(n) passos no máximo', ok: true },
@@ -36,9 +36,9 @@ const MISSION_86 = {
     // Q2 — MC
     {
       type: 'mc',
-      bubble: '<strong>Dictionary&lt;TKey, TValue&gt;</strong> usa hash table internamente. <strong>SortedDictionary</strong> usa uma árvore binária balanceada, mantendo as chaves sempre em ordem crescente.',
+      bubble: '<strong>Dictionary&lt;TKey, TValue&gt;</strong> tem lookup O(1) médio (hash table). <strong>SortedDictionary</strong> tem lookup O(log n) mas mantém chaves ordenadas.',
       q: 'Para lookup frequente por chave sem necessidade de ordem, qual é mais eficiente?',
-      hint: 'A TMP localiza Ganados na multidão mais rápido que o Rifle quando não precisa de ordem',
+      hint: 'O(1) vs O(log n)',
       opts: [
         { t: 'SortedDictionary — ordenado é sempre melhor', ok: false },
         { t: 'Dictionary — O(1) médio vs O(log n) do SortedDictionary', ok: true },
@@ -51,9 +51,9 @@ const MISSION_86 = {
     // Q3 — MC
     {
       type: 'mc',
-      bubble: '<strong>Array.Sort</strong> usa Introsort — híbrido de quicksort, heapsort e insertion sort — com O(n log n) garantido. <strong>LINQ OrderBy</strong> usa um algoritmo diferente, com uma garantia a mais sobre o comportamento de elementos considerados iguais pelo critério de ordenação.',
+      bubble: '<strong>Array.Sort</strong> usa Introsort (quicksort + heapsort + insertion sort) — O(n log n) médio e pior caso garantido. <strong>LINQ OrderBy</strong> usa mergesort estável.',
       q: 'Qual a vantagem do LINQ OrderBy sobre Array.Sort para preservar ordem relativa?',
-      hint: 'Dois Ganados com o mesmo nível de ameaça — qual aparece primeiro na fila depois de ordenar?',
+      hint: 'Estabilidade do sort',
       opts: [
         { t: 'OrderBy é mais rápido', ok: false },
         { t: 'OrderBy é estável — elementos iguais mantêm ordem relativa original; Array.Sort não é garantidamente estável', ok: true },
@@ -68,7 +68,7 @@ const MISSION_86 = {
       type: 'mc',
       bubble: '<strong>Stack&lt;T&gt;</strong> (LIFO) e <strong>Queue&lt;T&gt;</strong> (FIFO) — estruturas para diferentes padrões de acesso. <strong>PriorityQueue&lt;T, P&gt;</strong> processa por prioridade.',
       q: 'Para processar missões em ordem de urgência (alta prioridade primeiro), qual estrutura usar?',
-      hint: 'O El Gigante é a ameaça de maior urgência — a estrutura correta despacha ele primeiro',
+      hint: 'Fila com prioridade',
       opts: [
         { t: 'Queue<T> — primeiro a entrar, primeiro a sair', ok: false },
         { t: 'PriorityQueue<T, int> — dequeue retorna o de menor valor de prioridade', ok: true },
@@ -86,7 +86,7 @@ const MISSION_86 = {
 <span class="kw">int</span> idx = Array.<span class="mt">_______</span>(arr, <span class="nm">7</span>);
 Console.<span class="mt">WriteLine</span>(idx); <span class="cm">// 3</span>`,
       q: 'Qual método Array realiza busca binária?',
-      hint: 'Leon usa o Rifle de precisão para localizar o alvo em uma lista ordenada de ameaças',
+      hint: 'Binary Search',
       ans: 'BinarySearch',
       exp: 'Array.BinarySearch(array, value): retorna índice se encontrado, negativo se não. Requer array ordenado. Índice de 7 = 3 (base 0).',
     },
@@ -101,7 +101,7 @@ pilha.<span class="mt">Push</span>(<span class="st">"segundo"</span>);
 <span class="kw">var</span> topo = pilha.<span class="mt">_______</span>();
 Console.<span class="mt">WriteLine</span>(topo); <span class="cm">// segundo</span>`,
       q: 'Qual método remove e retorna o elemento do topo da Stack?',
-      hint: 'A última granada que Leon guardou é a primeira que ele usa — o topo da pilha',
+      hint: 'Pop em inglês',
       ans: 'Pop',
       exp: 'Stack.Pop(): remove e retorna o topo (LIFO). Stack.Peek(): retorna sem remover. "segundo" foi adicionado por último → é o topo.',
     },
@@ -116,7 +116,7 @@ pq.<span class="mt">Enqueue</span>(<span class="st">"Alta"</span>, <span class="
 <span class="kw">var</span> primeiro = pq.<span class="mt">_______</span>();
 Console.<span class="mt">WriteLine</span>(primeiro); <span class="cm">// Alta</span>`,
       q: 'Qual método remove e retorna o elemento de maior prioridade?',
-      hint: 'O Ganado com maior prioridade sai da fila primeiro — como o El Gigante que bloqueia a passagem',
+      hint: 'Dequeue',
       ans: 'Dequeue',
       exp: 'PriorityQueue.Dequeue(): retorna elemento com menor valor de prioridade. "Alta" tem prioridade 1 (menor) → dequeue primeiro.',
     },
@@ -131,7 +131,7 @@ Console.<span class="mt">WriteLine</span>(<span class="kw">string</span>.<span c
 <span class="kw">int</span> idx = Array.<span class="mt">BinarySearch</span>(nums, <span class="nm">8</span>);
 Console.<span class="mt">WriteLine</span>(idx);`,
       q: 'O que será exibido?',
-      hint: 'Leon ordena a lista de ameaças e depois usa o Rifle para localizar a posição do alvo',
+      hint: 'Array ordenado e índice de 8',
       opts: [
         { t: '1,3,5,8,9 e 3', ok: true },
         { t: '5,3,8,1,9 e 2', ok: false },
@@ -151,7 +151,7 @@ Console.<span class="mt">WriteLine</span>(idx);`,
 <span class="kw">while</span> (stack.<span class="mt">Count</span> > <span class="nm">0</span>)
     Console.<span class="mt">Write</span>(stack.<span class="mt">Pop</span>() + <span class="st">" "</span>);`,
       q: 'O que será exibido?',
-      hint: 'As granadas de Leon: a última colocada na bolsa é a primeira que ele pega',
+      hint: 'LIFO — último entra, primeiro sai',
       opts: [
         { t: '1 2 3', ok: false },
         { t: '3 2 1', ok: true },
@@ -175,7 +175,7 @@ Console.<span class="mt">WriteLine</span>(idx);`,
 Console.<span class="mt">WriteLine</span>(total);
 Console.<span class="mt">WriteLine</span>(xpPorMissao.<span class="mt">ContainsKey</span>(<span class="st">"Delta"</span>));`,
       q: 'O que será exibido?',
-      hint: 'Soma total do XP das missões e verifica se a missão Delta existe no mapa de Saddler',
+      hint: 'Soma dos valores e verificação de chave',
       opts: [
         { t: '600 e True', ok: false },
         { t: '600 e False', ok: true },

@@ -23,7 +23,7 @@ const MISSION_82 = {
       type: 'mc',
       bubble: '<strong>Switch expression</strong> (C# 8+) é uma expressão que retorna valor. Mais conciso que switch statement — cada arm é <code>pattern => expression</code>.',
       q: 'Qual a diferença entre switch statement e switch expression?',
-      hint: 'Leon precisa decidir e já sair com a arma na mão — não apenas deliberar',
+      hint: 'Statement vs expressão que retorna valor',
       opts: [
         { t: 'São equivalentes', ok: false },
         { t: 'Switch expression é uma expressão que retorna valor — pode ser usado em atribuição; statement não retorna', ok: true },
@@ -38,7 +38,7 @@ const MISSION_82 = {
       type: 'mc',
       bubble: '<strong>Property pattern</strong>: <code>{ Propriedade: valor }</code> — verifica se o objeto tem a propriedade com o valor especificado.',
       q: 'O que faz o pattern "{ HP: <= 0 }" em um switch?',
-      hint: 'Um Ganado com HP nesse nível já não oferece resistência',
+      hint: 'Verifica se HP é menor ou igual a zero',
       opts: [
         { t: 'Verifica se HP existe', ok: false },
         { t: 'Verifica se o objeto tem propriedade HP com valor <= 0', ok: true },
@@ -53,7 +53,7 @@ const MISSION_82 = {
       type: 'mc',
       bubble: '<strong>List patterns</strong> (C# 11+): <code>[first, .., last]</code> verifica elementos em posições específicas de lista/array. <code>..</code> = qualquer quantidade no meio.',
       q: 'O que o pattern "[1, .., n]" verifica?',
-      hint: 'Leon entra pela mesma porta e sai pelo mesmo ponto — o que importa é o começo e o fim da fila',
+      hint: 'Primeiro elemento é 1, último é n',
       opts: [
         { t: 'Array com apenas 2 elementos: 1 e n', ok: false },
         { t: 'Array que começa com 1, termina com n, qualquer coisa no meio', ok: true },
@@ -68,7 +68,7 @@ const MISSION_82 = {
       type: 'mc',
       bubble: '<strong>when guards</strong> em switch: <code>pattern when condição</code> adiciona condição extra ao arm do switch.',
       q: 'Para que serve "when" em um switch expression?',
-      hint: 'O Ganado é do tipo certo, mas Leon ainda verifica se tem Plaga antes de usar o colete',
+      hint: 'Filtro adicional no arm',
       opts: [
         { t: 'Executar código assíncrono no arm', ok: false },
         { t: 'Adicionar condição booleana extra ao pattern — arm só executa se pattern E when são verdadeiros', ok: true },
@@ -89,7 +89,7 @@ const MISSION_82 = {
     <span class="kw">_</span>          => <span class="st">"Outro"</span>
 };`,
       q: 'Qual type pattern captura int com variável de binding "n"?',
-      hint: 'Identificar o tipo do inimigo e capturar o nome para usá-lo no relatório de campo',
+      hint: 'tipo variavel',
       ans: 'int',
       exp: '"int n" é type pattern com binding — match se object é int, e vincula o valor a "n". Pode usar diretamente na expressão de resultado.',
     },
@@ -105,7 +105,7 @@ const MISSION_82 = {
     <span class="kw">_</span>               => <span class="st">"Vivo"</span>
 };`,
       q: 'Qual palavra-chave adiciona a condição de guard no switch?',
-      hint: 'Saddler só libera a saída quando a condição adicional for satisfeita — o guard do castelo',
+      hint: 'Quando em inglês',
       ans: 'when',
       exp: '"when h < 20": guard adicional. { HP: var h } captura HP em h; "when h < 20" verifica se é menor que 20. Só executa se ambos são verdadeiros.',
     },
@@ -118,7 +118,7 @@ const MISSION_82 = {
 <span class="kw">bool</span> começaComUm = nums <span class="kw">is</span> [<span class="nm">1</span>, <span class="mt">_______</span>];
 Console.<span class="mt">WriteLine</span>(começaComUm);`,
       q: 'Qual pattern representa "qualquer número de elementos restantes"?',
-      hint: 'O que está entre o primeiro e o último Ganado da fila não importa — qualquer grupo serve',
+      hint: 'Dois pontos consecutivos',
       ans: '..',
       exp: '[1, ..] = começa com 1, seguido por qualquer coisa (0 ou mais). [1, _, 3] = exatamente 3 elementos: 1, qualquer, 3.',
     },
@@ -137,7 +137,7 @@ Console.<span class="mt">WriteLine</span>(começaComUm);`,
 Console.<span class="mt">WriteLine</span>(<span class="mt">Tipo</span>(<span class="nm">42</span>));
 Console.<span class="mt">WriteLine</span>(<span class="mt">Tipo</span>(<span class="st">"Leon"</span>));`,
       q: 'O que será exibido?',
-      hint: 'O sistema de análise da Umbrella identifica cada tipo de inimigo pelo que ele é',
+      hint: '42 é int, "Leon" é string',
       opts: [
         { t: 'int:42 e str:Leon', ok: true },
         { t: '? e ?', ok: false },
@@ -161,7 +161,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">Tipo</span>(<span cla
 };
 Console.<span class="mt">WriteLine</span>(<span class="mt">Analisar</span>(<span class="kw">new</span> Inimigo(<span class="st">"Ganado"</span>, <span class="nm">30</span>)));`,
       q: 'O que será exibido?',
-      hint: 'HP=30 não chega nem perto dos 500 do El Gigante — verifique os arms na ordem',
+      hint: 'HP=30, Tipo=Ganado — qual case corresponde?',
       opts: [
         { t: 'Eliminado', ok: false },
         { t: 'Ganado Forte', ok: false },
@@ -185,7 +185,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">Analisar</span>(<span
 Console.<span class="mt">WriteLine</span>(<span class="mt">Descrever</span>(<span class="kw">new</span>[] { <span class="nm">5</span>, <span class="nm">10</span> }));
 Console.<span class="mt">WriteLine</span>(<span class="mt">Descrever</span>(<span class="kw">new</span>[] { <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span> }));`,
       q: 'O que será exibido?',
-      hint: 'Leon conta os Plagas no grupo antes de decidir qual tática usar',
+      hint: '{5,10} tem 2 elementos; {1,2,3} tem 3',
       opts: [
         { t: 'dois:5,10 e muitos', ok: true },
         { t: 'muitos e muitos', ok: false },

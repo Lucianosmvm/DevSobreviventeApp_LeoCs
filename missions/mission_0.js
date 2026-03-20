@@ -23,7 +23,6 @@ const MISSION_0 = {
       type:'mc',
       bubble:'Bem-vindo, agente. Antes de pegar uma arma, você precisa entender o básico. <strong>Programação</strong> é dar instruções precisas ao computador para resolver problemas.',
       q:'O que é programação?',
-      hint:'Leon não atira no escuro — ele dá instruções precisas a cada movimento',
       opts:[
         {t:'Consertar computadores fisicamente', ok:false},
         {t:'Dar instruções ao computador para resolver problemas', ok:true},
@@ -38,7 +37,6 @@ const MISSION_0 = {
       type:'mc',
       bubble:'Uma <strong>linguagem de programação</strong> é o idioma que usamos para nos comunicar com o computador. C# é uma delas.',
       q:'Para que serve uma linguagem de programação?',
-      hint:'Leon fala o idioma do campo — o computador tem o seu próprio',
       opts:[
         {t:'Para comunicar instruções ao computador de forma estruturada', ok:true},
         {t:'Para traduzir textos entre humanos', ok:false},
@@ -53,7 +51,6 @@ const MISSION_0 = {
       type:'mc',
       bubble:'<strong>C#</strong> (lê-se "C Sharp") é uma linguagem criada pela Microsoft, moderna, poderosa e usada em jogos, apps, sistemas web e muito mais.',
       q:'Quem criou a linguagem C#?',
-      hint:'Pense nas grandes corporações por trás das tecnologias — igual ao governo por trás da missão de Leon',
       opts:[
         {t:'Google', ok:false},
         {t:'Apple', ok:false},
@@ -68,7 +65,6 @@ const MISSION_0 = {
       type:'mc',
       bubble:'Um <strong>algoritmo</strong> é uma sequência finita de passos para resolver um problema. Como um plano de missão — cada etapa importa.',
       q:'Qual das opções melhor descreve um algoritmo?',
-      hint:'O plano de infiltração de Leon na Vila: cada etapa tem uma ordem específica',
       opts:[
         {t:'Um tipo de computador', ok:false},
         {t:'Uma sequência de passos para resolver um problema', ok:true},
@@ -83,7 +79,6 @@ const MISSION_0 = {
       type:'mc',
       bubble:'Todo algoritmo precisa ter três características: ser <strong>finito</strong> (termina), <strong>definido</strong> (sem ambiguidade) e <strong>eficaz</strong> (produz resultado).',
       q:'O que acontece se um algoritmo não for finito?',
-      hint:'O Regenerador nunca para — e isso é um problema que trava Leon também',
       opts:[
         {t:'Funciona mais rápido', ok:false},
         {t:'O computador reinicia automaticamente', ok:false},
@@ -98,7 +93,6 @@ const MISSION_0 = {
       type:'mc',
       bubble:'O fluxo básico de qualquer programa é: <strong>Entrada → Processamento → Saída</strong>. Dados entram, são transformados, e um resultado sai.',
       q:'Numa calculadora que soma dois números, qual é o "processamento"?',
-      hint:'Leon recebe o pedido de resgate (entrada), age (processamento) e Ashley sai viva (saída)',
       opts:[
         {t:'A operação de soma em si', ok:true},
         {t:'Os números digitados', ok:false},
@@ -113,7 +107,6 @@ const MISSION_0 = {
       type:'mc',
       bubble:'Um <strong>compilador</strong> traduz seu código C# para linguagem de máquina. O compilador do C# se chama Roslyn.',
       q:'O que faz um compilador?',
-      hint:'Roslyn traduz seu C# assim como o tradutor do governo traduz as ordens de Saddler',
       opts:[
         {t:'Executa o programa diretamente', ok:false},
         {t:'Corrige erros automaticamente', ok:false},
@@ -129,7 +122,6 @@ const MISSION_0 = {
       bubble:'Em C#, todo programa começa sua execução pelo método <code>Main</code>. É o ponto de entrada do sistema.',
       code:`<span class="kw">static void</span> <span class="mt">_______</span>(<span class="kw">string</span>[] args)\n{\n    <span class="cm">// programa começa aqui</span>\n}`,
       q:'Qual é o nome do método de entrada de todo programa C#?',
-      hint:'É o ponto de entrada — como o portão da Vila por onde Leon começa tudo',
       ans:'Main',
       exp:'"Main" é o ponto de entrada de todo programa C#. É onde a execução começa. O nome é obrigatório e case-sensitive.',
     },
@@ -140,7 +132,6 @@ const MISSION_0 = {
       bubble:'O <strong>namespace</strong> organiza o código em grupos lógicos, como pastas para arquivos. Evita conflitos de nomes.',
       code:`<span class="kw">_______</span> MissaoInfiltracao\n{\n    <span class="cm">// código organizado aqui</span>\n}`,
       q:'Qual palavra-chave define um namespace em C#?',
-      hint:'Organiza o código como os setores do Castelo de Salazar — cada área tem seu propósito',
       ans:'namespace',
       exp:'"namespace" agrupa classes relacionadas. Como pastas no Windows. Evita conflito de nomes iguais em projetos grandes.',
     },
@@ -151,7 +142,6 @@ const MISSION_0 = {
       bubble:'Bem-vindo ao seu primeiro código C#. O agente Leon envia uma mensagem de confirmação da missão.',
       code:`<span class="kw">using</span> System;\n\n<span class="kw">namespace</span> Infiltracao\n{\n    <span class="kw">class</span> Programa\n    {\n        <span class="kw">static void</span> <span class="mt">Main</span>(<span class="kw">string</span>[] args)\n        {\n            Console.<span class="mt">WriteLine</span>(<span class="st">"Missão iniciada, parceiro."</span>);\n        }\n    }\n}`,
       q:'O que este programa exibe ao executar?',
-      hint:'Console.WriteLine imprime exatamente o que está entre as aspas — sem mais, sem menos',
       opts:[
         {t:'Infiltracao', ok:false},
         {t:'Missão iniciada, parceiro.', ok:true},

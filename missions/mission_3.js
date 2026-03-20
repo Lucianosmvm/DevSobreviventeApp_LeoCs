@@ -23,7 +23,7 @@ const MISSION_03 = {
       type:'mc',
       bubble:'<code>Console.WriteLine()</code> exibe texto no console e pula uma linha ao final. É a saída mais básica em C#.',
       q:'Qual a diferença entre Console.WriteLine() e Console.Write()?',
-      hint:'O rádio de Leon transmite e finaliza — ou transmite e aguarda a próxima mensagem na mesma linha',
+      hint:'Um pula linha, outro não',
       opts:[
         {t:'Não há diferença', ok:false},
         {t:'Write é mais rápido', ok:false},
@@ -38,7 +38,7 @@ const MISSION_03 = {
       type:'mc',
       bubble:'<code>Console.ReadLine()</code> lê uma linha digitada pelo usuário e retorna como <strong>string</strong>.',
       q:'Qual tipo de dado Console.ReadLine() sempre retorna?',
-      hint:'O rádio de Leon só transmite texto — para usar como número, precisa de conversão',
+      hint:'Tudo que vem do teclado é texto',
       opts:[
         {t:'int', ok:false},
         {t:'bool', ok:false},
@@ -53,7 +53,7 @@ const MISSION_03 = {
       type:'mc',
       bubble:'<strong>Interpolação de string</strong> com <code>$"texto {variavel}"</code> permite incluir variáveis diretamente no texto.',
       q:'Como incluir o valor de uma variável dentro de uma string?',
-      hint:'A transmissão de Leon inclui seu nome no meio da mensagem — use $ e chaves para inserir a variável',
+      hint:'Use $ e chaves',
       opts:[
         {t:'Console.WriteLine($"Olá {nome}")', ok:true},
         {t:'Console.WriteLine("Olá" + nome)', ok:false},
@@ -68,7 +68,7 @@ const MISSION_03 = {
       type:'mc',
       bubble:'Para converter uma string em número inteiro, usamos <code>int.Parse()</code> ou <code>Convert.ToInt32()</code>.',
       q:'Por que precisamos converter o retorno de ReadLine() para int?',
-      hint:'Leon não pode contar munição com texto — o rádio entrega palavras, mas o inventário precisa de números',
+      hint:'ReadLine retorna string, operações matemáticas precisam de...',
       opts:[
         {t:'Para economizar memória', ok:false},
         {t:'Porque operações matemáticas exigem tipos numéricos', ok:true},
@@ -83,7 +83,7 @@ const MISSION_03 = {
       type:'mc',
       bubble:'<code>Console.Clear()</code> limpa o console. Útil para criar menus e interfaces mais limpas no terminal.',
       q:'Qual método limpa todo o conteúdo exibido no console?',
-      hint:'Como Leon limpa a área antes de avançar — o console recebe o mesmo tratamento',
+      hint:'Clear em inglês = limpar',
       opts:[
         {t:'Console.Delete()', ok:false},
         {t:'Console.Reset()', ok:false},
@@ -99,7 +99,7 @@ const MISSION_03 = {
       bubble:'Para ler um número inteiro digitado pelo usuário, lemos com ReadLine e convertemos com int.Parse.',
       code:`<span class="kw">string</span> entrada = Console.<span class="mt">ReadLine</span>();\n<span class="kw">int</span> numero = <span class="kw">int</span>.<span class="mt">_______</span>(entrada);`,
       q:'Qual método converte string para int?',
-      hint:'Leon analisa a situação para transformar informação bruta em algo útil — o método faz o mesmo com texto',
+      hint:'Analisar/interpretar em inglês',
       ans:'Parse',
       exp:'"int.Parse(texto)" converte string para int. Lança exceção se o texto não for um número válido.',
     },
@@ -110,7 +110,7 @@ const MISSION_03 = {
       bubble:'<code>Console.ReadKey()</code> aguarda o usuário pressionar qualquer tecla. Útil para pausar a execução.',
       code:`Console.<span class="mt">WriteLine</span>(<span class="st">"Pressione qualquer tecla para continuar..."</span>);\nConsole.<span class="mt">_______</span>();`,
       q:'Qual método aguarda uma tecla ser pressionada?',
-      hint:'Leon aguarda o sinal do HQ antes de avançar — o programa pausa até receber uma tecla',
+      hint:'Lê uma tecla',
       ans:'ReadKey',
       exp:'"Console.ReadKey()" pausa até o usuário pressionar uma tecla. O parâmetro "true" oculta a tecla: Console.ReadKey(true).',
     },
@@ -121,7 +121,7 @@ const MISSION_03 = {
       bubble:'Para exibir texto colorido no console, definimos a cor com <code>Console.ForegroundColor</code>.',
       code:`Console.<span class="mt">ForegroundColor</span> = ConsoleColor.<span class="mt">_______</span>;\nConsole.<span class="mt">WriteLine</span>(<span class="st">"ALERTA: Inimigos próximos!"</span>);`,
       q:'Qual cor de ConsoleColor indica perigo/alerta?',
-      hint:'A Plaga no pescoço de Ashley pulsa vermelho — use a cor do perigo para alertas críticos',
+      hint:'A cor do sangue',
       ans:'Red',
       exp:'ConsoleColor.Red define texto vermelho. Outras: Green (sucesso), Yellow (aviso), Cyan (info). Redefina com ResetColor().',
     },
@@ -132,7 +132,7 @@ const MISSION_03 = {
       bubble:'Veja o fluxo completo de entrada e saída.',
       code:`Console.<span class="mt">Write</span>(<span class="st">"Digite seu nome de agente: "</span>);\n<span class="kw">string</span> nome = Console.<span class="mt">ReadLine</span>();\nConsole.<span class="mt">WriteLine</span>(<span class="st">$"Missão iniciada, agente {nome}!"</span>);`,
       q:'Se o usuário digitar "Leon", o que será exibido?',
-      hint:'A interpolação substitui {nome} pelo valor da variável — como o rádio inserindo o codinome do agente',
+      hint:'O nome é inserido na string interpolada',
       opts:[
         {t:'Digite seu nome de agente: Leon', ok:false},
         {t:'Missão iniciada, agente Leon!', ok:true},
@@ -148,7 +148,7 @@ const MISSION_03 = {
       bubble:'O código lê dois números e soma.',
       code:`Console.<span class="mt">Write</span>(<span class="st">"Primeiro número: "</span>);\n<span class="kw">int</span> a = <span class="kw">int</span>.<span class="mt">Parse</span>(Console.<span class="mt">ReadLine</span>());\nConsole.<span class="mt">Write</span>(<span class="st">"Segundo número: "</span>);\n<span class="kw">int</span> b = <span class="kw">int</span>.<span class="mt">Parse</span>(Console.<span class="mt">ReadLine</span>());\nConsole.<span class="mt">WriteLine</span>(<span class="st">$"Soma: {a + b}"</span>);`,
       q:'Se o usuário digitar 8 e depois 5, o que será exibido na última linha?',
-      hint:'Leon conta: 8 balas da Pistola mais 5 da Escopeta — o resultado aparece na transmissão',
+      hint:'8 + 5 = ?',
       opts:[
         {t:'Soma: 13', ok:true},
         {t:'Soma: {a + b}', ok:false},
@@ -164,7 +164,7 @@ const MISSION_03 = {
       bubble:'Analise o uso de Console.Write (sem pular linha) vs Console.WriteLine.',
       code:`Console.<span class="mt">Write</span>(<span class="st">"Leon "</span>);\nConsole.<span class="mt">Write</span>(<span class="st">"S. "</span>);\nConsole.<span class="mt">WriteLine</span>(<span class="st">"Kennedy"</span>);\nConsole.<span class="mt">WriteLine</span>(<span class="st">"Agente da DSO"</span>);`,
       q:'Quantas linhas serão exibidas no console?',
-      hint:'Write continua na mesma linha como uma transmissão ininterrupta — só o WriteLine fecha o canal',
+      hint:'Write não pula linha, WriteLine pula',
       opts:[
         {t:'4 linhas', ok:false},
         {t:'1 linha', ok:false},
@@ -180,7 +180,7 @@ const MISSION_03 = {
       bubble:'Veja o uso de Console.ForegroundColor para dar estilo à saída.',
       code:`Console.<span class="mt">ForegroundColor</span> = ConsoleColor.<span class="mt">Green</span>;\nConsole.<span class="mt">WriteLine</span>(<span class="st">"[OK] Missão concluída!"</span>);\nConsole.<span class="mt">ResetColor</span>();\nConsole.<span class="mt">WriteLine</span>(<span class="st">"Retornando à base."</span>);`,
       q:'Qual linha será exibida em verde?',
-      hint:'Leon usa a mira verde apenas para a confirmação de missão — depois volta ao normal',
+      hint:'A cor é definida antes e resetada depois',
       opts:[
         {t:'Ambas as linhas em verde', ok:false},
         {t:'Apenas "[OK] Missão concluída!"', ok:true},

@@ -23,7 +23,7 @@ const MISSION_95 = {
       type: 'mc',
       bubble: 'Revisão: unsafe vs safe alternatives.',
       q: 'Qual alternativa safe substitui ponteiros de unsafe em muitos casos de alta performance?',
-      hint: 'O colete à prova de balas de Leon — proteção sem remover todas as salvaguardas',
+      hint: 'Span e Memory',
       opts: [
         { t: 'dynamic — acesso sem type safety', ok: false },
         { t: 'Span<T> e Memory<T> — acesso a memória contígua sem unsafe, com bounds checking', ok: true },
@@ -38,7 +38,7 @@ const MISSION_95 = {
       type: 'mc',
       bubble: 'Revisão: IObservable e backpressure.',
       q: 'Como tratar backpressure em Rx.NET quando o observable produz mais rápido que o subscriber consome?',
-      hint: 'Saddler produz ordens mais rápido do que Leon consegue executar — ele filtra e controla o fluxo',
+      hint: 'Buffer, Sample, Throttle',
       opts: [
         { t: 'Não é possível — Rx não suporta backpressure', ok: false },
         { t: 'Operadores como Buffer, Sample, Throttle e ObserveOn para controlar fluxo', ok: true },
@@ -53,7 +53,7 @@ const MISSION_95 = {
       type: 'mc',
       bubble: 'Revisão: ExpandoObject e IDictionary.',
       q: 'Como iterar todas as propriedades de um ExpandoObject?',
-      hint: 'Leon converte o inventário expansível em dicionário para listar todas as propriedades',
+      hint: 'Cast para IDictionary',
       opts: [
         { t: 'Reflection — GetProperties()', ok: false },
         { t: 'Cast para IDictionary<string,object> e iterar os pares', ok: true },
@@ -68,7 +68,7 @@ const MISSION_95 = {
       type: 'mc',
       bubble: 'Revisão: stackalloc e Span safety.',
       q: 'Por que Span<T> gerado por stackalloc não pode escapar do método que o criou?',
-      hint: 'O Span de Leon existe apenas durante a sala que ele está — sair do escopo destrói a stack frame',
+      hint: 'Lifetime da stack frame',
       opts: [
         { t: 'Regra de compilador arbitrária', ok: false },
         { t: 'A stack frame é destruída quando o método retorna — Span apontaria para memória inválida', ok: true },
@@ -83,7 +83,7 @@ const MISSION_95 = {
       type: 'mc',
       bubble: 'Revisão: Polly e Microsoft.Extensions.Resilience.',
       q: 'Qual é o novo namespace para resiliência no .NET 8 com Polly v8?',
-      hint: 'O quartel de Leon usa o namespace moderno de resiliência com DI integrada do .NET 8',
+      hint: 'Microsoft.Extensions.Resilience',
       opts: [
         { t: 'Polly.Core apenas', ok: false },
         { t: 'Microsoft.Extensions.Resilience — integração com DI, logging e telemetria automáticos', ok: true },
@@ -98,7 +98,7 @@ const MISSION_95 = {
       type: 'mc',
       bubble: 'Revisão: Domain Driven Design — Aggregates.',
       q: 'O que é um Aggregate Root em DDD?',
-      hint: 'O quartel-general de Leon é a raiz — toda missão passa por ele antes de chegar aos agentes',
+      hint: 'Ponto de entrada para modificar o aggregate',
       opts: [
         { t: 'A entidade com o maior número de propriedades', ok: false },
         { t: 'A entidade raiz que garante consistência do aggregate — toda modificação passa por ela', ok: true },
@@ -119,7 +119,7 @@ const MISSION_95 = {
     <span class="kw">return</span> Disposable.<span class="mt">Empty</span>;
 });`,
       q: 'Qual método estático cria um IObservable customizado?',
-      hint: 'Ada cria um stream personalizado de alertas — qual método Observable usa para isso?',
+      hint: 'Create',
       ans: 'Create',
       exp: 'Observable.Create<T>(observer => { ... return disposable; }): criação customizada. Retorna IDisposable para cleanup ao desinscrever. Disposable.Empty quando não há cleanup.',
     },
@@ -132,7 +132,7 @@ const MISSION_95 = {
     <span class="st">"2 + 2"</span>);
 Console.<span class="mt">WriteLine</span>(result.<span class="mt">ReturnValue</span>);`,
       q: 'Qual método do Roslyn Scripting executa código C# como string?',
-      hint: 'Saddler executa regras escritas em C# em tempo real — o método que roda scripts como string',
+      hint: 'Run Async',
       ans: 'RunAsync',
       exp: 'CSharpScript.RunAsync<T>(code): compila e executa código C# em runtime. result.ReturnValue: valor retornado. Útil para engines de regras, notebooks.',
     },
@@ -148,7 +148,7 @@ Console.<span class="mt">WriteLine</span>(result.<span class="mt">ReturnValue</s
     NativeMemory.<span class="mt">_______</span>(ptr);
 }`,
       q: 'Qual método libera memória alocada com NativeMemory.Alloc?',
-      hint: 'Leon libera a memória nativa após usar — sem Free, o vazamento é como uma Plaga sem tratamento',
+      hint: 'Free',
       ans: 'Free',
       exp: 'NativeMemory.Free(ptr): libera memória nativa. Sem Free = memory leak. NativeMemory: wrapper seguro para malloc/free nativo. Alternativa: ArrayPool para buffers gerenciados.',
     },
@@ -163,7 +163,7 @@ Console.<span class="mt">WriteLine</span>(result.<span class="mt">ReturnValue</s
         v < <span class="nm">0</span> ? <span class="kw">throw new</span> ArgumentException() : <span class="kw">_______</span>(v, m);
 }`,
       q: 'Como criar instância do record dentro da própria classe?',
-      hint: 'Leon cria um novo Value Object Dinheiro de dentro da própria classe — a sintaxe com new',
+      hint: 'new com os parâmetros',
       ans: 'new Dinheiro',
       exp: '"new Dinheiro(v, m)": chama o construtor do record. Value Objects em DDD: imutáveis, igualdade por valor, sem identidade. Record = implementação perfeita para Value Objects.',
     },
@@ -176,7 +176,7 @@ Console.<span class="mt">WriteLine</span>(result.<span class="mt">ReturnValue</s
 <span class="kw">var</span> obs2 = Observable.<span class="mt">Return</span>(<span class="st">"B"</span>);
 <span class="kw">var</span> combined = obs1._______(<span class="st">","</span>, obs2);`,
       q: 'Qual operador Rx concatena dois observables em sequência?',
-      hint: 'Leon passa pela Vila primeiro, depois pelo Castelo — em sequência, não ao mesmo tempo',
+      hint: 'Concat',
       ans: 'Concat',
       exp: 'obs1.Concat(separator?, obs2): obs1 primeiro, depois obs2. Merge: intercala. Zip: par a par. Concat: sequencial — obs2 começa após obs1 completar.',
     },
@@ -195,7 +195,7 @@ Console.<span class="mt">WriteLine</span>(result.<span class="mt">ReturnValue</s
 }
 Console.<span class="mt">WriteLine</span>(<span class="mt">SomaDireto</span>(<span class="nm">5</span>));`,
       q: 'O que será exibido?',
-      hint: 'Leon soma os danos consecutivos de 1 a 5 — tudo na stack, sem alocar no heap',
+      hint: '1+2+3+4+5',
       opts: [
         { t: '10', ok: false },
         { t: '15', ok: true },
@@ -221,7 +221,7 @@ subject.<span class="mt">OnNext</span>(<span class="nm">2</span>);
 subject.<span class="mt">OnNext</span>(<span class="nm">10</span>);
 Console.<span class="mt">WriteLine</span>(<span class="kw">string</span>.<span class="mt">Join</span>(<span class="st">","</span>, log));`,
       q: 'O que será exibido?',
-      hint: 'O detector de ameaças filtra apenas as acima de 5 e dobra o valor para o relatório de Ada',
+      hint: 'Filtra > 5, multiplica por 2',
       opts: [
         { t: '14,20', ok: true },
         { t: '6,14,4,20', ok: false },
@@ -244,7 +244,7 @@ expando.Nome = <span class="st">"Leon"</span>;
 expando.HP = <span class="nm">100</span>;
 Console.<span class="mt">WriteLine</span>(changes.<span class="mt">Count</span>);`,
       q: 'O que será exibido?',
-      hint: 'Leon observa as mudanças no objeto dinâmico — o ExpandoObject notifica cada nova propriedade',
+      hint: 'ExpandoObject implementa INotifyPropertyChanged',
       opts: [
         { t: '0', ok: false },
         { t: '2', ok: true },
@@ -271,7 +271,7 @@ Console.<span class="mt">WriteLine</span>(changes.<span class="mt">Count</span>)
 <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i < <span class="nm">3</span>; i++) pedido.<span class="mt">Adicionar</span>(<span class="st">$"i{i}"</span>);
 Console.<span class="mt">WriteLine</span>(pedido.Itens.<span class="mt">Count</span>);`,
       q: 'O que será exibido?',
-      hint: 'Leon adiciona 3 itens ao pedido — o limite de Saddler é 5, então sem exceção',
+      hint: 'Adiciona 3 itens, limite é 5',
       opts: [
         { t: '5', ok: false },
         { t: '3', ok: true },
@@ -292,7 +292,7 @@ Console.<span class="mt">WriteLine</span>(pedido.Itens.<span class="mt">Count</s
 somas.<span class="mt">Subscribe</span>(n => resultado.<span class="mt">Add</span>(n));
 Console.<span class="mt">WriteLine</span>(<span class="kw">string</span>.<span class="mt">Join</span>(<span class="st">","</span>, resultado));`,
       q: 'O que será exibido?',
-      hint: 'Leon acumula o XP progressivamente a cada missão — Scan emite o total acumulado em tempo real',
+      hint: 'Scan = running sum a cada elemento',
       opts: [
         { t: '10', ok: false },
         { t: '1,3,6,10', ok: true },
@@ -318,7 +318,7 @@ cold.<span class="mt">Subscribe</span>(n => log1.<span class="mt">Add</span>(n))
 cold.<span class="mt">Subscribe</span>(n => log2.<span class="mt">Add</span>(n));
 Console.<span class="mt">WriteLine</span>(log1.<span class="mt">Count</span> + log2.<span class="mt">Count</span>);`,
       q: 'O que será exibido?',
-      hint: 'Ada transmite o mesmo relatório para Leon e para o quartel — cada um recebe o stream completo',
+      hint: 'Cold observable: cada subscriber recebe stream independente',
       opts: [
         { t: '2', ok: false },
         { t: '4', ok: true },
@@ -341,7 +341,7 @@ ICalc staticCalc = <span class="kw">new</span> Calc();
 Console.<span class="mt">WriteLine</span>(staticCalc.<span class="mt">Dobrar</span>(<span class="nm">5</span>));
 Console.<span class="mt">WriteLine</span>(dynCalc.<span class="mt">Dobrar</span>(<span class="nm">5</span>));`,
       q: 'O que será exibido?',
-      hint: 'Leon usa a Pistola estaticamente e Ada usa via dynamic — ambas disparam o mesmo tiro',
+      hint: 'Ambos chamam Dobrar(5) = 10',
       opts: [
         { t: '10 e 10', ok: true },
         { t: '5 e 10', ok: false },
