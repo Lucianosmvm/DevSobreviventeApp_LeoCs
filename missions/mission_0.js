@@ -8,7 +8,7 @@
 const MISSION_0 = {
   id: 0,
   title: "MISSÃO 01 — INFILTRAÇÃO",
-  icon: 'assets/icons/mission_01.png',
+  icon: '🕵️',
   free: true,
   desc: "Você acabou de pousar em território inimigo. Antes de qualquer ação, precisa entender o terreno — os fundamentos que vão guiar toda a operação.",
   objs: [

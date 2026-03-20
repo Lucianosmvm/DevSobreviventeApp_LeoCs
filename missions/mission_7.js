@@ -7,7 +7,7 @@
 const MISSION_07 = {
   id: 7,
   title: "MISSÃO 08 — DECISÃO TÁTICA",
-  icon: 'assets/icons/mission_08.png',
+  icon: '⚔️',
   free: true,
   desc: "Em campo, cada segundo conta. Atacar ou recuar? Usar a erva ou guardar? As condicionais permitem que seu programa tome decisões inteligentes.",
   objs: [

@@ -8,7 +8,7 @@
 const MISSION_05 = {
   id: 5,
   title: "MISSÃO 06 — TIPOS DE MUNIÇÃO",
-  icon: 'assets/icons/mission_06.png',
+  icon: '🔫',
   free: true,
   desc: "Cada arma usa um tipo diferente de munição. Na programação, cada problema exige o tipo certo de dado. Usar o tipo errado pode ser fatal.",
   objs: [

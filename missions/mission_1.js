@@ -8,7 +8,7 @@
 const MISSION_01 = {
   id: 1,
   title: "MISSÃO 02 — PRIMEIROS PASSOS",
-  icon: 'assets/icons/mission_02.png',
+  icon: '👣',
   free: true,
   desc: "A missão está em andamento. Para sobreviver à vila, você precisa pensar com lógica — cada decisão tem consequências.",
   objs: [

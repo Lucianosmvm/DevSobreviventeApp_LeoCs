@@ -7,7 +7,7 @@
 const MISSION_06 = {
   id: 6,
   title: "MISSÃO 07 — IDENTIFICAÇÃO",
-  icon: 'assets/icons/mission_07.png',
+  icon: '🪪',
   free: true,
   desc: "Para identificar ameaças, você precisa comparar, calcular e combinar condições. Operadores são as ferramentas matemáticas e lógicas da programação.",
   objs: [

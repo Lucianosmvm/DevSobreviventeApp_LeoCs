@@ -7,7 +7,7 @@
 const MISSION_08 = {
   id: 8,
   title: "MISSÃO 09 — ENCRUZILHADA",
-  icon: 'assets/icons/mission_09.png',
+  icon: '🔀',
   free: true,
   desc: "A missão se ramifica em múltiplos caminhos. Para cada direção, uma decisão diferente. O switch é seu mapa para navegar por múltiplas opções.",
   objs: [

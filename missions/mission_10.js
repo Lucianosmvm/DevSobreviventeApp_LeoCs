@@ -6,7 +6,7 @@
 const MISSION_10 = {
   id: 10,
   title: "MISSÃO 11 — RONDA NOTURNA",
-  icon: 'assets/icons/mission_11.png',
+  icon: '🌙',
   free: false,
   desc: "A ronda é precisa: começa no portão, passa por cada ponto e termina na base. O for é o loop dos contadores — controle total sobre início, fim e passo.",
   objs: [

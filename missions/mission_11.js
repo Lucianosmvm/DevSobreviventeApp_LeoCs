@@ -6,7 +6,7 @@
 const MISSION_11 = {
   id: 11,
   title: "MISSÃO 12 — HORDA",
-  icon: 'assets/icons/mission_12.png',
+  icon: '🧟',
   free: false,
   desc: "Uma horda de inimigos avança. Para processar cada ameaça sem contar índices, o foreach é sua arma — percorre coleções de forma limpa e direta.",
   objs:[
