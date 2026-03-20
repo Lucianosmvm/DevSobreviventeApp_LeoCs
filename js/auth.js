@@ -80,21 +80,6 @@ async function doLogin() {
 async function loginGoogle() {
   if (!_fbAuth || !window._fb) { showToast('Configure o Firebase!', 'err'); return; }
 
-  // ── Detecta WebView (TikTok, Instagram, Facebook, etc.) ──
-  const ua = navigator.userAgent || '';
-  const isWebView =
-    /TikTok|BytedanceWebview|musical_ly/i.test(ua) ||   // TikTok
-    /Instagram/i.test(ua) ||                             // Instagram
-    /FBAN|FBAV|FB_IAB/i.test(ua) ||                     // Facebook
-    /\bwv\b/.test(ua) ||                                 // Android WebView genérico
-    (/(iPhone|iPod|iPad)/.test(ua) && !/Safari/.test(ua)); // iOS sem Safari = WebView
-
-  if (isWebView) {
-    // Mostra modal orientando o usuário a abrir no navegador externo
-    _showWebViewModal();
-    return;
-  }
-
   showLoading('CONECTANDO...');
   try {
     const cred = await window._fb.signInWithPopup(_fbAuth, new window._fb.GoogleAuthProvider());
@@ -105,45 +90,6 @@ async function loginGoogle() {
     showToast(_fbErrMsg(e.code), 'err');
     hideLoading();
   }
-}
-
-// ── Modal de aviso WebView ──
-
-function _showWebViewModal() {
-  // Cria o modal dinamicamente se ainda não existir
-  let modal = document.getElementById('modal-webview');
-  if (!modal) {
-    modal = document.createElement('div');
-    modal.id = 'modal-webview';
-    modal.className = 'modal';
-    modal.innerHTML = `
-      <div class="mbox">
-        <h2>⚠️ NAVEGADOR LIMITADO</h2>
-        <p style="color:var(--t2);font-size:.9rem;margin-bottom:16px">
-          O login com Google <strong>não funciona</strong> dentro do TikTok, Instagram ou Facebook.
-        </p>
-        <div style="text-align:left;display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <span style="font-size:1.3rem">1️⃣</span>
-            <span>Toque nos <strong>3 pontinhos</strong> (⋯) ou no ícone de compartilhar no canto da tela</span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <span style="font-size:1.3rem">2️⃣</span>
-            <span>Escolha <strong>"Abrir no Chrome"</strong> ou <strong>"Abrir no Safari"</strong></span>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:10px">
-            <span style="font-size:1.3rem">3️⃣</span>
-            <span>Faça o login com Google normalmente no navegador</span>
-          </div>
-        </div>
-        <div class="mbox-btns">
-          <button class="btn btn-gold" onclick="document.getElementById('modal-webview').style.display='none'">ENTENDIDO</button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-  modal.style.display = 'flex';
 }
 
 // ── Logout ──
