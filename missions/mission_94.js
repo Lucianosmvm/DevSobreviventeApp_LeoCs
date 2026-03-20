@@ -23,7 +23,7 @@ const MISSION_94 = {
       type: 'mc',
       bubble: '<strong>Reactive Extensions</strong>: <code>IObservable&lt;T&gt;</code> é um stream de dados ao longo do tempo. Você se inscreve (<code>Subscribe</code>) e recebe: OnNext (dado), OnError (erro), OnCompleted (fim).',
       q: 'Qual a diferença entre IEnumerable<T> e IObservable<T>?',
-      hint: 'Pull vs push',
+      hint: 'Leon puxa informações do mapa versus os alertas da Plaga que chegam até ele sem avisar',
       opts: [
         { t: 'São equivalentes — ambos iteram sequências', ok: false },
         { t: 'IEnumerable: pull (você pede dados). IObservable: push (dados chegam a você quando disponíveis)', ok: true },
@@ -38,7 +38,7 @@ const MISSION_94 = {
       type: 'mc',
       bubble: '<code>Subject&lt;T&gt;</code> é tanto IObservable quanto IObserver — permite emitir valores manualmente enquanto outros observam.',
       q: 'Como Subject<T> é usado para conectar produtor e consumidor?',
-      hint: 'Implementa ambas as interfaces',
+      hint: 'Ada é ao mesmo tempo produtora e distribuidora de informações — o Subject age igual',
       opts: [
         { t: 'Subject é apenas para debugging', ok: false },
         { t: 'Subject implementa IObservable e IObserver — produtor chama OnNext, consumidores se subscrevem ao Subject', ok: true },
@@ -53,7 +53,7 @@ const MISSION_94 = {
       type: 'mc',
       bubble: '<code>Throttle</code> suprime valores emitidos muito rapidamente — só emite se não houve novo valor por X milissegundos. Ideal para search-as-you-type.',
       q: 'Para implementar "busca ao digitar" com 300ms de debounce, qual operador Rx usar?',
-      hint: 'Suprimir valores frequentes',
+      hint: 'Leon só responde ao rádio depois de parar de correr por 300ms — ignora sinais durante o movimento',
       opts: [
         { t: 'Sample — pega um valor por intervalo', ok: false },
         { t: 'Throttle (ou Debounce) — emite após X ms sem novos valores', ok: true },
@@ -68,7 +68,7 @@ const MISSION_94 = {
       type: 'mc',
       bubble: '<code>Observable.Interval</code> emite valores crescentes em intervalos regulares — como um timer reativo.',
       q: 'Qual a diferença entre Observable.Timer e Observable.Interval?',
-      hint: 'Uma vez vs repetido',
+      hint: 'A bomba de Saddler dispara uma vez — a sirene da Ilha toca repetidamente em intervalos',
       opts: [
         { t: 'São equivalentes', ok: false },
         { t: 'Timer: emite uma vez após delay. Interval: emite repetidamente em intervalos regulares', ok: true },
@@ -85,7 +85,7 @@ const MISSION_94 = {
       code: `<span class="kw">var</span> observable = <span class="kw">new</span>[] { <span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span> }
     .<span class="mt">_______</span>();`,
       q: 'Qual método de extensão converte IEnumerable para IObservable?',
-      hint: 'To Observable',
+      hint: 'Leon converte a lista de Ganados em um stream reativo — qual extensão faz isso?',
       ans: 'ToObservable',
       exp: '.ToObservable(): IEnumerable → IObservable. Emite cada elemento como OnNext, depois OnCompleted. Contrário: .ToArray(), .ToList() materializam IObservable.',
     },
@@ -99,7 +99,7 @@ const MISSION_94 = {
     onError: e => Console.<span class="mt">WriteLine</span>(e),
     onCompleted: () => Console.<span class="mt">WriteLine</span>(<span class="st">"Done"</span>));`,
       q: 'Qual método registra os handlers do observable?',
-      hint: 'Subscribe',
+      hint: 'Leon se inscreve no canal de alertas de Ada para receber cada notificação da missão',
       ans: 'Subscribe',
       exp: '.Subscribe(onNext, onError, onCompleted): registra handlers. Retorna IDisposable — Dispose() para cancelar assinatura e evitar memory leak.',
     },
@@ -114,7 +114,7 @@ subject.<span class="mt">_______</span>(<span class="nm">10</span>);
 subject.<span class="mt">OnNext</span>(<span class="nm">20</span>);
 subject.<span class="mt">OnCompleted</span>();`,
       q: 'Qual método emite um valor para todos os subscribers?',
-      hint: 'On Next',
+      hint: 'Ada emite o próximo valor para todos os agentes que a escutam no Subject',
       ans: 'OnNext',
       exp: 'subject.OnNext(value): emite para todos inscritos. OnError: sinaliza erro. OnCompleted: sinaliza fim do stream. Após OnCompleted, novos OnNext são ignorados.',
     },
@@ -131,7 +131,7 @@ subject.<span class="mt">OnCompleted</span>();`,
 obs.<span class="mt">Subscribe</span>(s => resultados.<span class="mt">Add</span>(s));
 Console.<span class="mt">WriteLine</span>(<span class="kw">string</span>.<span class="mt">Join</span>(<span class="st">","</span>, resultados));`,
       q: 'O que será exibido?',
-      hint: 'Pares: 2 e 4',
+      hint: 'O detector de Plagas filtra apenas os pares e transforma cada um no relatório de Ada',
       opts: [
         { t: 'par:2,par:4', ok: true },
         { t: 'par:1,par:3,par:5', ok: false },
@@ -154,7 +154,7 @@ sub.<span class="mt">Dispose</span>(); <span class="cm">// cancela assinatura</s
 bus.<span class="mt">OnNext</span>(<span class="st">"Ignorado"</span>);
 Console.<span class="mt">WriteLine</span>(log.<span class="mt">Count</span>);`,
       q: 'O que será exibido?',
-      hint: 'Dispose cancela após 2 mensagens',
+      hint: 'Leon cancela a escuta do rádio após 2 alertas — o terceiro chega mas ele já desligou',
       opts: [
         { t: '3', ok: false },
         { t: '2', ok: true },
@@ -175,7 +175,7 @@ Console.<span class="mt">WriteLine</span>(log.<span class="mt">Count</span>);`,
 merged.<span class="mt">Subscribe</span>(n => resultado.<span class="mt">Add</span>(n));
 Console.<span class="mt">WriteLine</span>(resultado.<span class="mt">Sum</span>());`,
       q: 'O que será exibido?',
-      hint: 'Merge intercala, soma deve ser 1+2+3+4',
+      hint: 'Leon e Ada fundem seus relatórios — a soma de todos os valores independe da ordem de chegada',
       opts: [
         { t: '4', ok: false },
         { t: '10', ok: true },

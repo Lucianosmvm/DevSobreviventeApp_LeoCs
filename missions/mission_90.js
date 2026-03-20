@@ -23,7 +23,7 @@ const MISSION_90 = {
       type: 'mc',
       bubble: '<strong>SRP</strong> (Single Responsibility Principle): uma classe deve ter apenas um motivo para mudar — uma única responsabilidade. Evita "God classes".',
       q: 'Qual violação do SRP é exemplificada por uma classe UserService que valida, salva no banco E envia email?',
-      hint: 'Três responsabilidades em uma classe',
+      hint: 'Leon, Ada e Salazar são personagens distintos — misturá-los em um único agente viola o princípio',
       opts: [
         { t: 'Não é violação — serviços podem ter múltiplas funções', ok: false },
         { t: 'Três responsabilidades distintas — mudança em email afeta classe que gerencia usuários', ok: true },
@@ -38,7 +38,7 @@ const MISSION_90 = {
       type: 'mc',
       bubble: '<strong>DIP</strong> (Dependency Inversion Principle): módulos de alto nível não devem depender de baixo nível — ambos devem depender de abstrações (interfaces).',
       q: 'Qual implementação segue o DIP?',
-      hint: 'Depender de interface, não de implementação concreta',
+      hint: 'Leon confia na abstração de qualquer arma — não depende de conhecer se é TMP ou Shotgun',
       opts: [
         { t: 'class OrderService { var db = new SqlDatabase(); }', ok: false },
         { t: 'class OrderService(IDatabase db) — depende da abstração IDatabase', ok: true },
@@ -53,7 +53,7 @@ const MISSION_90 = {
       type: 'mc',
       bubble: '<strong>CQRS</strong> (Command Query Responsibility Segregation): separar operações de leitura (Query) de escrita (Command). Modelos diferentes para cada operação.',
       q: 'Qual a vantagem principal do CQRS?',
-      hint: 'Leitura e escrita têm requisitos diferentes',
+      hint: 'Observar a Vila é diferente de atacá-la — Leon usa estratégias distintas para ler e agir',
       opts: [
         { t: 'Elimina necessidade de banco de dados', ok: false },
         { t: 'Otimizar leitura e escrita independentemente — Query pode usar read replica, Command pode usar model de domínio rico', ok: true },
@@ -68,7 +68,7 @@ const MISSION_90 = {
       type: 'mc',
       bubble: '<strong>Repository Pattern</strong>: abstrai o acesso a dados — camada de domínio não conhece banco, EF Core ou SQL. Apenas conhece IRepository.',
       q: 'Por que usar Repository Pattern com Entity Framework Core?',
-      hint: 'Testabilidade e abstração',
+      hint: 'Ada testa as rotas com um mapa falso — o Repository permite trocar o banco sem mudar a missão',
       opts: [
         { t: 'EF Core não é eficiente sem Repository', ok: false },
         { t: 'Abstrair DbContext — testes usam fake repository sem banco; trocar ORM sem mudar domínio', ok: true },
@@ -91,7 +91,7 @@ const MISSION_90 = {
     Task <span class="mt">Deletar</span>(<span class="kw">int</span> id);
 }`,
       q: 'Qual método de escrita falta na interface CRUD (criação)?',
-      hint: 'Adicionar uma entidade',
+      hint: 'Leon registra uma nova missão no repositório — qual operação de criação está faltando?',
       ans: 'Adicionar',
       exp: 'CRUD: Create (Adicionar), Read (ObterPorId/ListarTodas), Update (Atualizar), Delete (Deletar). Nome em português por ser convenção do domínio.',
     },
@@ -108,7 +108,7 @@ const MISSION_90 = {
     Task&lt;TResult&gt; <span class="mt">_______</span>(TCmd command);
 }`,
       q: 'Qual nome semântico para o método que executa um command?',
-      hint: 'Handle em inglês',
+      hint: 'Leon recebe o comando e o executa — o método que processa o command tem um nome padrão',
       ans: 'Handle',
       exp: 'Handle(command): método padrão de command handlers. MediatR usa IRequestHandler<TRequest, TResponse> com Handle. Padrão mediator para CQRS.',
     },
@@ -123,7 +123,7 @@ const MISSION_90 = {
 <span class="cm">// 3. Infrastructure (EF Core, APIs externas)</span>
 <span class="cm">// 4. _______ (Controllers, Minimal API, UI)</span>`,
       q: 'Qual é a camada mais externa da Clean Architecture?',
-      hint: 'Apresentação ao usuário',
+      hint: 'A camada que Ashley vê é a mais externa — a interface com o mundo fora do castelo',
       ans: 'Presentation',
       exp: 'Presentation (ou UI/Web): camada mais externa. Dependência sempre de fora para dentro. Domain: zero dependências externas. Regra de dependência: dependências apontam para o centro.',
     },
@@ -141,7 +141,7 @@ const MISSION_90 = {
 <span class="kw">var</span> a = <span class="kw">new</span> ArquivoSoLeitura();
 Console.<span class="mt">WriteLine</span>(a.<span class="mt">Ler</span>());`,
       q: 'O que será exibido?',
-      hint: 'ISP: interfaces segregadas por responsabilidade',
+      hint: 'Leon usa apenas a Shotgun quando só precisa atirar — não é obrigado a carregar o kit completo',
       opts: [
         { t: 'Erro — falta implementar IEscritor', ok: false },
         { t: 'conteúdo', ok: true },
@@ -164,7 +164,7 @@ Console.<span class="mt">WriteLine</span>(a.<span class="mt">Ler</span>());`,
 IDesconto d = <span class="kw">new</span> Desconto10();
 Console.<span class="mt">WriteLine</span>(d.<span class="mt">Calcular</span>(<span class="nm">100m</span>));`,
       q: 'O que será exibido?',
-      hint: '100 - 10% = 90',
+      hint: 'El Gigante cobra 10% a mais de dano — quanto sobra dos 100 pontos de HP após o desconto?',
       opts: [
         { t: '100', ok: false },
         { t: '90', ok: true },
@@ -189,7 +189,7 @@ Console.<span class="mt">WriteLine</span>(d.<span class="mt">Calcular</span>(<sp
 Forma f = <span class="kw">new</span> Circulo(<span class="nm">5</span>);
 Console.<span class="mt">WriteLine</span>(f.<span class="mt">Area</span>().<span class="mt">ToString</span>(<span class="st">"F2"</span>));`,
       q: 'O que será exibido? (π ≈ 3.14159)',
-      hint: 'π * 5² ≈ 78.54',
+      hint: 'O Circulo de Plagas tem raio 5 — Leon calcula a área da infestação circular',
       opts: [
         { t: '0.00', ok: false },
         { t: '78.54', ok: true },

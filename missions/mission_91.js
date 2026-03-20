@@ -23,7 +23,7 @@ const MISSION_91 = {
       type: 'mc',
       bubble: 'Revisão: FrozenDictionary e performance.',
       q: 'Qual é o custo de FrozenDictionary.ToFrozenDictionary() comparado a uso posterior?',
-      hint: 'Construção vs lookup',
+      hint: 'Preparar o inventário de Leon é demorado, mas usar durante a missão é instantâneo',
       opts: [
         { t: 'Construção é O(1), lookup é O(n)', ok: false },
         { t: 'Construção é mais lenta que Dictionary — otimiza para lookups subsequentes mais rápidos', ok: true },
@@ -38,7 +38,7 @@ const MISSION_91 = {
       type: 'mc',
       bubble: 'Revisão: Keyed services e resolução.',
       q: 'Como injetar um keyed service no construtor de uma classe?',
-      hint: '[FromKeyedServices]',
+      hint: 'Leon pede a arma específica pelo nome da chave — um atributo no parâmetro do construtor',
       opts: [
         { t: 'IServiceProvider.GetService<T>("key")', ok: false },
         { t: '[FromKeyedServices("key")] no parâmetro do construtor', ok: true },
@@ -53,7 +53,7 @@ const MISSION_91 = {
       type: 'mc',
       bubble: 'Revisão: Clean Architecture e dependências.',
       q: 'Na Clean Architecture, qual camada pode conhecer Domain?',
-      hint: 'Todas as camadas internas',
+      hint: 'O Castelo conhece a Vila, mas a Vila não conhece o Castelo — as dependências apontam para dentro',
       opts: [
         { t: 'Apenas Presentation', ok: false },
         { t: 'Application e Infrastructure conhecem Domain; Presentation conhece Application', ok: true },
@@ -68,7 +68,7 @@ const MISSION_91 = {
       type: 'mc',
       bubble: 'Revisão: Circuit Breaker e estado.',
       q: 'Após o circuit breaker abrir, o que acontece com as chamadas subsequentes?',
-      hint: 'Falha imediata sem tentar o serviço',
+      hint: 'Com o circuito aberto, os Ganados são bloqueados na entrada sem nem tentar passar',
       opts: [
         { t: 'São colocadas em fila', ok: false },
         { t: 'São rejeitadas imediatamente com exceção (fast fail) — sem chamar o serviço downstream', ok: true },
@@ -83,7 +83,7 @@ const MISSION_91 = {
       type: 'mc',
       bubble: 'Revisão: BackgroundService e hosted services.',
       q: 'O que deve ser feito em ExecuteAsync para parar corretamente quando a aplicação encerra?',
-      hint: 'CancellationToken de parada',
+      hint: 'Leon verifica o sinal de retirada — stoppingToken é o aviso para sair da Ilha com segurança',
       opts: [
         { t: 'Não fazer nada — a aplicação mata o processo', ok: false },
         { t: 'Verificar stoppingToken.IsCancellationRequested ou passar o token para await operations', ok: true },
@@ -98,7 +98,7 @@ const MISSION_91 = {
       type: 'mc',
       bubble: 'Revisão: CQRS e MediatR.',
       q: 'Qual o papel do MediatR no padrão CQRS em .NET?',
-      hint: 'Mediador entre handler e caller',
+      hint: 'Ada é a mediadora entre Leon e o quartel — o MediatR age como intermediário invisível',
       opts: [
         { t: 'MediatR é um ORM para CQRS', ok: false },
         { t: 'Desacopla quem envia o comando/query de quem processa — in-process message bus', ok: true },
@@ -117,7 +117,7 @@ const MISSION_91 = {
     .<span class="mt">ToFrozenDictionary</span>();
 services.<span class="mt">_______</span>(xpTable);`,
       q: 'Qual ciclo de vida usar para uma coleção imutável (lida-once)?',
-      hint: 'Singleton — criado uma vez',
+      hint: 'O inventário congelado de armas existe uma única vez para toda a operação da Ilha',
       ans: 'AddSingleton',
       exp: 'AddSingleton(frozenDict): instância única para toda a aplicação. FrozenDictionary é thread-safe e imutável — perfeito para Singleton.',
     },
@@ -130,7 +130,7 @@ services.<span class="mt">_______</span>(xpTable);`,
 fakeTime.<span class="mt">_______</span>(TimeSpan.<span class="mt">FromHours</span>(<span class="nm">2</span>));
 <span class="kw">var</span> agora = fakeTime.<span class="mt">GetUtcNow</span>();`,
       q: 'Qual método avança o tempo no FakeTimeProvider?',
-      hint: 'Advance',
+      hint: 'Leon avança o relógio do simulador para testar a expiração do antídoto da Plaga',
       ans: 'Advance',
       exp: 'fakeTime.Advance(TimeSpan): avança o relógio artificial. GetUtcNow() retorna tempo avançado. Permite testar lógica dependente de tempo sem esperar.',
     },
@@ -146,7 +146,7 @@ fakeTime.<span class="mt">_______</span>(TimeSpan.<span class="mt">FromHours</sp
         { FailureRatio = <span class="nm">0.5</span>, SamplingDuration = TimeSpan.<span class="mt">FromSeconds</span>(<span class="nm">30</span>) })
     .<span class="mt">_______</span>();`,
       q: 'Qual método finaliza a construção do pipeline Polly?',
-      hint: 'Build',
+      hint: 'Leon monta o arsenal completo de resiliência — a construção do pipeline precisa ser finalizada',
       ans: 'Build',
       exp: '.Build(): constrói o ResiliencePipeline. Pipeline com: timeout 5s, retry 3x, circuit breaker com 50% falha em 30s. Executar: pipeline.ExecuteAsync(async ct => ...).',
     },
@@ -163,7 +163,7 @@ fakeTime.<span class="mt">_______</span>(TimeSpan.<span class="mt">FromHours</sp
         HP = Math.<span class="mt">Max</span>(<span class="nm">0</span>, HP - dano);
 }`,
       q: 'Qual seria o nome semântico do método que aplica dano?',
-      hint: 'Receber dano',
+      hint: 'Leon leva um golpe de Krauser — qual o nome do método que aplica o dano ao HP?',
       ans: 'ReceberDano',
       exp: 'ReceberDano(dano): método de domínio que encapsula regra (HP não abaixo de 0). Domain model rico — comportamento no objeto, não em serviços externos (DDD).',
     },
@@ -185,7 +185,7 @@ fakeTime.<span class="mt">_______</span>(TimeSpan.<span class="mt">FromHours</sp
     }
 }`,
       q: 'Qual propriedade do query record acessar para obter o Id?',
-      hint: 'O parâmetro do record',
+      hint: 'O record GetMissaoQuery carrega o Id como parâmetro — qual propriedade acessar?',
       ans: 'Id',
       exp: 'GetMissaoQuery(int Id): record com propriedade Id. query.Id acessa o valor. CQRS: query é imutável, contém apenas dados necessários para a consulta.',
     },
@@ -201,7 +201,7 @@ fakeTime.<span class="mt">_______</span>(TimeSpan.<span class="mt">FromHours</sp
 Console.<span class="mt">WriteLine</span>(frozen[<span class="nm">3</span>]);
 Console.<span class="mt">WriteLine</span>(frozen.<span class="mt">Count</span>);`,
       q: 'O que será exibido?',
-      hint: 'Valor na chave 3 e tamanho',
+      hint: 'Leon acessa o item de ID 3 no inventário congelado e verifica o tamanho total da coleção',
       opts: [
         { t: 'v3 e 5', ok: true },
         { t: 'v3 e 3', ok: false },
@@ -227,7 +227,7 @@ Console.<span class="mt">WriteLine</span>(frozen.<span class="mt">Count</span>);
 <span class="kw">var</span> ns = <span class="kw">new</span> Notificacao[] { <span class="kw">new</span> Email(), <span class="kw">new</span> SMS() };
 <span class="kw">foreach</span> (<span class="kw">var</span> n <span class="kw">in</span> ns) n.<span class="mt">Enviar</span>(<span class="st">"OK"</span>);`,
       q: 'O que será exibido?',
-      hint: 'Cada notificação prefixada',
+      hint: 'Email e SMS enviam para Leon cada um com seu prefixo — o loop passa por ambos',
       opts: [
         { t: 'E:OK S:OK', ok: true },
         { t: 'OK OK', ok: false },
@@ -250,7 +250,7 @@ Console.<span class="mt">WriteLine</span>(frozen.<span class="mt">Count</span>);
 IRepo&lt;<span class="kw">string</span>&gt; repo = <span class="kw">new</span> FakeRepo();
 Console.<span class="mt">WriteLine</span>(repo.<span class="mt">Get</span>(<span class="nm">2</span>));`,
       q: 'O que será exibido?',
-      hint: 'FakeRepo implementa IRepo com array',
+      hint: 'Ada usa um repositório falso de missões — o Get(2) busca pelo índice do array interno',
       opts: [
         { t: 'M0', ok: false },
         { t: 'M2', ok: true },
@@ -275,7 +275,7 @@ Console.<span class="mt">WriteLine</span>(repo.<span class="mt">Get</span>(<span
 Console.<span class="mt">WriteLine</span>(aberto);
 Console.<span class="mt">WriteLine</span>(<span class="mt">Chamar</span>(<span class="kw">false</span>));`,
       q: 'O que será exibido?',
-      hint: '3 falhas → aberto; chamada seguinte rejeitada',
+      hint: 'Três falhas abrem o circuito da Ilha — a próxima chamada de Leon é bloqueada na porta',
       opts: [
         { t: 'True e True', ok: false },
         { t: 'True e False', ok: true },
@@ -303,7 +303,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">Chamar</span>(<span c
 Console.<span class="mt">WriteLine</span>(ok);
 Console.<span class="mt">WriteLine</span>(tentativas);`,
       q: 'O que será exibido?',
-      hint: 'Sucesso na 3ª tentativa de 4 possíveis',
+      hint: 'Leon tenta com backoff exponencial — succeeds na 3ª de até 4 tentativas possíveis',
       opts: [
         { t: 'True e 4', ok: false },
         { t: 'True e 3', ok: true },
@@ -326,7 +326,7 @@ Console.<span class="mt">WriteLine</span>(tentativas);`,
 }
 Console.<span class="mt">WriteLine</span>(<span class="kw">string</span>.<span class="mt">Join</span>(<span class="st">","</span>, log));`,
       q: 'O que será exibido?',
-      hint: 'Loop cancela após 3 ticks',
+      hint: 'O serviço de patrulha da Ilha cancela após 3 ticks — o sinal de retirada vem de dentro do loop',
       opts: [
         { t: 'tick1,tick2', ok: false },
         { t: 'tick1,tick2,tick3', ok: true },
@@ -353,7 +353,7 @@ e.<span class="mt">Dano</span>(<span class="nm">30</span>);
 e.<span class="mt">Dano</span>(<span class="nm">40</span>);
 Console.<span class="mt">WriteLine</span>(<span class="st">$"{e.HP} {e.Vivo}"</span>);`,
       q: 'O que será exibido?',
-      hint: '50-30=20, 20-40<0 → 0',
+      hint: 'Leon leva dois golpes de Krauser — o HP nunca vai abaixo do zero mesmo com dano excessivo',
       opts: [
         { t: '0 False', ok: true },
         { t: '-20 False', ok: false },

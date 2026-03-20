@@ -23,7 +23,7 @@ const MISSION_88 = {
       type: 'mc',
       bubble: '<strong>FrozenDictionary&lt;TK, TV&gt;</strong> (.NET 8) é uma coleção imutável otimizada para leitura — gerada uma vez, lookup mais rápido que Dictionary normal para dados que não mudam.',
       q: 'Quando usar FrozenDictionary em vez de Dictionary regular?',
-      hint: 'Dados que não mudam após inicialização',
+      hint: 'O inventário de armas da Ilha é definido antes da missão e nunca muda — lido muitas vezes',
       opts: [
         { t: 'Para dados que mudam frequentemente', ok: false },
         { t: 'Para lookup intensivo em dados que são inicializados uma vez e depois apenas lidos', ok: true },
@@ -38,7 +38,7 @@ const MISSION_88 = {
       type: 'mc',
       bubble: '<strong>Keyed DI Services</strong> (.NET 8): registrar múltiplas implementações da mesma interface com uma chave. Resolve o problema de "qual implementação injetar?".',
       q: 'Qual cenário resolve bem os Keyed DI Services?',
-      hint: 'Múltiplas implementações da mesma interface',
+      hint: 'A TMP e a Shotgun implementam a mesma interface IArma mas Leon as busca pela chave do nome',
       opts: [
         { t: 'Registrar um único serviço global', ok: false },
         { t: 'Múltiplas implementações de IArmazenamento: um para SQL, outro para Redis — injetar pelo nome', ok: true },
@@ -53,7 +53,7 @@ const MISSION_88 = {
       type: 'mc',
       bubble: '<strong>TimeProvider</strong> (.NET 8) abstrai o tempo do sistema — permite injetar tempo falso em testes sem usar DateTime.Now diretamente.',
       q: 'Por que usar TimeProvider em vez de DateTime.UtcNow?',
-      hint: 'Testabilidade',
+      hint: 'Leon não confia no relógio da Ilha — usa um relógio injetável para testar sem depender do OS',
       opts: [
         { t: 'TimeProvider é mais preciso', ok: false },
         { t: 'TimeProvider é injetável — testes podem usar FakeTimeProvider para controlar o tempo sem depender do relógio do OS', ok: true },
@@ -68,7 +68,7 @@ const MISSION_88 = {
       type: 'mc',
       bubble: '<strong>IHostedService</strong> e <strong>BackgroundService</strong> — serviços que rodam em background durante a lifetime da aplicação. Ideal para tarefas periódicas, processamento de filas.',
       q: 'Qual a diferença entre IHostedService e BackgroundService?',
-      hint: 'BackgroundService é helper de IHostedService',
+      hint: 'Leon usa o kit de primeiros socorros padrão em vez de montar um do zero — menos trabalho manual',
       opts: [
         { t: 'São equivalentes', ok: false },
         { t: 'BackgroundService é classe base abstrata que implementa IHostedService com loop em ExecuteAsync — menos boilerplate', ok: true },
@@ -88,7 +88,7 @@ const MISSION_88 = {
 };
 <span class="kw">var</span> frozen = dict.<span class="mt">_______</span>();`,
       q: 'Qual método de extensão cria um FrozenDictionary a partir de Dictionary?',
-      hint: 'To Frozen Dictionary',
+      hint: 'Congelar o inventário da Umbrella — otimizado para leitura rápida como o Rifle de Leon',
       ans: 'ToFrozenDictionary',
       exp: '.ToFrozenDictionary(): constrói FrozenDictionary otimizado para leitura. Após criado, não pode ser modificado. Também: .ToFrozenSet() para HashSet.',
     },
@@ -100,7 +100,7 @@ const MISSION_88 = {
       code: `services.<span class="mt">AddKeyedSingleton</span>&lt;ICache, MemoryCache&gt;(<span class="st">"_______"</span>);
 services.<span class="mt">AddKeyedSingleton</span>&lt;ICache, RedisCache&gt;(<span class="st">"redis"</span>);`,
       q: 'Qual seria a chave convencional para o cache em memória?',
-      hint: 'Tipo do cache: memory',
+      hint: 'Leon guarda munição na memória do colete — a chave identifica onde cada tipo está armazenado',
       ans: 'memory',
       exp: 'Chave é qualquer string/objeto. Convenção: nome descritivo. Injeção: constructor([FromKeyedServices("memory")] ICache cache) ou IKeyedServiceProvider.',
     },
@@ -115,7 +115,7 @@ services.<span class="mt">AddKeyedSingleton</span>&lt;ICache, RedisCache&gt;(<sp
         time.<span class="mt">_______</span>().<span class="mt">ToString</span>(<span class="st">"HH:mm"</span>);
 }`,
       q: 'Qual método TimeProvider retorna o UTC atual como DateTimeOffset?',
-      hint: 'Get Utc Now',
+      hint: 'O relógio de missão de Leon sempre em UTC — como Ada em qualquer fuso horário',
       ans: 'GetUtcNow',
       exp: 'TimeProvider.GetUtcNow(): DateTimeOffset UTC atual. Em produção: TimeProvider.System. Em testes: FakeTimeProvider com tempo controlado.',
     },
@@ -132,7 +132,7 @@ services.<span class="mt">AddKeyedSingleton</span>&lt;ICache, RedisCache&gt;(<sp
 Console.<span class="mt">WriteLine</span>(lookup[<span class="st">"shotgun"</span>]);
 Console.<span class="mt">WriteLine</span>(lookup.<span class="mt">ContainsKey</span>(<span class="st">"pistol"</span>));`,
       q: 'O que será exibido?',
-      hint: 'Valor de shotgun e chave inexistente',
+      hint: 'O dano da Shotgun está no inventário congelado, mas pistol nunca foi registrada',
       opts: [
         { t: '80 e False', ok: true },
         { t: '80 e True', ok: false },
@@ -157,7 +157,7 @@ Console.<span class="mt">WriteLine</span>(lookup.<span class="mt">ContainsKey</s
 }
 Console.<span class="mt">WriteLine</span>(count);`,
       q: 'O que será exibido?',
-      hint: 'Loop roda 3 vezes',
+      hint: 'O serviço de patrulha de Leon executa 3 ciclos antes do token de cancelamento parar tudo',
       opts: [
         { t: '0', ok: false },
         { t: '3', ok: true },
@@ -178,7 +178,7 @@ Console.<span class="mt">WriteLine</span>(count);`,
 <span class="kw">int</span> autorizados = usuarios.<span class="mt">Count</span>(u => permitidos.<span class="mt">Contains</span>(u));
 Console.<span class="mt">WriteLine</span>(autorizados);`,
       q: 'O que será exibido?',
-      hint: 'Quantos usuários estão no set de permitidos?',
+      hint: 'Quantos dos usuários passam pelo checkpoint de acesso de Saddler?',
       opts: [
         { t: '1', ok: false },
         { t: '2', ok: true },

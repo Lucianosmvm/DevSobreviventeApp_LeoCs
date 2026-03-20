@@ -21,7 +21,7 @@ const MISSION_07 = {
       type:'mc',
       bubble:'A estrutura <strong>if/else</strong> executa blocos diferentes dependendo de uma condição booleana.',
       q:'Qual é a estrutura correta de um if/else em C#?',
-      hint:'Chaves delimitam os blocos',
+      hint:'Leon decide atacar ou recuar — o if usa parênteses na condição e chaves no bloco de ação',
       opts:[
         {t:'if condição { } else { }', ok:false},
         {t:'if (condição) { } else { }', ok:true},
@@ -36,7 +36,7 @@ const MISSION_07 = {
       type:'mc',
       bubble:'Um <strong>else if</strong> permite testar múltiplas condições em sequência. O primeiro que for verdadeiro executa.',
       q:'Quantos blocos else if podemos encadear?',
-      hint:'Não há limite',
+      hint:'A missão de Leon tem vila, castelo e ilha — quantos checkpoints você pode ter?',
       opts:[
         {t:'Apenas 1', ok:false},{t:'No máximo 3', ok:false},
         {t:'Sem limite — quantos forem necessários', ok:true},{t:'No máximo 5', ok:false},
@@ -49,7 +49,7 @@ const MISSION_07 = {
       type:'mc',
       bubble:'Quando o bloco if tem apenas <strong>uma linha</strong>, as chaves são opcionais — mas é boa prática usá-las sempre.',
       q:'Qual o risco de omitir chaves num if com uma linha?',
-      hint:'O que acontece quando adicionamos outra linha?',
+      hint:'Krauser se aproveitou de uma abertura — omitir chaves cria uma brecha silenciosa no código',
       opts:[
         {t:'Erro de compilação', ok:false},
         {t:'Ao adicionar outra linha, ela não faz parte do if sem as chaves', ok:true},
@@ -64,7 +64,7 @@ const MISSION_07 = {
       type:'mc',
       bubble:'O <strong>operador ternário</strong> <code>condição ? valorTrue : valorFalse</code> é um if/else compacto para atribuições simples.',
       q:'Quando é ideal usar o operador ternário?',
-      hint:'Simples e direto',
+      hint:'Leon decide em uma fração de segundo: atirar ou esquivar — o ternário é essa decisão rápida',
       opts:[
         {t:'Para lógicas complexas com múltiplos passos', ok:false},
         {t:'Para atribuições simples baseadas em uma condição', ok:true},
@@ -80,7 +80,7 @@ const MISSION_07 = {
       bubble:'A palavra-chave <code>else</code> define o bloco que executa quando a condição do if é falsa.',
       code:`<span class="kw">if</span> (hp > <span class="nm">0</span>)\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Vivo"</span>);\n<span class="kw">_______</span>\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Game Over"</span>);`,
       q:'Qual palavra vai no bloco alternativo?',
-      hint:'Caso contrário em inglês',
+      hint:'Se o HP zerou — caso contrário, em inglês — Ashley ainda está em perigo',
       ans:'else',
       exp:'"else" é executado quando a condição do if é false. Se hp > 0 for false, cai no else e imprime "Game Over".',
     },
@@ -91,7 +91,7 @@ const MISSION_07 = {
       bubble:'Para testar múltiplos intervalos de HP, encadeamos else if.',
       code:`<span class="kw">if</span> (hp > <span class="nm">70</span>) status = <span class="st">"Ótimo"</span>;\n<span class="kw">else _______</span> (hp > <span class="nm">30</span>) status = <span class="st">"Alerta"</span>;\n<span class="kw">else</span> status = <span class="st">"Crítico"</span>;`,
       q:'Qual palavra-chave completa o segundo teste?',
-      hint:'Else mais If',
+      hint:'A segunda condição vem após o "senão" seguido de outra verificação',
       ans:'if',
       exp:'"else if" testa a próxima condição se a anterior foi false. Formando: ótimo → alerta → crítico.',
     },
@@ -102,7 +102,7 @@ const MISSION_07 = {
       bubble:'O operador ternário usa <code>?</code> para o valor verdadeiro e <code>:</code> para o falso.',
       code:`<span class="kw">string</span> acao = municao > <span class="nm">0</span> ? <span class="st">"Atirar"</span> <span class="kw">_______</span> <span class="st">"Esquivar"</span>;`,
       q:'Qual símbolo separa o valor false no operador ternário?',
-      hint:'Dois pontos',
+      hint:'O ternário tem dois lados — "Atirar" ou "Esquivar" — separados por dois pontos',
       ans:':',
       exp:'"condição ? valorTrue : valorFalse". Os ":" separam true de false. municao > 0 ? "Atirar" : "Esquivar".',
     },
@@ -113,7 +113,7 @@ const MISSION_07 = {
       bubble:'Analise este sistema de status do personagem.',
       code:`<span class="kw">int</span> hp = <span class="nm">45</span>;\n<span class="kw">if</span> (hp > <span class="nm">70</span>)\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Saudável"</span>);\n<span class="kw">else if</span> (hp > <span class="nm">30</span>)\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Ferido"</span>);\n<span class="kw">else</span>\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Crítico"</span>);`,
       q:'Para hp = 45, o que será exibido?',
-      hint:'45 > 70? Não. 45 > 30? ...',
+      hint:'45 balas de HP — Leon está acima de 70? Acima de 30? Qual condição passa primeiro?',
       opts:[
         {t:'Saudável', ok:false},{t:'Ferido', ok:true},
         {t:'Crítico', ok:false},{t:'Nada é exibido', ok:false},
@@ -127,7 +127,7 @@ const MISSION_07 = {
       bubble:'Veja o if/else verificando múltiplas condições com &&.',
       code:`<span class="kw">bool</span> temChave = <span class="kw">true</span>;\n<span class="kw">bool</span> portaBloqueada = <span class="kw">false</span>;\n\n<span class="kw">if</span> (temChave && !portaBloqueada)\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Porta aberta!"</span>);\n<span class="kw">else</span>\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Não pode passar."</span>);`,
       q:'O que será exibido?',
-      hint:'temChave=true, !portaBloqueada = !false = true',
+      hint:'Leon tem a chave E a porta não está bloqueada — avalie cada condição do castelo de Salazar',
       opts:[
         {t:'Não pode passar.', ok:false},
         {t:'Porta aberta!', ok:true},
@@ -143,7 +143,7 @@ const MISSION_07 = {
       bubble:'If aninhado — if dentro de if.',
       code:`<span class="kw">int</span> hp = <span class="nm">80</span>;\n<span class="kw">int</span> municao = <span class="nm">0</span>;\n\n<span class="kw">if</span> (hp > <span class="nm">0</span>)\n{\n    <span class="kw">if</span> (municao > <span class="nm">0</span>)\n        Console.<span class="mt">WriteLine</span>(<span class="st">"Atacar!"</span>);\n    <span class="kw">else</span>\n        Console.<span class="mt">WriteLine</span>(<span class="st">"Sem munição — fugir!"</span>);\n}\n<span class="kw">else</span>\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Game Over"</span>);`,
       q:'Com hp=80 e municao=0, o que será exibido?',
-      hint:'Vivo mas sem munição',
+      hint:'Leon sobreviveu (hp=80) mas ficou sem balas — o if aninhado decide a ação dentro de cada condição',
       opts:[
         {t:'Atacar!', ok:false},
         {t:'Sem munição — fugir!', ok:true},
@@ -159,7 +159,7 @@ const MISSION_07 = {
       bubble:'Cuidado com o erro clássico: usar = (atribuição) em vez de == (comparação).',
       code:`<span class="kw">int</span> vidas = <span class="nm">3</span>;\n<span class="kw">if</span> (vidas == <span class="nm">0</span>)\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Game Over"</span>);\n<span class="kw">else</span>\n    Console.<span class="mt">WriteLine</span>(<span class="st">$"Vidas restantes: {vidas}"</span>);`,
       q:'O que será exibido para vidas = 3?',
-      hint:'3 == 0 é...',
+      hint:'Leon tem 3 vidas — a Plaga não chegou a zero ainda, use == para comparar, não =',
       opts:[
         {t:'Game Over', ok:false},
         {t:'Vidas restantes: 3', ok:true},

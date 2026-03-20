@@ -12,7 +12,7 @@ const MISSION_20 = {
       type:'mc',
       bubble:'As <strong>coleções</strong> do namespace <code>System.Collections.Generic</code> são estruturas de dados prontas: List, Dictionary, Stack, Queue e muito mais.',
       q:'Qual namespace precisa ser importado para usar List<T> e Dictionary<K,V>?',
-      hint:'Generic Collections',
+      hint:'Leon não entra no castelo sem o equipamento certo — importe o namespace correto primeiro',
       opts:[
         {t:'System.Arrays', ok:false},
         {t:'System.Collections.Generic', ok:true},
@@ -27,7 +27,7 @@ const MISSION_20 = {
       type:'mc',
       bubble:'A principal diferença entre <strong>Array</strong> e <strong>List&lt;T&gt;</strong> é que List cresce e encolhe dinamicamente.',
       q:'Qual a vantagem da List<T> sobre um array simples?',
-      hint:'Pense em flexibilidade de tamanho',
+      hint:'O inventário de Leon cresce com novos itens — não tem como prever quantos vai coletar',
       opts:[
         {t:'List é sempre mais rápida que array', ok:false},
         {t:'List tem tamanho dinâmico — cresce e encolhe conforme necessário', ok:true},
@@ -42,7 +42,7 @@ const MISSION_20 = {
       type:'mc',
       bubble:'Um <strong>Dictionary&lt;TKey, TValue&gt;</strong> armazena pares chave-valor, onde cada chave é única e o acesso é O(1) via hashing.',
       q:'O que acontece ao inserir uma chave já existente num Dictionary?',
-      hint:'Chaves são únicas',
+      hint:'Salazar não aceita dois invasores com o mesmo nome no castelo',
       opts:[
         {t:'Cria uma segunda entrada com a mesma chave', ok:false},
         {t:'Lança ArgumentException — chave duplicada não é permitida', ok:true},
@@ -57,7 +57,7 @@ const MISSION_20 = {
       type:'mc',
       bubble:'Uma <strong>Stack&lt;T&gt;</strong> segue o princípio LIFO (Last In, First Out) — como uma pilha de pratos.',
       q:'Qual método remove e retorna o elemento do topo de uma Stack?',
-      hint:'Tirar do topo',
+      hint:'Leon tira a última arma que colocou na mochila — a do topo da pilha',
       opts:[
         {t:'Dequeue()', ok:false},
         {t:'RemoveFirst()', ok:false},
@@ -72,7 +72,7 @@ const MISSION_20 = {
       type:'mc',
       bubble:'Uma <strong>Queue&lt;T&gt;</strong> segue o princípio FIFO (First In, First Out) — como uma fila de banco.',
       q:'Qual método adiciona um elemento ao final de uma Queue?',
-      hint:'Entrar na fila',
+      hint:'Os Ganados se alinham na fila de batalha — o que entra na fila é o método de entrada',
       opts:[
         {t:'Push()', ok:false},
         {t:'Add()', ok:false},
@@ -88,7 +88,7 @@ const MISSION_20 = {
       bubble:'Para criar uma List de strings vazia e depois adicionar elementos:',
       code:`<span class="kw">var</span> inimigos = <span class="kw">new</span> List&lt;<span class="kw">_______</span>&gt;();\ninimigos.<span class="mt">Add</span>(<span class="st">"Ganado"</span>);`,
       q:'Qual tipo de elemento a List armazena neste caso?',
-      hint:'Tipo de dado textual',
+      hint:'O nome "Ganado" é texto — qual tipo representa texto em C#?',
       ans:'string',
       exp:'"List<string>" declara uma lista que só aceita strings. O tipo genérico T define o tipo dos elementos armazenados.',
     },
@@ -99,7 +99,7 @@ const MISSION_20 = {
       bubble:'Para acessar um valor em um Dictionary usando sua chave:',
       code:`<span class="kw">var</span> arsenal = <span class="kw">new</span> Dictionary&lt;<span class="kw">string</span>, <span class="kw">int</span>&gt;();\narsenal[<span class="st">"Pistola"</span>] = <span class="nm">45</span>;\n<span class="kw">int</span> balas = arsenal[<span class="st">"_______"</span>];`,
       q:'Qual chave usar para acessar a quantidade de balas da Pistola?',
-      hint:'A chave que foi inserida',
+      hint:'Leon usa a chave exata que abriu o arsenal — sem variação',
       ans:'Pistola',
       exp:'"arsenal["Pistola"]" acessa o valor associado à chave "Pistola", que é 45. Se a chave não existir, lança KeyNotFoundException.',
     },
@@ -110,7 +110,7 @@ const MISSION_20 = {
       bubble:'Para verificar se uma chave existe antes de acessar, usamos <code>ContainsKey()</code>.',
       code:`<span class="kw">if</span> (arsenal.<span class="mt">_______</span>(<span class="st">"Rifle"</span>))\n    Console.<span class="mt">WriteLine</span>(arsenal[<span class="st">"Rifle"</span>]);`,
       q:'Qual método verifica se a chave existe no Dictionary?',
-      hint:'Contém a chave?',
+      hint:'Leon verifica se tem o Rifle antes de tentar usar — não tenta às cegas',
       ans:'ContainsKey',
       exp:'"ContainsKey(chave)" evita KeyNotFoundException. Padrão seguro: sempre verifique antes ou use TryGetValue().',
     },
@@ -121,7 +121,7 @@ const MISSION_20 = {
       bubble:'List<T> em ação — gerenciando o inventário.',
       code:`<span class="kw">var</span> inv = <span class="kw">new</span> List&lt;<span class="kw">string</span>&gt; { <span class="st">"Pistola"</span>, <span class="st">"Faca"</span>, <span class="st">"Erva"</span> };\ninv.<span class="mt">Add</span>(<span class="st">"Escopeta"</span>);\ninv.<span class="mt">Remove</span>(<span class="st">"Faca"</span>);\nConsole.<span class="mt">WriteLine</span>(inv.<span class="mt">Count</span>);\nConsole.<span class="mt">WriteLine</span>(inv[<span class="nm">1</span>]);`,
       q:'O que será exibido?',
-      hint:'Adiciona 1, remove 1. Quem fica no índice 1?',
+      hint:'Leon add a Escopeta e descarta a Faca — rastreie quem sobra na posição 1',
       opts:[
         {t:'4 e Faca', ok:false},
         {t:'3 e Erva', ok:true},
@@ -137,7 +137,7 @@ const MISSION_20 = {
       bubble:'Dictionary mapeando arma para dano.',
       code:`<span class="kw">var</span> danos = <span class="kw">new</span> Dictionary&lt;<span class="kw">string</span>,<span class="kw">int</span>&gt;\n{\n    [<span class="st">"Pistola"</span>]  = <span class="nm">25</span>,\n    [<span class="st">"Escopeta"</span>] = <span class="nm">80</span>,\n    [<span class="st">"Rifle"</span>]    = <span class="nm">120</span>\n};\n<span class="kw">foreach</span>(<span class="kw">var</span> par <span class="kw">in</span> danos)\n    Console.<span class="mt">WriteLine</span>(<span class="st">$"{par.Key}: {par.Value}"</span>);`,
       q:'Quantas linhas serão exibidas?',
-      hint:'Um par, uma linha',
+      hint:'Cada arma do arsenal de Leon tem sua própria linha de relatório',
       opts:[
         {t:'1', ok:false},{t:'2', ok:false},
         {t:'3', ok:true},{t:'6', ok:false},
@@ -151,7 +151,7 @@ const MISSION_20 = {
       bubble:'Stack (LIFO) simulando histórico de ações.',
       code:`<span class="kw">var</span> historico = <span class="kw">new</span> Stack&lt;<span class="kw">string</span>&gt;();\nhistorico.<span class="mt">Push</span>(<span class="st">"Mover"</span>);\nhistorico.<span class="mt">Push</span>(<span class="st">"Atacar"</span>);\nhistorico.<span class="mt">Push</span>(<span class="st">"Recarregar"</span>);\nConsole.<span class="mt">WriteLine</span>(historico.<span class="mt">Pop</span>());\nConsole.<span class="mt">WriteLine</span>(historico.<span class="mt">Peek</span>());`,
       q:'O que será exibido?',
-      hint:'LIFO: último a entrar é o primeiro a sair',
+      hint:'O histórico de Leon desfaz a última ação primeiro, como voltar o último passo dado no Castelo',
       opts:[
         {t:'Mover e Atacar', ok:false},
         {t:'Recarregar e Atacar', ok:true},

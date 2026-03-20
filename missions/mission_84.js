@@ -23,7 +23,7 @@ const MISSION_84 = {
       type: 'mc',
       bubble: '<strong>SignalR</strong> abstrai WebSockets, Server-Sent Events e Long Polling — escolhe o melhor transporte disponível automaticamente. Usado para real-time: chat, dashboards, notificações.',
       q: 'Qual o tipo de comunicação que o SignalR habilita entre cliente e servidor?',
-      hint: 'Bidirecional e em tempo real',
+      hint: 'Ada e Leon se comunicam em ambos os sentidos — nenhum fica apenas escutando',
       opts: [
         { t: 'Apenas servidor → cliente (push)', ok: false },
         { t: 'Bidirecional: servidor pode chamar métodos do cliente e vice-versa', ok: true },
@@ -38,7 +38,7 @@ const MISSION_84 = {
       type: 'mc',
       bubble: '<strong>Hub</strong> é a classe central do SignalR — ponto de comunicação. Clientes conectam ao Hub e chamam seus métodos. Hub pode chamar métodos de volta nos clientes.',
       q: 'Como criar um Hub SignalR?',
-      hint: 'Herdar de Hub',
+      hint: 'O quartel-general de Leon herda o protocolo base para se tornar um ponto de comunicação',
       opts: [
         { t: 'Implementar ISignalRHub', ok: false },
         { t: 'Herdar de Hub ou Hub<T> e adicionar métodos públicos', ok: true },
@@ -53,7 +53,7 @@ const MISSION_84 = {
       type: 'mc',
       bubble: '<code>Clients.All</code>, <code>Clients.Caller</code>, <code>Clients.Others</code>, <code>Clients.Group("nome")</code> — diferentes targets de envio no SignalR.',
       q: 'Para enviar mensagem apenas para o cliente que chamou o método do Hub, qual target usar?',
-      hint: 'O que chamou',
+      hint: 'A resposta de Leon vai apenas para quem chamou no rádio, não para todo o esquadrão',
       opts: [
         { t: 'Clients.All', ok: false },
         { t: 'Clients.Caller', ok: true },
@@ -68,7 +68,7 @@ const MISSION_84 = {
       type: 'mc',
       bubble: 'SignalR <strong>groups</strong> permitem broadcasting para subconjunto de clientes. <code>Groups.AddToGroupAsync</code> e <code>RemoveFromGroupAsync</code> gerenciam membros.',
       q: 'Qual cenário de uso típico para Groups no SignalR?',
-      hint: 'Chat rooms, salas',
+      hint: 'Cada ala do Castelo de Salazar tem seus próprios guardas — o alerta só vai para os da mesma ala',
       opts: [
         { t: 'Limitar conexões simultâneas', ok: false },
         { t: 'Chat rooms, salas de jogos — enviar mensagem só para membros de um grupo', ok: true },
@@ -87,7 +87,7 @@ const MISSION_84 = {
 app.<span class="mt">_______</span>&lt;MissaoHub&gt;(<span class="st">"/missaohub"</span>);
 app.<span class="mt">Run</span>();`,
       q: 'Qual método registra um Hub no endpoint?',
-      hint: 'Map Hub',
+      hint: 'Leon mapeia o ponto de encontro com Ada no rádio — o Hub precisa de um endereço no mapa',
       ans: 'MapHub',
       exp: 'app.MapHub<T>(pattern): registra Hub no URL. Clientes conectam via WebSocket para "/missaohub". AddSignalR() registra serviços necessários.',
     },
@@ -102,7 +102,7 @@ app.<span class="mt">Run</span>();`,
         .<span class="mt">SendAsync</span>(<span class="st">"ReceberMensagem"</span>, mensagem);
 }`,
       q: 'Qual target envia para TODOS os clientes conectados?',
-      hint: 'All em inglês',
+      hint: 'Saddler transmite o alerta para TODOS os Ganados ao mesmo tempo — nem um escapa',
       ans: 'All',
       exp: 'Clients.All.SendAsync("método", dados): broadcast para todos. Clientes devem ter handler registrado para "ReceberMensagem".',
     },
@@ -117,7 +117,7 @@ app.<span class="mt">Run</span>();`,
         Context.ConnectionId, grupo);
 }`,
       q: 'Qual método adiciona o cliente ao grupo?',
-      hint: 'Add To Group Async',
+      hint: 'Leon entra no grupo de patrulha da Ilha — é preciso adicionar sua conexão ao grupo',
       ans: 'AddToGroupAsync',
       exp: 'Groups.AddToGroupAsync(connectionId, groupName): adiciona ao grupo. Context.ConnectionId: ID único da conexão atual. Groups.RemoveFromGroupAsync para remover.',
     },
@@ -139,7 +139,7 @@ app.<span class="mt">Run</span>();`,
 <span class="kw">await</span> clients.<span class="mt">SendAsync</span>(<span class="st">"Receber"</span>, <span class="st">"Alerta"</span>);
 Console.<span class="mt">WriteLine</span>(clients.Messages[<span class="nm">0</span>]);`,
       q: 'O que será exibido?',
-      hint: 'method:msg format',
+      hint: 'O rádio de Leon formata a mensagem com o método de transmissão e o conteúdo separados por dois pontos',
       opts: [
         { t: 'Receber Alerta', ok: false },
         { t: 'Receber:Alerta', ok: true },
@@ -165,7 +165,7 @@ svc.<span class="mt">Registrar</span>(<span class="st">"Missão iniciada"</span>
 svc.<span class="mt">Registrar</span>(<span class="st">"Inimigo detectado"</span>);
 Console.<span class="mt">WriteLine</span>(svc.Count);`,
       q: 'O que será exibido?',
-      hint: 'Dois registros',
+      hint: 'Dois alertas foram registrados no diário de campo de Leon',
       opts: [
         { t: '1', ok: false },
         { t: '2', ok: true },
@@ -189,7 +189,7 @@ Console.<span class="mt">WriteLine</span>(svc.Count);`,
 <span class="mt">Connect</span>(); <span class="mt">Connect</span>(); <span class="mt">Disconnect</span>(); <span class="mt">Connect</span>();
 Console.<span class="mt">WriteLine</span>(<span class="st">$"Online: {connected - disconnected}"</span>);`,
       q: 'O que será exibido?',
-      hint: '3 connects, 1 disconnect',
+      hint: '3 agentes entraram na missão, 1 foi eliminado — quantos ainda estão online?',
       opts: [
         { t: 'Online: 2', ok: true },
         { t: 'Online: 3', ok: false },

@@ -22,7 +22,7 @@ const MISSION_06 = {
       type:'mc',
       bubble:'Os <strong>operadores aritméticos</strong> em C# são: + (soma), - (subtração), * (multiplicação), / (divisão), % (módulo).',
       q:'Qual operador calcula o resto da divisão?',
-      hint:'Parece símbolo de porcentagem',
+      hint:'Leon precisa saber o resto após dividir munição igualmente pelos Ganados — não a divisão, o resto',
       opts:[
         {t:'/', ok:false},{t:'*', ok:false},
         {t:'%', ok:true},{t:'//', ok:false},
@@ -35,7 +35,7 @@ const MISSION_06 = {
       type:'mc',
       bubble:'<strong>Operadores relacionais</strong> comparam dois valores e retornam bool: == (igual), != (diferente), > < >= <=',
       q:'Para verificar se o HP é diferente de zero, qual operador usar?',
-      hint:'Diferente de',
+      hint:'Leon não para enquanto o HP for _____ zero — qual operador verifica isso?',
       opts:[
         {t:'hp == 0', ok:false},{t:'hp <> 0', ok:false},
         {t:'hp != 0', ok:true},{t:'hp = 0', ok:false},
@@ -48,7 +48,7 @@ const MISSION_06 = {
       type:'mc',
       bubble:'<strong>Operadores lógicos:</strong> && (E — ambos verdadeiros), || (OU — pelo menos um verdadeiro), ! (NÃO — inverte).',
       q:'A condição "vivo && temMunicao" é verdadeira quando:',
-      hint:'&& exige ambos verdadeiros',
+      hint:'Leon precisa estar vivo E ter munição — as duas condições juntas determinam se ele pode agir',
       opts:[
         {t:'Pelo menos um for verdadeiro', ok:false},
         {t:'Ambos forem verdadeiros simultaneamente', ok:true},
@@ -63,7 +63,7 @@ const MISSION_06 = {
       type:'mc',
       bubble:'O operador <strong>+=</strong> é um atalho: <code>x += 5</code> é o mesmo que <code>x = x + 5</code>.',
       q:'O que faz "municao -= 3"?',
-      hint:'É um atalho para subtração',
+      hint:'Cada tiro de Leon subtrai balas do total — "municao -= 3" é um atalho para essa operação',
       opts:[
         {t:'Subtrai municao de 3', ok:false},
         {t:'Define municao como -3', ok:false},
@@ -79,7 +79,7 @@ const MISSION_06 = {
       bubble:'O operador lógico <code>||</code> representa o OU — verdadeiro se pelo menos uma condição for verdadeira.',
       code:`<span class="kw">bool</span> fugir = (hp < <span class="nm">20</span>) <span class="kw">_______</span> (!temArma);`,
       q:'Qual operador representa "OU" lógico em C#?',
-      hint:'Duas barras verticais',
+      hint:'Leon foge se o HP está baixo OU se não tem arma — qualquer uma das condições basta',
       ans:'||',
       exp:'"||" é o OR: true se hp < 20 OU se não tem arma. Qualquer uma das condições verdadeira = true.',
     },
@@ -90,7 +90,7 @@ const MISSION_06 = {
       bubble:'O operador <code>!</code> (NOT) inverte um bool: !true = false, !false = true.',
       code:`<span class="kw">bool</span> morto = <span class="kw">!</span>vivo; <span class="cm">// se vivo=true, morto=_______</span>`,
       q:'Qual é o valor de morto se vivo = true?',
-      hint:'NOT inverte',
+      hint:'Se Leon está vivo, então "morto" é o oposto — o operador ! inverte o bool',
       ans:'false',
       exp:'"!vivo" inverte o bool. Se vivo=true, !vivo = false. Se vivo=false, !vivo = true.',
     },
@@ -101,7 +101,7 @@ const MISSION_06 = {
       bubble:'Para verificar se um número está dentro de um intervalo, combinamos dois comparadores com &&.',
       code:`<span class="kw">bool</span> hpCritico = (hp > <span class="nm">0</span>) <span class="kw">&&</span> (hp <span class="kw">_______</span> <span class="nm">30</span>);`,
       q:'Qual operador verifica se hp é menor ou igual a 30?',
-      hint:'Menor que ou igual a',
+      hint:'HP crítico: maior que zero mas _____ 30 — que operador inclui o próprio 30?',
       ans:'<=',
       exp:'"<=" é menor ou igual. "hp > 0 && hp <= 30" = HP entre 1 e 30 (intervalo crítico). Combine com && para intervalos.',
     },
@@ -112,7 +112,7 @@ const MISSION_06 = {
       bubble:'Calcule o dano total com os operadores aritméticos.',
       code:`<span class="kw">int</span> danoBase = <span class="nm">25</span>;\n<span class="kw">int</span> critico = <span class="nm">2</span>;\n<span class="kw">int</span> armor = <span class="nm">10</span>;\n<span class="kw">int</span> danoFinal = (danoBase * critico) - armor;\nConsole.<span class="mt">WriteLine</span>(danoFinal);`,
       q:'Qual o dano final?',
-      hint:'(25 × 2) - 10',
+      hint:'Dano crítico de Leon: base 25, multiplicado por 2, menos a armadura — cuidado com a precedência',
       opts:[
         {t:'30', ok:false},{t:'40', ok:true},
         {t:'50', ok:false},{t:'35', ok:false},
@@ -126,7 +126,7 @@ const MISSION_06 = {
       bubble:'Operadores relacionais retornam bool.',
       code:`<span class="kw">int</span> hp = <span class="nm">45</span>;\nConsole.<span class="mt">WriteLine</span>(hp > <span class="nm">50</span>);\nConsole.<span class="mt">WriteLine</span>(hp >= <span class="nm">45</span>);\nConsole.<span class="mt">WriteLine</span>(hp != <span class="nm">0</span>);`,
       q:'Qual será a saída das três linhas?',
-      hint:'Compare hp=45 com cada expressão',
+      hint:'Verifique o HP 45 de Leon contra cada operador — maior que 50? Igual a 45? Diferente de zero?',
       opts:[
         {t:'True, True, True', ok:false},
         {t:'False, True, True', ok:true},
@@ -142,7 +142,7 @@ const MISSION_06 = {
       bubble:'Prioridade dos operadores: multiplicação antes de adição, parênteses primeiro.',
       code:`<span class="kw">int</span> r1 = <span class="nm">2</span> + <span class="nm">3</span> * <span class="nm">4</span>;\n<span class="kw">int</span> r2 = (<span class="nm">2</span> + <span class="nm">3</span>) * <span class="nm">4</span>;\nConsole.<span class="mt">WriteLine</span>(<span class="st">$"{r1} | {r2}"</span>);`,
       q:'Qual será a saída?',
-      hint:'Multiplicação tem prioridade sobre adição',
+      hint:'Na Vila, Leon calcula dano: primeiro a multiplicação, depois a soma — parênteses mudam a ordem',
       opts:[
         {t:'20 | 20', ok:false},{t:'14 | 20', ok:true},
         {t:'20 | 14', ok:false},{t:'14 | 14', ok:false},
@@ -156,7 +156,7 @@ const MISSION_06 = {
       bubble:'Operador ternário: forma compacta de if/else para atribuição.',
       code:`<span class="kw">int</span> hp = <span class="nm">15</span>;\n<span class="kw">string</span> status = hp > <span class="nm">0</span> ? <span class="st">"Vivo"</span> : <span class="st">"Morto"</span>;\nConsole.<span class="mt">WriteLine</span>(status);`,
       q:'O que será exibido?',
-      hint:'hp = 15 > 0 é verdadeiro',
+      hint:'Leon tem 15 de HP — ele está vivo ou morto? O ternário decide em uma linha',
       opts:[
         {t:'Morto', ok:false},{t:'hp > 0', ok:false},
         {t:'Vivo', ok:true},{t:'True', ok:false},

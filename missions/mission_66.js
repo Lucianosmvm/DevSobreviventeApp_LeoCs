@@ -23,7 +23,7 @@ const MISSION_66 = {
       type: 'mc',
       bubble: 'Strings são imutáveis em C#. Concatenar strings em loop cria um novo objeto a cada iteração. <code>StringBuilder</code> usa buffer mutável internamente.',
       q: 'Qual o problema de concatenar string em loop com "s += item"?',
-      hint: 'Quantos objetos são criados?',
+      hint: 'Cada vez que Leon copia o relatório inteiro para adicionar uma linha, o bunker fica mais lento — StringBuilder é o caminho eficiente',
       opts: [
         { t: 'Nenhum — string + é eficiente', ok: false },
         { t: 'Cada += cria um novo objeto string — O(n²) de operações para n concatenações', ok: true },
@@ -36,9 +36,9 @@ const MISSION_66 = {
     // Q2 — MC
     {
       type: 'mc',
-      bubble: '<code>StringComparison.OrdinalIgnoreCase</code> é a comparação mais rápida e recomendada para strings técnicas (caminhos, chaves, identificadores).',
+      bubble: 'C# oferece vários modos de comparação de strings — alguns levam em conta cultura e idioma, outros comparam byte a byte independente da localidade do sistema. A escolha impacta exatidão e performance.',
       q: 'Para comparar nomes de arquivos como "foto.PNG" == "foto.png", qual StringComparison usar?',
-      hint: 'Sem case, sem cultura',
+      hint: 'O nome de arquivo não depende do idioma do sistema — compare byte a byte ignorando maiúsculas',
       opts: [
         { t: 'StringComparison.CurrentCulture', ok: false },
         { t: 'StringComparison.OrdinalIgnoreCase', ok: true },
@@ -51,9 +51,9 @@ const MISSION_66 = {
     // Q3 — MC
     {
       type: 'mc',
-      bubble: 'Regex usa grupos para capturar partes específicas do padrão. <code>(?&lt;nome&gt;...)</code> é um named group acessado por <code>match.Groups["nome"].Value</code>.',
+      bubble: 'Regex suporta dois tipos de grupos de captura: grupos numerados como <code>(\d+)</code>, acessados por índice, e grupos com nome declarado na sintaxe <code>(?&lt;nome&gt;...)</code>.',
       q: 'Qual a vantagem de named groups em Regex?',
-      hint: 'Legibilidade e robustez',
+      hint: 'Ada prefere identificar o grupo pelo codinome em vez do número de ordem — o nome no padrão auto-documenta e resiste a mudanças',
       opts: [
         { t: 'Named groups são mais rápidos', ok: false },
         { t: 'Permitem acessar grupos por nome em vez de índice — código mais legível e robusto a mudanças', ok: true },
@@ -66,9 +66,9 @@ const MISSION_66 = {
     // Q4 — MC
     {
       type: 'mc',
-      bubble: '<code>Regex.IsMatch()</code> verifica se o padrão existe. <code>Match()</code> retorna o primeiro match. <code>Matches()</code> retorna todos.',
+      bubble: 'A classe <code>Regex</code> oferece métodos distintos dependendo do que você precisa: verificar existência do padrão, extrair o primeiro resultado ou trabalhar com o conjunto completo de correspondências.',
       q: 'Para extrair TODOS os emails de um texto, qual método Regex usar?',
-      hint: 'Todos os matches',
+      hint: 'Leon precisa eliminar TODOS os Ganados do log, não só o primeiro — use o método no plural',
       opts: [
         { t: 'Regex.IsMatch()', ok: false },
         { t: 'Regex.Match()', ok: false },
@@ -84,7 +84,7 @@ const MISSION_66 = {
       bubble: 'StringBuilder para construção eficiente em loop:',
       code: `<span class="kw">var</span> sb = <span class="kw">new</span> System.Text.StringBuilder();\n<span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">1</span>; i <= <span class="nm">3</span>; i++)\n    sb.<span class="mt">_______</span>(<span class="st">$"Item {i}; "</span>);\nConsole.<span class="mt">Write</span>(sb.<span class="mt">ToString</span>());`,
       q: 'Qual método adiciona texto ao StringBuilder?',
-      hint: 'Anexar em inglês',
+      hint: 'Leon anota cada novo dado no relatório sem reescrever tudo — o método que adiciona ao buffer',
       ans: 'Append',
       exp: '"Append(texto)" adiciona ao buffer interno sem criar nova string. ToString() converte ao final. AppendLine() adiciona com quebra de linha.',
     },
@@ -95,7 +95,7 @@ const MISSION_66 = {
       bubble: 'Comparação de strings ignorando case de forma correta:',
       code: `<span class="kw">string</span> cmd = <span class="st">"ATACAR"</span>;\n<span class="kw">if</span> (<span class="kw">string</span>.<span class="mt">Equals</span>(cmd, <span class="st">"atacar"</span>, StringComparison.<span class="mt">_______</span>))\n    Console.<span class="mt">WriteLine</span>(<span class="st">"Comando reconhecido"</span>);`,
       q: 'Qual StringComparison ignora maiúsculas/minúsculas sem cultura?',
-      hint: 'Ordinal + Ignore + Case',
+      hint: 'O comando ATACAR é igual a atacar para Leon, independente do idioma do teclado — compare sem cultura e sem case',
       ans: 'OrdinalIgnoreCase',
       exp: '"OrdinalIgnoreCase" compara sem cultura e sem case. Para comandos, teclas e identificadores — não depende da localidade do sistema.',
     },
@@ -106,7 +106,7 @@ const MISSION_66 = {
       bubble: 'Regex com named group para extrair número do código de missão:',
       code: `<span class="kw">var</span> m = Regex.<span class="mt">Match</span>(<span class="st">"MISSAO-51"</span>, <span class="st">@"MISSAO-(?&lt;num&gt;\\d+)"</span>);\nConsole.<span class="mt">WriteLine</span>(m.Groups[<span class="st">"_______"</span>].Value);`,
       q: 'Qual o nome do grupo para acessar o número?',
-      hint: 'Conforme declarado no padrão',
+      hint: 'O grupo foi batizado no padrão Regex — use o codinome exato declarado entre os sinais de menor e maior',
       ans: 'num',
       exp: '"(?<num>\\d+)" define o named group "num". m.Groups["num"].Value = "51". Named groups tornam o Regex auto-documentado.',
     },
@@ -117,7 +117,7 @@ const MISSION_66 = {
       bubble: 'StringBuilder com múltiplos métodos.',
       code: `<span class="kw">var</span> sb = <span class="kw">new</span> System.Text.StringBuilder(<span class="st">"MISSAO"</span>);\nsb.<span class="mt">Append</span>(<span class="st">"-"</span>).<span class="mt">Append</span>(<span class="nm">51</span>);\nsb.<span class="mt">Insert</span>(<span class="nm">0</span>, <span class="st">"["</span>);\nsb.<span class="mt">Append</span>(<span class="st">"]"</span>);\nConsole.<span class="mt">WriteLine</span>(sb.<span class="mt">ToString</span>());`,
       q: 'O que será exibido?',
-      hint: 'Construindo o texto passo a passo',
+      hint: 'Leon monta o código da missão peça por peça — acompanhe cada operação do StringBuilder em ordem',
       opts: [
         { t: 'MISSAO-51', ok: false },
         { t: '[MISSAO-51]', ok: true },
@@ -133,7 +133,7 @@ const MISSION_66 = {
       bubble: 'Regex extraindo IPs de log.',
       code: `<span class="kw">string</span> log = <span class="st">"Acesso: 192.168.1.5 e 10.0.0.1"</span>;\n<span class="kw">var</span> ips = Regex.<span class="mt">Matches</span>(log, <span class="st">@"\\d+\\.\\d+\\.\\d+\\.\\d+"</span>)\n             .<span class="mt">Select</span>(m => m.Value);\nConsole.<span class="mt">WriteLine</span>(<span class="kw">string</span>.<span class="mt">Join</span>(<span class="st">", "</span>, ips));`,
       q: 'O que será exibido?',
-      hint: 'Dois padrões IP no texto',
+      hint: 'O log do bunker tem dois endereços suspeitos — Matches encontra todos, não só o primeiro',
       opts: [
         { t: '192.168.1.5', ok: false },
         { t: '192.168.1.5, 10.0.0.1', ok: true },
@@ -149,7 +149,7 @@ const MISSION_66 = {
       bubble: 'Regex.Replace para sanitizar dados.',
       code: `<span class="kw">string</span> entrada = <span class="st">"Leon K3nn3dy"</span>;\n<span class="kw">string</span> limpo = Regex.<span class="mt">Replace</span>(entrada, <span class="st">@"[^a-zA-Z ]"</span>, <span class="st">""</span>);\nConsole.<span class="mt">WriteLine</span>(limpo);`,
       q: 'O que será exibido?',
-      hint: 'Remove tudo que não é letra ou espaço',
+      hint: 'A Plaga infecta os dígitos do codinome — o Regex remove tudo que não for letra ou espaço',
       opts: [
         { t: 'Leon Kennedy', ok: false },
         { t: 'Leon Knndy', ok: true },

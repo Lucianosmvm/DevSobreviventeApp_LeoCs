@@ -23,7 +23,7 @@ const MISSION_93 = {
       type: 'mc',
       bubble: '<code>dynamic</code> em C# adia a verificação de tipo para runtime usando o DLR (Dynamic Language Runtime). Flexível, mas sem type safety em compilação.',
       q: 'Quando usar "dynamic" em C#?',
-      hint: 'Interop com objetos sem tipo conhecido em compilação',
+      hint: 'Leon não sabe o tipo do item que Ada vai passar — dynamic resolve o tipo só quando ela chega',
       opts: [
         { t: 'Como substituto para todas as variáveis', ok: false },
         { t: 'Interop com COM objects, JSON dinâmico, linguagens dinâmicas como Python via DLR', ok: true },
@@ -38,7 +38,7 @@ const MISSION_93 = {
       type: 'mc',
       bubble: '<code>ExpandoObject</code> permite adicionar propriedades dinamicamente em runtime — como um dicionário disfarçado de objeto.',
       q: 'Como ExpandoObject implementa propriedades dinâmicas?',
-      hint: 'IDictionary<string, object>',
+      hint: 'O inventário expansível de Leon guarda itens como pares nome-valor internamente',
       opts: [
         { t: 'Usa Reflection para criar campos em runtime', ok: false },
         { t: 'Implementa IDynamicMetaObjectProvider e IDictionary<string,object> internamente', ok: true },
@@ -51,9 +51,9 @@ const MISSION_93 = {
     // Q3 — MC
     {
       type: 'mc',
-      bubble: '<strong>Roslyn Scripting API</strong> (Microsoft.CodeAnalysis.CSharp.Scripting) permite compilar e executar código C# em runtime como string.',
+      bubble: '<strong>Roslyn</strong> é o compilador de plataforma aberta do C#. Além de compilar projetos estáticos, expõe APIs que permitem interagir com o processo de compilação em diferentes níveis.',
       q: 'Qual cenário usa bem Roslyn Scripting?',
-      hint: 'Execução de código definido pelo usuário',
+      hint: 'Saddler define as regras da missão em tempo real — o código que executa fórmulas criadas pelo usuário',
       opts: [
         { t: 'Otimizar código existente', ok: false },
         { t: 'Interpretar fórmulas ou regras definidas pelo usuário em C# em runtime', ok: true },
@@ -68,7 +68,7 @@ const MISSION_93 = {
       type: 'mc',
       bubble: '<code>CallSite</code> é o mecanismo de cache do DLR — após primeira resolução dinâmica, o resultado é cacheado para chamadas futuras com mesmo tipo.',
       q: 'Por que código dynamic pode ser comparável em performance a código estático em loops?',
-      hint: 'CallSite cache',
+      hint: 'Leon já conhece o caminho depois da primeira vez — o DLR guarda em cache para as próximas',
       opts: [
         { t: 'dynamic é compilado para código específico pelo JIT', ok: false },
         { t: 'DLR usa CallSite cache — após primeira resolução, chamadas subsequentes com mesmo tipo são rápidas', ok: true },
@@ -87,7 +87,7 @@ missao.Nome = <span class="st">"Infiltrar"</span>;
 missao.XP = <span class="nm">100</span>;
 Console.<span class="mt">WriteLine</span>(missao.Nome);`,
       q: 'Qual classe permite adicionar propriedades dinamicamente?',
-      hint: 'Expando Object',
+      hint: 'O inventário de Leon se expande com novos itens em tempo de missão — qual classe permite isso?',
       ans: 'ExpandoObject',
       exp: 'ExpandoObject: dynamic object que aceita novas propriedades em runtime. "missao.Nome" é adicionado dinamicamente. Acessível via IDictionary<string,object> também.',
     },
@@ -101,7 +101,7 @@ expando.HP = <span class="nm">100</span>;
 <span class="kw">var</span> dict = (IDictionary&lt;<span class="kw">string</span>, <span class="tp">object</span>&gt;)expando;
 Console.<span class="mt">WriteLine</span>(dict.<span class="mt">_______</span>(<span class="st">"HP"</span>));`,
       q: 'Qual método IDictionary verifica se a chave existe?',
-      hint: 'Contains Key',
+      hint: 'Leon verifica se o HP está no inventário dinâmico antes de acessá-lo',
       ans: 'ContainsKey',
       exp: 'dict.ContainsKey("HP"): true se propriedade "HP" existe no ExpandoObject. Casting para IDictionary<string,object> revela o mecanismo interno.',
     },
@@ -114,7 +114,7 @@ Console.<span class="mt">WriteLine</span>(dict.<span class="mt">_______</span>(<
 <span class="kw">var</span> result = obj.<span class="mt">_______</span>(<span class="nm">0</span>, <span class="nm">2</span>);
 Console.<span class="mt">WriteLine</span>(result);`,
       q: 'Qual método de string retorna uma substring começando no índice 0 com tamanho 2?',
-      hint: 'Sub string',
+      hint: 'Leon extrai apenas as duas primeiras letras do codinome do agente',
       ans: 'Substring',
       exp: '"Leon".Substring(0, 2) = "Le". dynamic resolve Substring em runtime via DLR. Late binding — sem type safety em compilação.',
     },
@@ -130,7 +130,7 @@ agente.<span class="mt">Saudar</span> = <span class="kw">new</span> Func&lt;<spa
     () => <span class="st">$"Olá, {agente.Nome} Nível {agente.Nivel}"</span>);
 Console.<span class="mt">WriteLine</span>(agente.<span class="mt">Saudar</span>());`,
       q: 'O que será exibido?',
-      hint: 'ExpandoObject com Func dinâmica',
+      hint: 'O agente expansível Leon tem Nome, Nível e até uma saudação armazenada como Func',
       opts: [
         { t: 'Olá, Leon Nível 10', ok: true },
         { t: 'Erro — ExpandoObject não suporta Func', ok: false },
@@ -150,7 +150,7 @@ Console.<span class="mt">WriteLine</span>(agente.<span class="mt">Saudar</span>(
     Console.<span class="mt">Write</span>(item.<span class="mt">GetType</span>().<span class="mt">Name</span> + <span class="st">" "</span>);
 }`,
       q: 'O que será exibido?',
-      hint: 'Tipos reais de cada objeto boxed',
+      hint: 'O analisador da Umbrella identifica o tipo real de cada amostra — dynamic revela a verdade',
       opts: [
         { t: 'Object Object Object', ok: false },
         { t: 'Int32 String Double', ok: true },
@@ -173,7 +173,7 @@ Console.<span class="mt">WriteLine</span>(dict.<span class="mt">Count</span>);
 <span class="kw">foreach</span> (<span class="kw">var</span> kvp <span class="kw">in</span> dict)
     Console.<span class="mt">Write</span>(kvp.Value + <span class="st">" "</span>);`,
       q: 'O que será exibido?',
-      hint: '3 propriedades e seus valores',
+      hint: 'Leon inventariou A, B e C — quantas propriedades e quais são seus valores no expando?',
       opts: [
         { t: '3 e 1 2 3', ok: true },
         { t: '3 e A B C', ok: false },

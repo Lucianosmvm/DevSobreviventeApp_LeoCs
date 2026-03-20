@@ -12,7 +12,7 @@ const MISSION_33 = {
       type: 'mc',
       bubble: '<strong>Big O</strong> descreve como o tempo de execução (ou uso de memória) cresce em relação ao tamanho da entrada <code>n</code>, ignorando constantes.',
       q: 'Por que ignoramos constantes na notação Big O? Ex: O(2n) vira O(n)?',
-      hint: 'Importa o crescimento, não o coeficiente',
+      hint: 'Para um milhão de Ganados, o dobro de passos importa menos que o padrão de crescimento — Big O foca nisso',
       opts: [
         { t: 'Porque constantes são sempre 1', ok: false },
         { t: 'Porque para n grande, o comportamento de crescimento domina sobre constantes multiplicativas', ok: true },
@@ -27,7 +27,7 @@ const MISSION_33 = {
       type: 'mc',
       bubble: '<strong>O(1)</strong> — constante: o tempo não depende de n. Acesso por índice em array, lookup em Dictionary.',
       q: 'Qual operação é O(1)?',
-      hint: 'Não importa quantos elementos há',
+      hint: 'Leon pega a arma no slot 5 sem verificar os outros — acesso direto independe de quantas armas há',
       opts: [
         { t: 'Busca linear numa List', ok: false },
         { t: 'Acesso por índice arr[5] ou Dictionary["chave"]', ok: true },
@@ -42,7 +42,7 @@ const MISSION_33 = {
       type: 'mc',
       bubble: '<strong>O(n²)</strong> — quadrático: loops aninhados. Para cada elemento, processa todos os outros.',
       q: 'Dois loops for aninhados, cada um de 0 a n. Qual a complexidade?',
-      hint: 'n × n',
+      hint: 'Para cada Ganado da sala, Leon verifica todos os outros — o custo cresce como n×n',
       opts: [
         { t: 'O(n)', ok: false },
         { t: 'O(2n)', ok: false },
@@ -57,7 +57,7 @@ const MISSION_33 = {
       type: 'mc',
       bubble: '<strong>O(log n)</strong> — logarítmico: a cada passo, o problema é dividido pela metade. Busca binária.',
       q: 'Para n=1024, quantas operações máximas faz uma busca binária O(log₂ n)?',
-      hint: 'log₂(1024) = ?',
+      hint: 'Leon corta o corredor de 1024 salas ao meio repetidamente — quantas vezes até chegar a 1?',
       opts: [
         { t: '1024', ok: false },
         { t: '512', ok: false },
@@ -72,7 +72,7 @@ const MISSION_33 = {
       type: 'mc',
       bubble: 'Ordem crescente de complexidades: <strong>O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ)</strong>.',
       q: 'Qual dessas é a pior complexidade para um algoritmo de ordenação com n=1000?',
-      hint: 'Mais operações = pior',
+      hint: 'Saddler quer o algoritmo mais lento para atrasar Leon — O(2ⁿ) para n=1000 é astronomicamente caro',
       opts: [
         { t: 'O(n log n)', ok: false },
         { t: 'O(n²)', ok: false },
@@ -88,7 +88,7 @@ const MISSION_33 = {
       bubble: 'Um único loop de 0 a n tem complexidade:',
       code: `<span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i < n; i++)\n    Console.<span class="mt">WriteLine</span>(i);\n<span class="cm">// Complexidade: O(_______)</span>`,
       q: 'Qual a notação Big O de um único loop linear?',
-      hint: 'Cresce linearmente com n',
+      hint: 'Leon percorre cada Ganado da fila uma vez — o custo cresce linearmente com o número de inimigos',
       ans: 'n',
       exp: 'Um loop de 0 a n executa n vezes → O(n). Dobrar n dobra o tempo de execução.',
     },
@@ -99,7 +99,7 @@ const MISSION_33 = {
       bubble: 'Busca binária divide o espaço ao meio a cada passo. Sua complexidade é:',
       code: `<span class="cm">// A cada iteração, o intervalo é cortado à metade</span>\n<span class="cm">// Complexidade: O(_______)</span>`,
       q: 'Qual a complexidade da busca binária?',
-      hint: 'Metades sucessivas = logaritmo',
+      hint: 'A busca binária de Leon corta o corredor ao meio a cada passo — metades sucessivas são logarítmicas',
       ans: 'log n',
       exp: 'O(log n): a cada passo, o problema vira metade. Para n=1M, max ~20 passos. Muito mais eficiente que O(n)=1M passos.',
     },
@@ -110,7 +110,7 @@ const MISSION_33 = {
       bubble: 'Para medir a complexidade de espaço (memória), usamos a mesma notação. Um array de n elementos usa:',
       code: `<span class="kw">int</span>[] arr = <span class="kw">new int</span>[n];\n<span class="cm">// Complexidade de espaço: O(_______)</span>`,
       q: 'Qual a complexidade de espaço de um array de tamanho n?',
-      hint: 'n elementos, n espaços',
+      hint: 'O inventário de n armas ocupa n espaços na mochila de Leon — espaço proporcional ao tamanho',
       ans: 'n',
       exp: 'O(n) de espaço: precisa de n células de memória. Algoritmos in-place usam O(1) extra (não criam estruturas proporcionais a n).',
     },
@@ -121,7 +121,7 @@ const MISSION_33 = {
       bubble: 'Identificando a complexidade pelo formato do código.',
       code: `<span class="kw">static int</span> <span class="mt">Contar</span>(<span class="kw">int</span>[] a, <span class="kw">int</span>[] b)\n{\n    <span class="kw">int</span> pares = <span class="nm">0</span>;\n    <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i < a.<span class="mt">Length</span>; i++)\n        <span class="kw">for</span> (<span class="kw">int</span> j = <span class="nm">0</span>; j < b.<span class="mt">Length</span>; j++)\n            <span class="kw">if</span> (a[i] == b[j]) pares++;\n    <span class="kw">return</span> pares;\n}`,
       q: 'Se a e b têm n elementos cada, qual a complexidade de Contar()?',
-      hint: 'Dois loops, um dentro do outro',
+      hint: 'Para cada Ganado de a, Leon verifica todos de b — loop dentro de loop, n×n operações',
       opts: [
         { t: 'O(n)', ok: false },
         { t: 'O(n + n)', ok: false },
@@ -137,7 +137,7 @@ const MISSION_33 = {
       bubble: 'Comparando dois algoritmos na prática.',
       code: `<span class="cm">// Algoritmo A: busca linear</span>\n<span class="kw">static bool</span> <span class="mt">BuscaLinear</span>(<span class="kw">int</span>[] arr, <span class="kw">int</span> alvo)\n{\n    <span class="kw">foreach</span> (<span class="kw">var</span> x <span class="kw">in</span> arr) <span class="kw">if</span> (x == alvo) <span class="kw">return true</span>;\n    <span class="kw">return false</span>;\n}\n\n<span class="cm">// Algoritmo B: verificação em HashSet</span>\n<span class="kw">static bool</span> <span class="mt">BuscaHash</span>(HashSet&lt;<span class="kw">int</span>&gt; set, <span class="kw">int</span> alvo)\n    => set.<span class="mt">Contains</span>(alvo);`,
       q: 'Para buscar em 1.000.000 de elementos repetidamente, qual algoritmo é melhor?',
-      hint: 'Compare as complexidades de cada um',
+      hint: 'Para um milhão de buscas, O(1) do HashSet derrota O(n) da List como Leon usando a arma certa',
       opts: [
         { t: 'BuscaLinear — mais simples', ok: false },
         { t: 'BuscaHash — O(1) vs O(n)', ok: true },
@@ -153,7 +153,7 @@ const MISSION_33 = {
       bubble: 'Calculando operações para entender o crescimento.',
       code: `<span class="kw">static void</span> <span class="mt">Mostrar</span>(<span class="kw">int</span> n)\n{\n    <span class="kw">int</span> ops = <span class="nm">0</span>;\n    <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">1</span>; i <= n; i *= <span class="nm">2</span>)\n        ops++;\n    Console.<span class="mt">WriteLine</span>(<span class="st">$"n={n}: {ops} ops"</span>);\n}\n<span class="mt">Mostrar</span>(<span class="nm">8</span>);\n<span class="mt">Mostrar</span>(<span class="nm">64</span>);`,
       q: 'O que será exibido?',
-      hint: 'i dobra a cada iteração: 1,2,4,8... até n',
+      hint: 'O poder de Leon dobra a cada passo: 1, 2, 4, 8... — quantos passos até cobrir 8 e 64?',
       opts: [
         { t: 'n=8: 3 ops e n=64: 6 ops', ok: true },
         { t: 'n=8: 8 ops e n=64: 64 ops', ok: false },
@@ -169,7 +169,7 @@ const MISSION_33 = {
       bubble: 'Identificando complexidade de espaço.',
       code: `<span class="kw">static int</span>[] <span class="mt">Dobrar</span>(<span class="kw">int</span>[] arr)\n{\n    <span class="kw">int</span>[] resultado = <span class="kw">new int</span>[arr.<span class="mt">Length</span>];\n    <span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i < arr.<span class="mt">Length</span>; i++)\n        resultado[i] = arr[i] * <span class="nm">2</span>;\n    <span class="kw">return</span> resultado;\n}`,
       q: 'Qual a complexidade de tempo E de espaço de Dobrar()?',
-      hint: 'Um loop linear e um novo array de mesmo tamanho',
+      hint: 'Leon percorre n inimigos e cria n cópias dobradas — um loop linear e um novo array igual em tamanho',
       opts: [
         { t: 'Tempo O(n²), Espaço O(n)', ok: false },
         { t: 'Tempo O(n), Espaço O(1)', ok: false },

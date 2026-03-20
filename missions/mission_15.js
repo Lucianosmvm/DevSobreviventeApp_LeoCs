@@ -12,7 +12,7 @@ const MISSION_15 = {
       type:'mc',
       bubble:'<strong>Sobrecarga (overloading)</strong> permite criar múltiplas funções com o mesmo nome mas parâmetros diferentes.',
       q:'O que define qual versão sobrecarregada de uma função é chamada?',
-      hint:'Os argumentos passados na chamada',
+      hint:'Atacar(int) é diferente de Atacar(int, bool) — o compilador escolhe pela assinatura dos argumentos',
       opts:[
         {t:'O tipo de retorno', ok:false},
         {t:'O número e tipo dos argumentos passados', ok:true},
@@ -27,7 +27,7 @@ const MISSION_15 = {
       type:'mc',
       bubble:'Parâmetros <strong>ref</strong> e <strong>out</strong> permitem que a função modifique variáveis do chamador.',
       q:'Qual a diferença entre ref e out?',
-      hint:'Um exige inicialização prévia, o outro não',
+      hint:'ref exige que Leon já tenha o valor; out espera que a função o atribua — Ada entrega o relatório, não recebe',
       opts:[
         {t:'São idênticos', ok:false},
         {t:'ref exige que a variável esteja inicializada; out não exige mas deve ser atribuído na função', ok:true},
@@ -42,7 +42,7 @@ const MISSION_15 = {
       type:'mc',
       bubble:'<strong>Params</strong> permite passar um número variável de argumentos para uma função.',
       q:'static void Imprimir(params string[] msgs) pode ser chamada com:',
-      hint:'Params é flexível',
+      hint:'Leon pode transmitir 1 mensagem ou 10 para o rádio — params aceita qualquer quantidade',
       opts:[
         {t:'Apenas um argumento', ok:false},
         {t:'Qualquer número de argumentos string', ok:true},

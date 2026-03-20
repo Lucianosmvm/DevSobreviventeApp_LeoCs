@@ -23,7 +23,7 @@ const MISSION_89 = {
       type: 'mc',
       bubble: '<strong>Retry Pattern</strong>: retentar operações que falham devido a falhas transientes (rede temporária, sobrecarga momentânea). Com backoff exponencial para não sobrecarregar o serviço.',
       q: 'O que é backoff exponencial em retry?',
-      hint: 'Espera crescente entre tentativas',
+      hint: 'Leon espera mais tempo a cada tentativa frustrada — como aguardar os reforços que demoram a chegar',
       opts: [
         { t: 'Retentar sempre imediatamente', ok: false },
         { t: 'Aumentar o tempo de espera entre tentativas exponencialmente — evita sobrecarregar serviço em recuperação', ok: true },
@@ -38,7 +38,7 @@ const MISSION_89 = {
       type: 'mc',
       bubble: '<strong>Circuit Breaker Pattern</strong>: após N falhas consecutivas, o circuito "abre" e rejeita chamadas imediatamente por um período — dá ao serviço downstream tempo para recuperar.',
       q: 'Quais são os três estados do circuit breaker?',
-      hint: 'Fechado, aberto, half-open',
+      hint: 'O sistema da Ilha tem três modos: operando normal, bloqueado após falhas, testando recuperação',
       opts: [
         { t: 'Online, offline, reiniciando', ok: false },
         { t: 'Closed (operando), Open (rejeitando), Half-Open (testando recuperação)', ok: true },
@@ -53,7 +53,7 @@ const MISSION_89 = {
       type: 'mc',
       bubble: '<strong>Polly</strong> (.NET) é a biblioteca padrão para resiliência — policies para retry, circuit breaker, timeout, bulkhead, fallback. Integrado com IHttpClientFactory.',
       q: 'Como integrar Polly com IHttpClientFactory no ASP.NET Core?',
-      hint: 'AddHttpClient + AddPolicyHandler',
+      hint: 'Leon equipa o rádio de campo com a política de retry — AddHttpClient + política Polly',
       opts: [
         { t: 'Usar HttpClient manualmente com try/catch', ok: false },
         { t: 'builder.Services.AddHttpClient("nome").AddPolicyHandler(policy)', ok: true },
@@ -68,7 +68,7 @@ const MISSION_89 = {
       type: 'mc',
       bubble: '<strong>Fallback Pattern</strong>: quando uma operação falha definitivamente (após retries, circuito aberto), retorna um valor padrão ou executa ação alternativa.',
       q: 'Qual o propósito do Fallback em patterns de resiliência?',
-      hint: 'Graceful degradation',
+      hint: 'Quando o rádio de Leon falha, ele usa o sinal de fumaça — uma resposta alternativa degradada',
       opts: [
         { t: 'Impedir qualquer falha', ok: false },
         { t: 'Fornecer resposta alternativa quando a operação principal falha — degradação graciosa', ok: true },
@@ -91,7 +91,7 @@ const MISSION_89 = {
 }
 Console.<span class="mt">WriteLine</span>(tentativas);`,
       q: 'Em qual tentativa deve acontecer sucesso para ter exatamente 3 tentativas?',
-      hint: 'Última tentativa = 3',
+      hint: 'Em qual tentativa Leon finalmente atravessa a porta bloqueada da Ilha?',
       ans: '3',
       exp: 'sucesso = tentativas == 3. Rodadas: tent=1(false), tent=2(false), tent=3(true). Loop sai. tentativas=3.',
     },
@@ -108,7 +108,7 @@ Estado estado = Estado.Closed;
     <span class="kw">if</span> (falhas >= <span class="nm">3</span>) estado = Estado._______;
 }`,
       q: 'Para qual estado o circuito muda após 3 falhas?',
-      hint: 'Circuito aberto',
+      hint: 'Após 3 falhas consecutivas, o circuito da base da Ilha fica sem passagem',
       ans: 'Open',
       exp: 'Após N falhas consecutivas → Open. No estado Open: chamadas rejeitadas imediatamente. Após timeout → HalfOpen para testar recuperação.',
     },
@@ -124,7 +124,7 @@ Estado estado = Estado.Closed;
     })
     .<span class="mt">Build</span>();`,
       q: 'Qual valor numérico para máximo 3 tentativas (não recontando a primeira)?',
-      hint: '3 retries além da tentativa original',
+      hint: 'Leon tenta mais 3 vezes além da primeira — quantas tentativas no total de retry?',
       ans: '3',
       exp: 'MaxRetryAttempts = 3: mais 3 tentativas após a primeira. Total = 4 tentativas. Delay: espera 1s entre cada retry. UseJitter: true para variação aleatória.',
     },
@@ -143,7 +143,7 @@ Estado estado = Estado.Closed;
 }
 Console.<span class="mt">WriteLine</span>(<span class="st">$"Sucesso na tentativa {tentativa}"</span>);`,
       q: 'O que será exibido?',
-      hint: 'Operar retorna true quando tentativa >= 4',
+      hint: 'Leon tenta abrir a porta da Ilha — só consegue quando tentativa atinge o limite máximo',
       opts: [
         { t: 'Sucesso na tentativa 3', ok: false },
         { t: 'Sucesso na tentativa 4', ok: true },
@@ -170,7 +170,7 @@ Console.<span class="mt">WriteLine</span>(<span class="st">$"Sucesso na tentativ
 }
 Console.<span class="mt">WriteLine</span>(<span class="mt">ComFallback</span>(<span class="kw">true</span>));`,
       q: 'O que será exibido?',
-      hint: 'Falha → fallback para cache',
+      hint: 'O rádio de Leon falhou — ele usa os dados do cache como plano B para continuar a missão',
       opts: [
         { t: 'Dados reais', ok: false },
         { t: 'Dados cache', ok: true },
@@ -193,7 +193,7 @@ Console.<span class="mt">WriteLine</span>(<span class="mt">ComFallback</span>(<s
     Console.<span class="mt">WriteLine</span>(<span class="st">"Timeout"</span>);
 }`,
       q: 'O que será exibido?',
-      hint: 'Token cancela em 50ms, Delay é 5000ms',
+      hint: 'Leon tem 50ms antes do token da Umbrella expirar — a operação de 5000ms não vai terminar a tempo',
       opts: [
         { t: 'Completou', ok: false },
         { t: 'Timeout', ok: true },

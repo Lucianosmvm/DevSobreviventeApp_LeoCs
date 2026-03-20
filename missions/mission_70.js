@@ -21,9 +21,9 @@ const MISSION_70 = {
     // Q1 — MC
     {
       type: 'mc',
-      bubble: '<strong>BenchmarkDotNet</strong> é a biblioteca padrão para microbenchmarking em .NET. Mede com rigor estatístico — elimina JIT warmup e variações do OS.',
+      bubble: '<strong>BenchmarkDotNet</strong> é a biblioteca padrão para microbenchmarking em .NET. Aplica rigor estatístico para eliminar fontes de ruído que distorcem o tempo medido em abordagens ingênuas.',
       q: 'Por que não usar Stopwatch para benchmarks de performance?',
-      hint: 'JIT e outros fatores',
+      hint: 'A primeira vez que Leon entra na sala inclui o tempo de abrir a porta — o JIT contamina a medição inicial',
       opts: [
         { t: 'Stopwatch é menos preciso que DateTime', ok: false },
         { t: 'Stopwatch mede o primeiro run que inclui JIT compilation — número distorcido; BenchmarkDotNet aquece o código primeiro', ok: true },
@@ -36,9 +36,9 @@ const MISSION_70 = {
     // Q2 — MC
     {
       type: 'mc',
-      bubble: '<strong>ArrayPool&lt;T&gt;</strong> e <strong>MemoryPool&lt;T&gt;</strong> reutilizam buffers alocados, reduzindo pressão no GC para buffers temporários.',
+      bubble: '<strong>ArrayPool&lt;T&gt;</strong> e <strong>MemoryPool&lt;T&gt;</strong> são alternativas ao <code>new T[]</code> padrão, acessíveis via propriedades estáticas como <code>ArrayPool&lt;T&gt;.Shared</code>. Têm semântica de aluguel: <code>Rent</code> e <code>Return</code>.',
       q: 'Quando usar ArrayPool<T>.Shared em vez de new T[]?',
-      hint: 'Buffers temporários frequentes',
+      hint: 'Leon reutiliza o mesmo coldre para guardar a arma temporária — alugue e devolva ao pool em vez de criar e descartar',
       opts: [
         { t: 'Sempre — ArrayPool é sempre melhor', ok: false },
         { t: 'Para buffers temporários de vida curta e alta frequência — evita alocações no heap e coleta pelo GC', ok: true },
@@ -53,7 +53,7 @@ const MISSION_70 = {
       type: 'mc',
       bubble: 'O <strong>GC.Collect()</strong> força uma coleta de lixo. Em produção, nunca chame isso — o GC sabe melhor quando coletar.',
       q: 'Quando é aceitável chamar GC.Collect() explicitamente?',
-      hint: 'Casos muito específicos',
+      hint: 'Limpar a Vila inteira de uma vez só faz sentido entre fases — em pleno combate, nunca force a coleta',
       opts: [
         { t: 'Sempre após liberar objetos grandes', ok: false },
         { t: 'Em produção regularmente para manter a memória', ok: false },
@@ -68,7 +68,7 @@ const MISSION_70 = {
       type: 'mc',
       bubble: 'Structs pequenas (até ~16 bytes) podem ser mais eficientes que classes por evitar alocação no heap e pressure no GC. Passadas por valor.',
       q: 'Quando structs têm desvantagem em performance comparadas a classes?',
-      hint: 'Cópia por valor',
+      hint: 'El Gigante prova que tamanho tem custo — structs grandes passadas com frequência penalizam a performance',
       opts: [
         { t: 'Structs são sempre piores que classes', ok: false },
         { t: 'Quando são grandes (>16 bytes) e copiadas com frequência — cópia por valor custa mais que passar referência', ok: true },
@@ -84,7 +84,7 @@ const MISSION_70 = {
       bubble: 'Alugando buffer do ArrayPool:',
       code: `<span class="kw">var</span> pool = ArrayPool&lt;<span class="kw">byte</span>&gt;.Shared;\n<span class="kw">byte</span>[] buffer = pool.<span class="mt">_______</span>(<span class="nm">1024</span>);\n<span class="kw">try</span> { <span class="cm">/* usar buffer */</span> }\n<span class="kw">finally</span> { pool.<span class="mt">Return</span>(buffer); }`,
       q: 'Qual método aluga um buffer do pool?',
-      hint: 'Alugar em inglês',
+      hint: 'Leon aluga o equipamento do depósito em vez de comprar um novo — o método que reserva o buffer do pool',
       ans: 'Rent',
       exp: '"Rent(1024)" retorna um buffer de pelo menos 1024 bytes. Pode ser maior. "Return(buffer)" devolve ao pool. Sempre no finally!',
     },
@@ -95,7 +95,7 @@ const MISSION_70 = {
       bubble: 'Evitando boxing ao usar interface com struct:',
       code: `<span class="kw">interface</span> IValor&lt;T&gt; { T <span class="mt">Obter</span>(); }\n<span class="kw">struct</span> Hp : IValor&lt;<span class="kw">int</span>&gt; { <span class="kw">public int</span> <span class="mt">Obter</span>() => <span class="nm">100</span>; }\n\n<span class="kw">static</span> T <span class="mt">Ler</span>&lt;T, TVal&gt;(TVal val) <span class="kw">where</span> TVal : <span class="mt">_______</span>&lt;T&gt;\n    => val.<span class="mt">Obter</span>();`,
       q: 'Qual constraint evita boxing ao usar interface com struct genérica?',
-      hint: 'Interface de IValor',
+      hint: 'O constraint genérico evita que a Plaga faça boxing — o tipo deve implementar a interface de valor',
       ans: 'IValor',
       exp: '"where TVal : IValor<T>" com TVal como parâmetro genérico evita boxing. O compilador gera código específico para Hp, sem virtual dispatch.',
     },
@@ -106,7 +106,7 @@ const MISSION_70 = {
       bubble: 'String interning para comparações rápidas de strings literais:',
       code: `<span class="kw">string</span> s1 = <span class="kw">string</span>.<span class="mt">_______</span>(<span class="st">"MISSAO"</span>);\n<span class="kw">string</span> s2 = <span class="kw">string</span>.<span class="mt">Intern</span>(<span class="st">"MISSAO"</span>);\nConsole.<span class="mt">WriteLine</span>(ReferenceEquals(s1, s2)); <span class="cm">// True</span>`,
       q: 'Qual método força o interning de uma string?',
-      hint: 'Internar em inglês',
+      hint: 'O bunker registra uma única cópia de cada senha — o método que garante referência compartilhada para strings iguais',
       ans: 'Intern',
       exp: '"string.Intern(s)" retorna referência à string interned. Mesma string literal = mesma referência. ReferenceEquals torna-se comparação de ponteiro — O(1).',
     },
@@ -117,7 +117,7 @@ const MISSION_70 = {
       bubble: 'ArrayPool reduzindo alocações.',
       code: `<span class="kw">var</span> pool = ArrayPool&lt;<span class="kw">int</span>&gt;.Shared;\n<span class="kw">var</span> buf = pool.<span class="mt">Rent</span>(<span class="nm">10</span>);\n<span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i < <span class="nm">5</span>; i++) buf[i] = (i + <span class="nm">1</span>) * <span class="nm">10</span>;\n<span class="kw">int</span> soma = <span class="nm">0</span>;\n<span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i < <span class="nm">5</span>; i++) soma += buf[i];\npool.<span class="mt">Return</span>(buf);\nConsole.<span class="mt">WriteLine</span>(soma);`,
       q: 'O que será exibido?',
-      hint: '10+20+30+40+50',
+      hint: 'O buffer alugado por Leon tem 5 danos — some os valores que foram gravados nos índices 0 a 4',
       opts: [
         { t: '100', ok: false },
         { t: '150', ok: true },
@@ -133,7 +133,7 @@ const MISSION_70 = {
       bubble: 'Evitando boxing com readonly struct.',
       code: `<span class="kw">readonly struct</span> Ponto\n{\n    <span class="kw">public readonly int</span> X, Y;\n    <span class="kw">public</span> <span class="mt">Ponto</span>(<span class="kw">int</span> x, <span class="kw">int</span> y) { X=x; Y=y; }\n    <span class="kw">public double</span> Distancia => Math.<span class="mt">Sqrt</span>(X*X + Y*Y);\n}\n\n<span class="kw">var</span> p = <span class="kw">new</span> Ponto(<span class="nm">3</span>, <span class="nm">4</span>);\nConsole.<span class="mt">WriteLine</span>(p.Distancia);`,
       q: 'O que será exibido?',
-      hint: 'Distância de (3,4) à origem',
+      hint: 'Leon mede a distância da Vila até o Castelo — aplique o teorema de Pitágoras com 3 e 4',
       opts: [
         { t: '5', ok: true },
         { t: '7', ok: false },
@@ -149,7 +149,7 @@ const MISSION_70 = {
       bubble: 'Comparando capacidade de List para evitar realocações.',
       code: `<span class="kw">var</span> l1 = <span class="kw">new</span> List&lt;<span class="kw">int</span>&gt;();\n<span class="kw">var</span> l2 = <span class="kw">new</span> List&lt;<span class="kw">int</span>&gt;(<span class="nm">1000</span>);\n<span class="kw">for</span> (<span class="kw">int</span> i = <span class="nm">0</span>; i < <span class="nm">1000</span>; i++) { l1.<span class="mt">Add</span>(i); l2.<span class="mt">Add</span>(i); }\nConsole.<span class="mt">WriteLine</span>(l1.<span class="mt">Count</span> == l2.<span class="mt">Count</span>);`,
       q: 'O que será exibido? Qual a diferença de performance entre l1 e l2?',
-      hint: 'Mesmo resultado, diferente número de realocações',
+      hint: 'O depósito de Leon comporta exatamente 1000 itens desde o início — sem realocações surpresa durante a missão',
       opts: [
         { t: 'False — capacidades diferentes', ok: false },
         { t: 'True — l1 sofre ~10 realocações, l2 não sofre nenhuma', ok: true },

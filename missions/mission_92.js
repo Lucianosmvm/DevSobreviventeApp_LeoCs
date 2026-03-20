@@ -23,7 +23,7 @@ const MISSION_92 = {
       type: 'mc',
       bubble: '<strong>unsafe code</strong> em C# permite usar ponteiros diretamente — memória não gerenciada, sem GC. Requer <code>unsafe</code> keyword e configuração no projeto (<AllowUnsafeBlocks>true</AllowUnsafeBlocks>).',
       q: 'Por que código unsafe deve ser minimizado em C#?',
-      hint: 'GC e segurança de memória',
+      hint: 'O Regenerador sem colete de proteção — unsafe remove as salvaguardas do GC',
       opts: [
         { t: 'Código unsafe é mais lento', ok: false },
         { t: 'Perde garantias do GC — memory leaks, dangling pointers, buffer overflows são possíveis', ok: true },
@@ -38,7 +38,7 @@ const MISSION_92 = {
       type: 'mc',
       bubble: '<code>stackalloc</code> aloca memória na stack — sem GC, sem heap. Com Span<T> (C# 7.2+), pode ser usado em código safe em alguns contextos.',
       q: 'Qual a limitação principal de stackalloc?',
-      hint: 'Tamanho limitado',
+      hint: 'El Gigante prova que tamanho tem custo — a stack de Leon tem limite e pode overflow',
       opts: [
         { t: 'Não suporta tipos primitivos', ok: false },
         { t: 'Stack tem tamanho limitado (~1MB) — stackalloc grande pode causar StackOverflowException', ok: true },
@@ -53,7 +53,7 @@ const MISSION_92 = {
       type: 'mc',
       bubble: '<strong>P/Invoke</strong> (Platform Invocation Services) permite chamar funções de DLLs nativas (C/C++, Win32 API) diretamente do C#.',
       q: 'Qual atributo é usado para P/Invoke em C#?',
-      hint: 'DllImport',
+      hint: 'Leon importa suporte nativo do kernel — o atributo que marca funções vindas de DLLs externas',
       opts: [
         { t: '[NativeMethod]', ok: false },
         { t: '[DllImport("library.dll")]', ok: true },
@@ -68,7 +68,7 @@ const MISSION_92 = {
       type: 'mc',
       bubble: '<strong>fixed</strong> statement em código unsafe "prega" um objeto gerenciado na memória para que o GC não mova ele enquanto o ponteiro está em uso.',
       q: 'Por que usar "fixed" ao trabalhar com ponteiros para objetos gerenciados?',
-      hint: 'GC pode mover objetos',
+      hint: 'O GC move Ashley pela memória como o castelo muda os quartos — fixed prega ela no lugar',
       opts: [
         { t: 'Para evitar que o objeto seja coletado', ok: false },
         { t: 'O GC pode mover objetos — fixed impede movimentação enquanto o ponteiro está em uso', ok: true },
@@ -86,7 +86,7 @@ const MISSION_92 = {
 buffer[<span class="nm">0</span>] = <span class="nm">42</span>;
 Console.<span class="mt">WriteLine</span>(buffer[<span class="nm">0</span>]);`,
       q: 'Qual keyword aloca memória na stack?',
-      hint: 'Stack allocate',
+      hint: 'Leon aloca o buffer de munição diretamente na stack — sem passar pelo GC da Umbrella',
       ans: 'stackalloc',
       exp: 'stackalloc int[16]: 16 ints na stack (64 bytes). Span<int> wrapping = safe. Sem GC pressure. Para buffers temporários pequenos em hot paths.',
     },
@@ -101,7 +101,7 @@ Console.<span class="mt">WriteLine</span>(buffer[<span class="nm">0</span>]);`,
 <span class="kw">var</span> handle = _______();
 Console.<span class="mt">WriteLine</span>(handle != IntPtr.Zero);`,
       q: 'Como chamar a função P/Invoke importada?',
-      hint: 'O nome do método declarado',
+      hint: 'Leon chama a função nativa pelo mesmo nome que foi importado com DllImport',
       ans: 'GetCurrentProcess',
       exp: 'GetCurrentProcess(): chamada direta ao método extern. P/Invoke faz o marshaling automaticamente. handle = ponteiro para processo atual. Não zero = válido.',
     },
@@ -117,7 +117,7 @@ Console.<span class="mt">WriteLine</span>(handle != IntPtr.Zero);`,
     Console.<span class="mt">WriteLine</span>(*ptr);
 }`,
       q: 'Qual operador obtém o endereço de uma variável?',
-      hint: 'Address-of operator',
+      hint: 'Leon aponta o Rifle para a coordenada exata de x na memória — qual operador obtém o endereço?',
       ans: '&',
       exp: '&x: address-of operator. int* ptr = &x: ptr aponta para x. *ptr: dereference = valor em ptr = 42. unsafe block necessário para ponteiros.',
     },
@@ -132,7 +132,7 @@ Console.<span class="mt">WriteLine</span>(handle != IntPtr.Zero);`,
 <span class="kw">foreach</span> (<span class="kw">var</span> n <span class="kw">in</span> nums) soma += n;
 Console.<span class="mt">WriteLine</span>(soma);`,
       q: 'O que será exibido?',
-      hint: '2+4+6+8+10',
+      hint: 'Leon soma os danos pares da sequência — cada um é o dobro da sua posição na stack',
       opts: [
         { t: '20', ok: false },
         { t: '30', ok: true },
@@ -152,7 +152,7 @@ Console.<span class="mt">WriteLine</span>(soma);`,
 Console.<span class="mt">WriteLine</span>(intSpan.<span class="mt">Length</span>);
 Console.<span class="mt">WriteLine</span>(byteSpan.<span class="mt">Length</span>);`,
       q: 'O que será exibido?',
-      hint: 'int = 4 bytes; 3 ints = 12 bytes',
+      hint: 'Cada Ganado ocupa 4 bytes na memória — 3 Ganados, quantos bytes total?',
       opts: [
         { t: '3 e 3', ok: false },
         { t: '3 e 12', ok: true },
@@ -175,7 +175,7 @@ Console.<span class="mt">WriteLine</span>(byteSpan.<span class="mt">Length</span
     NativeMemory.<span class="mt">Free</span>(ptr);
 }`,
       q: 'O que será exibido?',
-      hint: 'Fill com 0xFF e verificar primeiro byte',
+      hint: 'Leon preenche o buffer com 0xFF e verifica se o primeiro byte foi gravado corretamente',
       opts: [
         { t: 'False', ok: false },
         { t: 'True', ok: true },
