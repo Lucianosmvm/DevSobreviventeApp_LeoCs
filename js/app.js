@@ -24,3 +24,8 @@ function initApp() {
 window.addEventListener('DOMContentLoaded', () => {
   setTimeout(initApp, 1400);
 });
+
+// Esconde o loading caso o usuário volte da tela de pagamento (bfcache restore)
+window.addEventListener('pageshow', (e) => {
+  if (e.persisted) hideLoading();
+});
