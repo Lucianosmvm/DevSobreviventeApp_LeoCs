@@ -65,7 +65,7 @@ async function _ensureUserDoc(user) {
     await window._fb.setDoc(ref, {
       name: user.displayName || 'Agente', email: user.email,
       xp: 0, hearts: MAX_H, streak: 0, lastPlayed: null,
-      done: [], correct: 0, premium: false,
+      done: [], correct: 0, premium: false, achievements: {},
       createdAt: window._fb.serverTimestamp(),
       lastLogin:  window._fb.serverTimestamp(),
     });
@@ -85,9 +85,10 @@ async function _loadCloud(uid) {
       S.streak     = d.streak     ?? 0;
       S.lastPlayed = d.lastPlayed ?? null;
       S.done       = d.done       ?? [];
-      S.correct    = d.correct    ?? 0;
-      S.premium    = d.premium    ?? false;
-      S.createdAt  = d.createdAt?.toDate?.()?.toLocaleDateString('pt-BR') ?? '—';
+      S.correct       = d.correct       ?? 0;
+      S.premium       = d.premium       ?? false;
+      S.achievements  = d.achievements  ?? {};
+      S.createdAt     = d.createdAt?.toDate?.()?.toLocaleDateString('pt-BR') ?? '—';
     }
   } catch(e) { console.warn('Offline — usando dados locais'); }
 }
@@ -100,6 +101,7 @@ function syncCloud() {
     xp: S.xp, hearts: S.hearts, streak: S.streak,
     lastPlayed: S.lastPlayed, done: S.done,
     correct: S.correct || 0, premium: S.premium,
+    achievements: S.achievements || {},
     lastLogin: window._fb.serverTimestamp(),
   }).catch(() => {});
   // Atualiza entrada pública no ranking (só dados não-sensíveis)

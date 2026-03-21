@@ -75,10 +75,36 @@ async function doLogin() {
   }
 }
 
+// ── Detecção de WebView (TikTok, Instagram, etc.) ──
+
+function _isInAppBrowser() {
+  const ua = navigator.userAgent || '';
+  return /musical_ly|TikTok|BytedanceWebview|Instagram|FBAN|FBAV|FB_IAB|Line\/|KAKAOTALK|MicroMessenger/i.test(ua)
+    || (typeof window.ReactNativeWebView !== 'undefined');
+}
+
+function _openInExternalBrowser() {
+  const url = location.href;
+  // Tenta Android Intent (abre no Chrome)
+  const intent = 'intent://' + url.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+  const link = document.createElement('a');
+  link.href = intent;
+  link.click();
+  // Fallback: mostra instrução manual
+  setTimeout(() => {
+    showToast('Toque nos 3 pontos (⋮) e escolha "Abrir no navegador"', 'info');
+  }, 500);
+}
+
 // ── Login com Google ──
 
 async function loginGoogle() {
   if (!_fbAuth || !window._fb) { showToast('Configure o Firebase!', 'err'); return; }
+
+  if (_isInAppBrowser()) {
+    _openInExternalBrowser();
+    return;
+  }
 
   showLoading('CONECTANDO...');
   try {
