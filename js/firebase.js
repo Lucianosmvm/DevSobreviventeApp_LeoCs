@@ -40,6 +40,7 @@ async function loadFirebase() {
         await _loadCloud(user.uid);
         hideLoading();
         regenH(); checkStreakLoss(); _saveLocal();
+        await checkPaymentReturn();
         go('hm');
       } else {
         window._currentUser = null;

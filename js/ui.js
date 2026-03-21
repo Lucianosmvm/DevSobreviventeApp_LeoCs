@@ -69,3 +69,38 @@ async function activatePremium() {
   showToast('👑 Bem-vindo ao Premium!', 'ok');
   go('hm');
 }
+
+// ── Retorno do Stripe após pagamento ──
+// Stripe redireciona para https://leoncs.com.br/?payment=success
+// O webhook já setou premium=true no Firestore; aqui só recarregamos os dados.
+async function checkPaymentReturn() {
+  const params = new URLSearchParams(location.search);
+  if (params.get('payment') !== 'success') return;
+
+  // Limpa o parâmetro da URL sem recarregar a página
+  history.replaceState({}, '', location.pathname);
+
+  if (!window._currentUser) return;
+
+  showLoading('VERIFICANDO PAGAMENTO...');
+  try {
+    // Tenta até 5x (o webhook pode chegar com pequeno atraso)
+    for (let i = 0; i < 5; i++) {
+      await _loadCloud(window._currentUser.uid);
+      if (S.premium) break;
+      await new Promise(r => setTimeout(r, 2000));
+    }
+  } finally {
+    hideLoading();
+  }
+
+  if (S.premium) {
+    S.hearts = MAX_H;
+    _saveLocal();
+    checkAchievements();
+    showToast('👑 Bem-vindo ao Premium!', 'ok');
+    go('hm');
+  } else {
+    showToast('Pagamento em processamento. Aguarde alguns instantes.', 'info');
+  }
+}
